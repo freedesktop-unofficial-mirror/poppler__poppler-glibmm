@@ -1,0 +1,34 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+namespace Poppler
+{
+
+Rectangle::Rectangle(double x1, double y1, double x2, double y2)
+:
+  gobject_ (poppler_rectangle_new())
+{
+  gobj()->x1 = x1;
+  gobj()->y1 = y1;
+  gobj()->x2 = x2;
+  gobj()->y2 = y2;
+}
+
+void RectangleTraits::release_c_type(CType item) { poppler_rectangle_free(item); }
+
+} // namespace Poppler

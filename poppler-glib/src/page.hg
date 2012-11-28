@@ -1,0 +1,125 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+_PINCLUDE(glibmm/private/object_p.h)
+
+#include <cairomm/context.h>
+#include <cairomm/region.h>
+#include <poppler-glibmm/rectangle.h>
+#include <poppler-glibmm/page_transition.h>
+#include <poppler-glibmm/ps_file.h>
+#include <poppler-glibmm/color.h>
+#include <poppler-glibmm/text_attributes.h>
+#include <poppler-glibmm/link_mapping.h>
+#include <poppler-glibmm/image_mapping.h>
+#include <poppler-glibmm/form_field_mapping.h>
+#include <poppler-glibmm/annot_mapping.h>
+_CC_INCLUDE(poppler-page.h)
+
+namespace Poppler
+{
+
+class Annot;
+
+_WRAP_ENUM(PrintFlags, PopplerPrintFlags)
+_WRAP_ENUM(SelectionStyle, PopplerSelectionStyle)
+
+/** Poppler::Page is a class that provides access to information about a page
+ * in a document
+ */
+class Page : public Glib::Object
+{
+  _CLASS_GOBJECT(Page, PopplerPage, POPPLER_PAGE, Glib::Object, GObject)
+
+protected:
+  _CTOR_DEFAULT
+
+public:
+  _WRAP_METHOD(int get_index() const, poppler_page_get_index)
+  _WRAP_METHOD(Glib::ustring get_label() const, poppler_page_get_label)
+  _WRAP_METHOD(void get_size(double& width, double& height) const, poppler_page_get_size)
+  _WRAP_METHOD(void get_crop_box(Rectangle& rect) const, poppler_page_get_crop_box)
+  _WRAP_METHOD(double get_duration() const, poppler_page_get_duration)
+  _WRAP_METHOD(PageTransition get_transition() const, poppler_page_get_transition)
+  _WRAP_METHOD(bool get_thumbnail_size(int& width, int& height) const, poppler_page_get_thumbnail_size)
+
+  _WRAP_METHOD_DOCS_ONLY(poppler_page_get_thumbnail)
+  Cairo::RefPtr<Cairo::ImageSurface> get_thumbnail() const;
+
+  _WRAP_METHOD(void render(const Cairo::RefPtr<Cairo::Context>& cr) const, poppler_page_render)
+  _WRAP_METHOD(void render_for_printing(const Cairo::RefPtr<Cairo::Context>& cr) const, poppler_page_render_for_printing)
+  _WRAP_METHOD(void render_for_printing_with_options(const Cairo::RefPtr<Cairo::Context>& cr, PrintFlags options) const,
+               poppler_page_render_for_printing_with_options)
+  _WRAP_METHOD(void render_to_ps(const Glib::RefPtr<PSFile>& ps_file) const, poppler_page_render_to_ps)
+  _WRAP_METHOD(void render_selection(const Cairo::RefPtr<Cairo::Context>& cr,
+               const Rectangle& selection, const Rectangle& old_selection, SelectionStyle style,
+               const Color& glyph_color, const Color& background_color) const,
+               poppler_page_render_selection)
+  _WRAP_METHOD(Cairo::RefPtr<Cairo::Region> get_selected_region(double scale, SelectionStyle style,
+               const Rectangle& selection) const,
+               poppler_page_get_selected_region)
+
+  _IGNORE(poppler_page_get_selection_region) // Deprecated
+
+  _WRAP_METHOD(Glib::ustring get_selected_text(SelectionStyle style, const Rectangle& rectangle) const,
+               poppler_page_get_selected_text)
+
+#m4 _CONVERSION(`GList*',`std::vector<Rectangle>',
+#m4   `Glib::ListHandler<Rectangle,RectangleTraits>::list_to_vector($3, Glib::OWNERSHIP_DEEP)')
+  _WRAP_METHOD(std::vector<Rectangle> find_text(const Glib::ustring& text) const, poppler_page_find_text)
+
+  _WRAP_METHOD(Glib::ustring get_text() const, poppler_page_get_text)
+
+  _WRAP_METHOD_DOCS_ONLY(poppler_page_get_text_layout)
+  bool get_text_layout(std::vector<Rectangle>& rectangles) const;
+
+#m4 _CONVERSION(`GList*',`std::vector<TextAttributes>',
+#m4   `Glib::ListHandler<TextAttributes,TextAttributesTraits>::list_to_vector($3, Glib::OWNERSHIP_DEEP)')
+  _WRAP_METHOD(std::vector<TextAttributes> get_text_attributes() const, poppler_page_get_text_attributes)
+  _IGNORE(poppler_page_free_text_attributes)
+
+#m4 _CONVERSION(`GList*',`std::vector<LinkMapping>',
+#m4   `Glib::ListHandler<LinkMapping,LinkMappingTraits>::list_to_vector($3, Glib::OWNERSHIP_DEEP)')
+  _WRAP_METHOD(std::vector<LinkMapping> get_link_mapping() const, poppler_page_get_link_mapping)
+  _IGNORE(poppler_page_free_link_mapping)
+
+#m4 _CONVERSION(`GList*',`std::vector<ImageMapping>',
+#m4   `Glib::ListHandler<ImageMapping,ImageMappingTraits>::list_to_vector($3, Glib::OWNERSHIP_DEEP)')
+  _WRAP_METHOD(std::vector<ImageMapping> get_image_mapping() const, poppler_page_get_image_mapping)
+  _IGNORE(poppler_page_free_image_mapping)
+
+  _WRAP_METHOD_DOCS_ONLY(poppler_page_get_image)
+  Cairo::RefPtr<Cairo::ImageSurface> get_image(int image_id) const;
+
+#m4 _CONVERSION(`GList*',`std::vector<FormFieldMapping>',
+#m4   `Glib::ListHandler<FormFieldMapping,FormFieldMappingTraits>::list_to_vector($3, Glib::OWNERSHIP_DEEP)')
+  _WRAP_METHOD(std::vector<FormFieldMapping> get_form_field_mapping() const, poppler_page_get_form_field_mapping)
+  _IGNORE(poppler_page_free_form_field_mapping)
+
+#m4 _CONVERSION(`GList*',`std::vector<AnnotMapping>',
+#m4   `Glib::ListHandler<AnnotMapping,AnnotMappingTraits>::list_to_vector($3, Glib::OWNERSHIP_DEEP)')
+  _WRAP_METHOD(std::vector<AnnotMapping> get_annot_mapping() const, poppler_page_get_annot_mapping)
+  _IGNORE(poppler_page_free_annot_mapping)
+
+  _WRAP_METHOD(void add_annot(const Glib::RefPtr<Annot>& annot) const, poppler_page_add_annot)
+
+  _WRAP_PROPERTY("label", Glib::ustring)
+};
+
+} // namespace Poppler

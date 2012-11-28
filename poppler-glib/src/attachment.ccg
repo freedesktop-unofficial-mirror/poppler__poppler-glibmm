@@ -1,0 +1,59 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+static gboolean SignalProxy_attachment_save_callback(const gchar* buf, gsize count, gpointer data, GError**)
+{
+  Poppler::Attachment::SlotAttachmentSave* the_slot = static_cast<Poppler::Attachment::SlotAttachmentSave*>(data);
+
+  try
+  {
+    return (*the_slot)(buf, count);
+  }
+  catch(...)
+  {
+    Glib::exception_handlers_invoke();
+  }
+
+  return false;
+}
+
+namespace Poppler
+{
+
+bool Attachment::save(const SlotAttachmentSave& slot) const
+{
+  GError* gerror = 0;
+  bool res;
+
+  // Create a copy of the slot.
+  // A pointer to it will be passed through the callback's data parameter and
+  // deleted in the callback.
+  SlotAttachmentSave* slot_copy = new SlotAttachmentSave(slot);
+
+  res = poppler_attachment_save_to_callback(const_cast<PopplerAttachment*>(gobj()),
+      &SignalProxy_attachment_save_callback, slot_copy, &gerror);
+
+  delete slot_copy;
+
+  if (gerror)
+    ::Glib::Error::throw_exception(gerror);
+
+  return res;
+}
+
+} // namespace Poppler

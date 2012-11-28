@@ -1,0 +1,81 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+_PINCLUDE(glibmm/private/object_p.h)
+#include <poppler-glibmm/action.h>
+_CC_INCLUDE(poppler-form-field.h)
+
+namespace Poppler
+{
+
+_WRAP_ENUM(FormFieldType, PopplerFormFieldType)
+_WRAP_ENUM(FormButtonType, PopplerFormButtonType)
+_WRAP_ENUM(FormTextType, PopplerFormTextType)
+_WRAP_ENUM(FormChoiceType, PopplerFormChoiceType)
+
+/** Poppler::FormField is used to find information about and manipulate form fields in pdf documents
+ */
+class FormField : public Glib::Object
+{
+  _CLASS_GOBJECT(FormField, PopplerFormField, POPPLER_FORM_FIELD, Glib::Object, GObject)
+
+  protected:
+    _CTOR_DEFAULT
+
+  public:
+    _WRAP_METHOD(FormFieldType get_field_type() const, poppler_form_field_get_field_type)
+    _WRAP_METHOD(int get_id() const, poppler_form_field_get_id)
+    _WRAP_METHOD(bool is_read_only() const, poppler_form_field_is_read_only)
+    _WRAP_METHOD(double get_font_size() const, poppler_form_field_get_font_size)
+    _WRAP_METHOD(Glib::ustring get_partial_name() const, poppler_form_field_get_partial_name)
+    _WRAP_METHOD(Glib::ustring get_mapping_name() const, poppler_form_field_get_mapping_name)
+    _WRAP_METHOD(Glib::ustring get_name() const, poppler_form_field_get_name)
+
+#m4 _CONVERSION(`PopplerAction*',`Action',`Glib::wrap($3, true)')
+    _WRAP_METHOD(Action get_action() const, poppler_form_field_get_action)
+
+    _WRAP_METHOD(FormButtonType button_get_button_type() const, poppler_form_field_button_get_button_type)
+    _WRAP_METHOD(bool button_get_state() const, poppler_form_field_button_get_state)
+    _WRAP_METHOD(void button_set_state(bool state) const, poppler_form_field_button_set_state)
+
+    _WRAP_METHOD(FormChoiceType choice_get_choice_type() const, poppler_form_field_choice_get_choice_type)
+    _WRAP_METHOD(bool choice_can_select_multiple() const, poppler_form_field_choice_can_select_multiple)
+    _WRAP_METHOD(bool choice_commit_on_change() const, poppler_form_field_choice_commit_on_change)
+    _WRAP_METHOD(bool choice_do_spell_check() const, poppler_form_field_choice_do_spell_check)
+    _WRAP_METHOD(Glib::ustring choice_get_item(int index) const, poppler_form_field_choice_get_item)
+    _WRAP_METHOD(int choice_get_n_items() const, poppler_form_field_choice_get_n_items)
+    _WRAP_METHOD(Glib::ustring choice_get_text() const, poppler_form_field_choice_get_text)
+    _WRAP_METHOD(void choice_set_text(const Glib::ustring& text) const, poppler_form_field_choice_set_text)
+    _WRAP_METHOD(bool choice_is_editable() const, poppler_form_field_choice_is_editable)
+    _WRAP_METHOD(bool choice_is_item_selected(int index) const, poppler_form_field_choice_is_item_selected)
+    _WRAP_METHOD(void choice_select_item(int index) const, poppler_form_field_choice_select_item)
+    _WRAP_METHOD(void choice_toggle_item(int index) const, poppler_form_field_choice_toggle_item)
+    _WRAP_METHOD(void choice_unselect_all() const, poppler_form_field_choice_unselect_all)
+
+    _WRAP_METHOD(FormTextType text_get_text_type() const, poppler_form_field_text_get_text_type)
+    _WRAP_METHOD(Glib::ustring text_get_text() const, poppler_form_field_text_get_text)
+    _WRAP_METHOD(void text_set_text(const Glib::ustring& text) const, poppler_form_field_text_set_text)
+    _WRAP_METHOD(int text_get_max_len() const, poppler_form_field_text_get_max_len)
+    _WRAP_METHOD(bool text_do_scroll() const, poppler_form_field_text_do_scroll)
+    _WRAP_METHOD(bool text_do_spell_check() const, poppler_form_field_text_do_spell_check)
+    _WRAP_METHOD(bool text_is_password() const, poppler_form_field_text_is_password)
+    _WRAP_METHOD(bool text_is_rich_text() const, poppler_form_field_text_is_rich_text)
+};
+
+} // namespace Poppler

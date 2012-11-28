@@ -1,0 +1,72 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+_CC_INCLUDE(poppler.h)
+#include <poppler-glibmm/action.h>
+
+namespace Poppler
+{
+
+/** Poppler::IndexIter is used to iterate through the index of a document
+ * 
+ * Certain documents have an index associated with them.  This index can be
+ * used to help the user navigate the document, and is similar to a table of
+ * contents.  Each node in the index will contain a Poppler::Action that can be
+ * displayed to the user - typically a Poppler::ACTION_GOTO_DEST or a
+ * Poppler::ACTION_URI.
+ *
+ * Here is a simple example of some code that walks the full index:
+ *
+ * @code
+ * void walk_index(const Poppler::IndexIter& iter)
+ * {
+ *     do
+ *     {
+ *         // Get the the action and do something with it
+ *         IndexIter child = iter.get_child();
+ *         if (child) walk_index(child);
+ *     }
+ *     while (iter.next());
+ * }
+ * ...
+ * {
+ *     IndexIter iter = document->index_iter_new();
+ *     if (iter) walk_index(iter);
+ * }
+ * @endcode
+ **/
+class IndexIter
+{
+  _CLASS_BOXEDTYPE(IndexIter, PopplerIndexIter, NONE, poppler_index_iter_copy, poppler_index_iter_free)
+  _IGNORE(poppler_index_iter_copy, poppler_index_iter_free)
+
+  public:
+    _WRAP_METHOD(IndexIter get_child() const, poppler_index_iter_get_child)
+    _WRAP_METHOD(bool is_open() const, poppler_index_iter_is_open)
+    _WRAP_METHOD(Action get_action() const, poppler_index_iter_get_action)
+    _WRAP_METHOD(bool next() const, poppler_index_iter_next)
+
+    /** Returns <tt>true</tt> if this IndexIter points contains valid
+     * information about indices of the associated document.
+     * @return <tt>true</tt>, if the IndexIter is valid
+     */
+    inline operator bool() const { return gobj() != NULL; };
+};
+
+} // namespace Poppler

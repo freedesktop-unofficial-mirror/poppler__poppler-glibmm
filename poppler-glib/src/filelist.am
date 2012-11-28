@@ -1,0 +1,38 @@
+## This file is part of poppler-glibmm.
+
+files_defs = \
+	     poppler-glib.defs			\
+	     poppler-glib_enum.defs		\
+	     poppler-glib_extra.defs		\
+	     poppler-glib_method.defs		\
+	     poppler-glib_docs.xml		\
+	     poppler-glib_docs_override.xml
+
+files_hg  = \
+	    action.hg			\
+	    annot.hg			\
+	    annot_callout_line.hg	\
+	    annot_mapping.hg		\
+	    attachment.hg		\
+	    color.hg			\
+	    document.hg			\
+	    error.hg			\
+	    font_info.hg		\
+	    fonts_iter.hg		\
+	    form_field.hg		\
+	    form_field_mapping.hg	\
+	    image_mapping.hg		\
+	    index_iter.hg		\
+	    layer.hg			\
+	    layers_iter.hg		\
+	    link_mapping.hg		\
+	    media.hg			\
+	    movie.hg			\
+	    page.hg			\
+	    page_transition.hg		\
+	    ps_file.hg			\
+	    rectangle.hg		\
+	    text_attributes.hg		\
+	    utility.hg
+
+files_ccg = $(files_hg:.hg=.ccg)

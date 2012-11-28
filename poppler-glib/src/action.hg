@@ -1,0 +1,167 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+#include <poppler-glibmm/media.h>
+#include <poppler-glibmm/movie.h>
+#include <poppler-glibmm/layer.h>
+#include <poppler-action.h>
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+extern "C" { typedef union _PopplerAction PopplerAction; }
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+namespace Poppler
+{
+
+_WRAP_ENUM(ActionType, PopplerActionType)
+_WRAP_ENUM(DestType, PopplerDestType)
+_WRAP_ENUM(ActionMovieOperation, PopplerActionMovieOperation)
+_WRAP_ENUM(ActionLayerAction, PopplerActionLayerAction)
+
+/** Poppler::Dest is a structure for holding a destination
+ */
+class Dest
+{
+  _CLASS_BOXEDTYPE(Dest, PopplerDest, NONE, poppler_dest_copy, poppler_dest_free)
+
+  public:
+    _MEMBER_GET(dest_type, type, DestType, PopplerDestType)
+    _MEMBER_SET(dest_type, type, DestType, PopplerDestType)
+  
+    _MEMBER_GET(page_num, page_num, int, int)
+    _MEMBER_SET(page_num, page_num, int, int)
+  
+    _MEMBER_GET(left, left, double, double)
+    _MEMBER_SET(left, left, double, double)
+    _MEMBER_GET(bottom, bottom, double, double)
+    _MEMBER_SET(bottom, bottom, double, double)
+    _MEMBER_GET(right, right, double, double)
+    _MEMBER_SET(right, right, double, double)
+    _MEMBER_GET(top, top, double, double)
+    _MEMBER_SET(top, top, double, double)
+    _MEMBER_GET(zoom, zoom, double, double)
+    _MEMBER_SET(zoom, zoom, double, double)
+
+    _MEMBER_GET(named_dest, named_dest, Glib::ustring, gchar*)
+    _MEMBER_SET(named_dest, named_dest, Glib::ustring, gchar*)
+
+    _MEMBER_GET(change_left, change_left, guint, guint)
+    _MEMBER_SET(change_left, change_left, guint, guint)
+    _MEMBER_GET(change_top, change_top, guint, guint)
+    _MEMBER_SET(change_top, change_top, guint, guint)
+    _MEMBER_GET(change_zoom, change_zoom, guint, guint)
+    _MEMBER_SET(change_zoom, change_zoom, guint, guint)
+
+    /** Returns <tt>true</tt> if this Dest is valid, that is if the
+     * underlying instance is non-null.
+     * @return <tt>true</tt>, if the Dest is valid
+     */
+    inline operator bool() const { return gobj() != NULL; };
+};
+
+/** Poppler::ActionLayer - Layer actions
+  */
+class ActionLayer
+{
+  _CLASS_GENERIC(ActionLayer, PopplerActionLayer)
+
+  public:
+    ActionLayer();
+
+    explicit ActionLayer(const PopplerActionLayer* gobject); // always takes a copy
+
+    ///Provides access to the underlying C instance.
+    PopplerActionLayer* gobj() { return &gobject_; }
+
+    ///Provides access to the underlying C instance.
+    const PopplerActionLayer* gobj() const { return &gobject_; }
+
+    _MEMBER_GET(action, action, ActionLayerAction, PopplerActionLayerAction)
+#m4 _CONVERSION(`Glist*',`std::vector< Glib::RefPtr<Layer> >',
+#m4             `Glib::ListHandler< Glib::RefPtr<Layer> >::list_to_vector($3, Glib::OWNERSHIP_NONE)')
+    _MEMBER_GET(layers, layers, std::vector< Glib::RefPtr<Layer> >, GList*)
+
+  protected:
+    PopplerActionLayer gobject_;
+};
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+struct ActionLayerTraits
+{
+  typedef ActionLayer CppType;
+  typedef PopplerActionLayer* CType;
+  typedef PopplerActionLayer* CTypeNonConst;
+
+  static CppType to_cpp_type(CType item) { return ActionLayer(item); }
+  static void release_c_type(CType) {};
+};
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+/** Poppler::Action is a structure for holding an action
+ */
+class Action
+{
+  _CLASS_BOXEDTYPE(Action, PopplerAction, NONE, poppler_action_copy, poppler_action_free)
+  _CUSTOM_STRUCT_PROTOTYPE
+
+  public:
+    _MEMBER_GET(action_type, type, ActionType, PopplerActionType)
+    _MEMBER_GET(title, any.title, Glib::ustring, gchar*)
+
+    // PopplerActionGotoDest members
+    _MEMBER_GET(goto_dest_dest, goto_dest.dest, Dest, const PopplerDest*)
+
+    // PopplerActionGotoRemote members
+    _MEMBER_GET(goto_remote_dest, goto_remote.dest, Dest, const PopplerDest*)
+    _MEMBER_GET(goto_remote_file_name, goto_remote.file_name, std::string, gchar*)
+
+    // PopplerActionLaunch members
+    _MEMBER_GET(launch_file_name, launch.file_name, std::string, gchar*)
+    _MEMBER_GET(launch_params, launch.params, std::string, gchar*)
+
+    // PopplerActionUri members
+    _MEMBER_GET(uri, uri.uri, std::string, gchar*)
+
+    // PopplerActionNamed members
+    _MEMBER_GET(named_dest, named.named_dest, std::string, gchar*)
+
+    // PopplerActionMovie members
+    _MEMBER_GET(movie_operation, movie.operation, ActionMovieOperation, PopplerActionMovieOperation)
+    _MEMBER_GET_GOBJECT(movie_movie, movie.movie, Movie, PopplerMovie*)
+
+    // PopplerActionRendition members
+    _MEMBER_GET(rendition_op, rendition.op, int, gint)
+    _MEMBER_GET_GOBJECT(rendition_media, rendition.media, Media, PopplerMedia*)
+
+    // PopplerActionOCGState members
+#m4 _CONVERSION(`Glist*',`std::vector<ActionLayer>',
+#m4             `Glib::ListHandler<ActionLayer,ActionLayerTraits>::list_to_vector($3, Glib::OWNERSHIP_NONE)')
+    _MEMBER_GET(ocg_state_list, ocg_state.state_list, std::vector<ActionLayer>, GList*)
+
+    // PopplerActionJavascript members
+    _MEMBER_GET(javascript, javascript.script, std::string, gchar*)
+
+    /** Returns <tt>true</tt> if this Action is valid, that is if the
+     * underlying instance is non-null.
+     * @return <tt>true</tt>, if the Action is valid
+     */
+    inline operator bool() const { return gobj() != NULL; };
+};
+
+} // namespace Poppler

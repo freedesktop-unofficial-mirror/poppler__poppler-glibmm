@@ -1,0 +1,3 @@
+## This file is part of poppler-glibmm.
+
+files_codegen_m4 = convert.m4 convert_poppler-glib.m4

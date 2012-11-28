@@ -1,0 +1,677 @@
+;; From poppler-action.h
+
+;; Original typedef:
+;; typedef enum
+;; {
+;; 	POPPLER_ACTION_UNKNOWN,		/* unknown action */
+;; 	POPPLER_ACTION_NONE,            /* no action specified */
+;; 	POPPLER_ACTION_GOTO_DEST,	/* go to destination */
+;; 	POPPLER_ACTION_GOTO_REMOTE,	/* go to destination in new file */
+;; 	POPPLER_ACTION_LAUNCH,		/* launch app (or open document) */
+;; 	POPPLER_ACTION_URI,		/* URI */
+;; 	POPPLER_ACTION_NAMED,		/* named action*/
+;; 	POPPLER_ACTION_MOVIE,		/* movie action */
+;; 	POPPLER_ACTION_RENDITION,       /* rendition action */
+;; 	POPPLER_ACTION_OCG_STATE,       /* Set-OCG-State action */
+;; 	POPPLER_ACTION_JAVASCRIPT	/* Javascript action */
+;; } PopplerActionType;
+
+(define-enum-extended ActionType
+  (in-module "Poppler")
+  (c-name "PopplerActionType")
+  (values
+    '("unknown" "POPPLER_ACTION_UNKNOWN" "0")
+    '("none" "POPPLER_ACTION_NONE" "1")
+    '("goto-dest" "POPPLER_ACTION_GOTO_DEST" "2")
+    '("goto-remote" "POPPLER_ACTION_GOTO_REMOTE" "3")
+    '("launch" "POPPLER_ACTION_LAUNCH" "4")
+    '("uri" "POPPLER_ACTION_URI" "5")
+    '("named" "POPPLER_ACTION_NAMED" "6")
+    '("movie" "POPPLER_ACTION_MOVIE" "7")
+    '("rendition" "POPPLER_ACTION_RENDITION" "8")
+    '("ocg-state" "POPPLER_ACTION_OCG_STATE" "9")
+    '("javascript" "POPPLER_ACTION_JAVASCRIPT" "10")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;; 	POPPLER_DEST_UNKNOWN,
+;; 	POPPLER_DEST_XYZ,
+;; 	POPPLER_DEST_FIT,
+;; 	POPPLER_DEST_FITH,
+;; 	POPPLER_DEST_FITV,
+;; 	POPPLER_DEST_FITR,
+;; 	POPPLER_DEST_FITB,
+;; 	POPPLER_DEST_FITBH,
+;; 	POPPLER_DEST_FITBV,
+;; 	POPPLER_DEST_NAMED
+;; } PopplerDestType;
+
+(define-enum-extended DestType
+  (in-module "Poppler")
+  (c-name "PopplerDestType")
+  (values
+    '("unknown" "POPPLER_DEST_UNKNOWN" "0")
+    '("xyz" "POPPLER_DEST_XYZ" "1")
+    '("fit" "POPPLER_DEST_FIT" "2")
+    '("fith" "POPPLER_DEST_FITH" "3")
+    '("fitv" "POPPLER_DEST_FITV" "4")
+    '("fitr" "POPPLER_DEST_FITR" "5")
+    '("fitb" "POPPLER_DEST_FITB" "6")
+    '("fitbh" "POPPLER_DEST_FITBH" "7")
+    '("fitbv" "POPPLER_DEST_FITBV" "8")
+    '("named" "POPPLER_DEST_NAMED" "9")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;         POPPLER_ACTION_MOVIE_PLAY,
+;; 	POPPLER_ACTION_MOVIE_PAUSE,
+;; 	POPPLER_ACTION_MOVIE_RESUME,
+;; 	POPPLER_ACTION_MOVIE_STOP
+;; } PopplerActionMovieOperation;
+
+(define-enum-extended ActionMovieOperation
+  (in-module "Poppler")
+  (c-name "PopplerActionMovieOperation")
+  (values
+    '("play" "POPPLER_ACTION_MOVIE_PLAY" "0")
+    '("pause" "POPPLER_ACTION_MOVIE_PAUSE" "1")
+    '("resume" "POPPLER_ACTION_MOVIE_RESUME" "2")
+    '("stop" "POPPLER_ACTION_MOVIE_STOP" "3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;; 	POPPLER_ACTION_LAYER_ON,
+;; 	POPPLER_ACTION_LAYER_OFF,
+;; 	POPPLER_ACTION_LAYER_TOGGLE
+;; } PopplerActionLayerAction;
+
+(define-enum-extended ActionLayerAction
+  (in-module "Poppler")
+  (c-name "PopplerActionLayerAction")
+  (values
+    '("on" "POPPLER_ACTION_LAYER_ON" "0")
+    '("off" "POPPLER_ACTION_LAYER_OFF" "1")
+    '("toggle" "POPPLER_ACTION_LAYER_TOGGLE" "2")
+  )
+)
+
+;; From poppler-annot.h
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_ANNOT_UNKNOWN,
+;;   POPPLER_ANNOT_TEXT,
+;;   POPPLER_ANNOT_LINK,
+;;   POPPLER_ANNOT_FREE_TEXT,
+;;   POPPLER_ANNOT_LINE,
+;;   POPPLER_ANNOT_SQUARE,
+;;   POPPLER_ANNOT_CIRCLE,
+;;   POPPLER_ANNOT_POLYGON,
+;;   POPPLER_ANNOT_POLY_LINE,
+;;   POPPLER_ANNOT_HIGHLIGHT,
+;;   POPPLER_ANNOT_UNDERLINE,
+;;   POPPLER_ANNOT_SQUIGGLY,
+;;   POPPLER_ANNOT_STRIKE_OUT,
+;;   POPPLER_ANNOT_STAMP,
+;;   POPPLER_ANNOT_CARET,
+;;   POPPLER_ANNOT_INK,
+;;   POPPLER_ANNOT_POPUP,
+;;   POPPLER_ANNOT_FILE_ATTACHMENT,
+;;   POPPLER_ANNOT_SOUND,
+;;   POPPLER_ANNOT_MOVIE,
+;;   POPPLER_ANNOT_WIDGET,
+;;   POPPLER_ANNOT_SCREEN,
+;;   POPPLER_ANNOT_PRINTER_MARK,
+;;   POPPLER_ANNOT_TRAP_NET,
+;;   POPPLER_ANNOT_WATERMARK,
+;;   POPPLER_ANNOT_3D
+;; } PopplerAnnotType;
+
+(define-enum-extended AnnotType
+  (in-module "Poppler")
+  (c-name "PopplerAnnotType")
+  (values
+    '("unknown" "POPPLER_ANNOT_UNKNOWN" "0")
+    '("text" "POPPLER_ANNOT_TEXT" "1")
+    '("link" "POPPLER_ANNOT_LINK" "2")
+    '("free-text" "POPPLER_ANNOT_FREE_TEXT" "3")
+    '("line" "POPPLER_ANNOT_LINE" "4")
+    '("square" "POPPLER_ANNOT_SQUARE" "5")
+    '("circle" "POPPLER_ANNOT_CIRCLE" "6")
+    '("polygon" "POPPLER_ANNOT_POLYGON" "7")
+    '("poly-line" "POPPLER_ANNOT_POLY_LINE" "8")
+    '("highlight" "POPPLER_ANNOT_HIGHLIGHT" "9")
+    '("underline" "POPPLER_ANNOT_UNDERLINE" "10")
+    '("squiggly" "POPPLER_ANNOT_SQUIGGLY" "11")
+    '("strike-out" "POPPLER_ANNOT_STRIKE_OUT" "12")
+    '("stamp" "POPPLER_ANNOT_STAMP" "13")
+    '("caret" "POPPLER_ANNOT_CARET" "14")
+    '("ink" "POPPLER_ANNOT_INK" "15")
+    '("popup" "POPPLER_ANNOT_POPUP" "16")
+    '("file-attachment" "POPPLER_ANNOT_FILE_ATTACHMENT" "17")
+    '("sound" "POPPLER_ANNOT_SOUND" "18")
+    '("movie" "POPPLER_ANNOT_MOVIE" "19")
+    '("widget" "POPPLER_ANNOT_WIDGET" "20")
+    '("screen" "POPPLER_ANNOT_SCREEN" "21")
+    '("printer-mark" "POPPLER_ANNOT_PRINTER_MARK" "22")
+    '("trap-net" "POPPLER_ANNOT_TRAP_NET" "23")
+    '("watermark" "POPPLER_ANNOT_WATERMARK" "24")
+    '("3d" "POPPLER_ANNOT_3D" "25")
+  )
+)
+
+;; Original typedef:
+;; typedef enum /*< flags >*/
+;; {
+;;   POPPLER_ANNOT_FLAG_UNKNOWN = 0,
+;;   POPPLER_ANNOT_FLAG_INVISIBLE = 1 << 0,
+;;   POPPLER_ANNOT_FLAG_HIDDEN = 1 << 1,
+;;   POPPLER_ANNOT_FLAG_PRINT = 1 << 2,
+;;   POPPLER_ANNOT_FLAG_NO_ZOOM = 1 << 3,
+;;   POPPLER_ANNOT_FLAG_NO_ROTATE = 1 << 4,
+;;   POPPLER_ANNOT_FLAG_NO_VIEW = 1 << 5,
+;;   POPPLER_ANNOT_FLAG_READ_ONLY = 1 << 6,
+;;   POPPLER_ANNOT_FLAG_LOCKED = 1 << 7,
+;;   POPPLER_ANNOT_FLAG_TOGGLE_NO_VIEW = 1 << 8,
+;;   POPPLER_ANNOT_FLAG_LOCKED_CONTENTS = 1 << 9
+;; } PopplerAnnotFlag;
+
+(define-flags-extended AnnotFlag
+  (in-module "Poppler")
+  (c-name "PopplerAnnotFlag")
+  (values
+    '("unknown" "POPPLER_ANNOT_FLAG_UNKNOWN" "0x0")
+    '("invisible" "POPPLER_ANNOT_FLAG_INVISIBLE" "1 << 0")
+    '("hidden" "POPPLER_ANNOT_FLAG_HIDDEN" "1 << 1")
+    '("print" "POPPLER_ANNOT_FLAG_PRINT" "1 << 2")
+    '("no-zoom" "POPPLER_ANNOT_FLAG_NO_ZOOM" "1 << 3")
+    '("no-rotate" "POPPLER_ANNOT_FLAG_NO_ROTATE" "1 << 4")
+    '("no-view" "POPPLER_ANNOT_FLAG_NO_VIEW" "1 << 5")
+    '("read-only" "POPPLER_ANNOT_FLAG_READ_ONLY" "1 << 6")
+    '("locked" "POPPLER_ANNOT_FLAG_LOCKED" "1 << 7")
+    '("toggle-no-view" "POPPLER_ANNOT_FLAG_TOGGLE_NO_VIEW" "1 << 8")
+    '("locked-contents" "POPPLER_ANNOT_FLAG_LOCKED_CONTENTS" "1 << 9")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_ANNOT_MARKUP_REPLY_TYPE_R,
+;;   POPPLER_ANNOT_MARKUP_REPLY_TYPE_GROUP
+;; } PopplerAnnotMarkupReplyType;
+
+(define-enum-extended AnnotMarkupReplyType
+  (in-module "Poppler")
+  (c-name "PopplerAnnotMarkupReplyType")
+  (values
+    '("r" "POPPLER_ANNOT_MARKUP_REPLY_TYPE_R" "0")
+    '("group" "POPPLER_ANNOT_MARKUP_REPLY_TYPE_GROUP" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_ANNOT_EXTERNAL_DATA_MARKUP_3D,
+;;   POPPLER_ANNOT_EXTERNAL_DATA_MARKUP_UNKNOWN
+;; } PopplerAnnotExternalDataType;
+
+(define-enum-extended AnnotExternalDataType
+  (in-module "Poppler")
+  (c-name "PopplerAnnotExternalDataType")
+  (values
+    '("3d" "POPPLER_ANNOT_EXTERNAL_DATA_MARKUP_3D" "0")
+    '("unknown" "POPPLER_ANNOT_EXTERNAL_DATA_MARKUP_UNKNOWN" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_ANNOT_TEXT_STATE_MARKED,
+;;   POPPLER_ANNOT_TEXT_STATE_UNMARKED,
+;;   POPPLER_ANNOT_TEXT_STATE_ACCEPTED,
+;;   POPPLER_ANNOT_TEXT_STATE_REJECTED,
+;;   POPPLER_ANNOT_TEXT_STATE_CANCELLED,
+;;   POPPLER_ANNOT_TEXT_STATE_COMPLETED,
+;;   POPPLER_ANNOT_TEXT_STATE_NONE,
+;;   POPPLER_ANNOT_TEXT_STATE_UNKNOWN
+;; } PopplerAnnotTextState;
+
+(define-enum-extended AnnotTextState
+  (in-module "Poppler")
+  (c-name "PopplerAnnotTextState")
+  (values
+    '("marked" "POPPLER_ANNOT_TEXT_STATE_MARKED" "0")
+    '("unmarked" "POPPLER_ANNOT_TEXT_STATE_UNMARKED" "1")
+    '("accepted" "POPPLER_ANNOT_TEXT_STATE_ACCEPTED" "2")
+    '("rejected" "POPPLER_ANNOT_TEXT_STATE_REJECTED" "3")
+    '("cancelled" "POPPLER_ANNOT_TEXT_STATE_CANCELLED" "4")
+    '("completed" "POPPLER_ANNOT_TEXT_STATE_COMPLETED" "5")
+    '("none" "POPPLER_ANNOT_TEXT_STATE_NONE" "6")
+    '("unknown" "POPPLER_ANNOT_TEXT_STATE_UNKNOWN" "7")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_ANNOT_FREE_TEXT_QUADDING_LEFT_JUSTIFIED,
+;;   POPPLER_ANNOT_FREE_TEXT_QUADDING_CENTERED,
+;;   POPPLER_ANNOT_FREE_TEXT_QUADDING_RIGHT_JUSTIFIED
+;; } PopplerAnnotFreeTextQuadding;
+
+(define-enum-extended AnnotFreeTextQuadding
+  (in-module "Poppler")
+  (c-name "PopplerAnnotFreeTextQuadding")
+  (values
+    '("left-justified" "POPPLER_ANNOT_FREE_TEXT_QUADDING_LEFT_JUSTIFIED" "0")
+    '("centered" "POPPLER_ANNOT_FREE_TEXT_QUADDING_CENTERED" "1")
+    '("right-justified" "POPPLER_ANNOT_FREE_TEXT_QUADDING_RIGHT_JUSTIFIED" "2")
+  )
+)
+
+;; From poppler-document.h
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_PAGE_LAYOUT_UNSET,
+;;   POPPLER_PAGE_LAYOUT_SINGLE_PAGE,
+;;   POPPLER_PAGE_LAYOUT_ONE_COLUMN,
+;;   POPPLER_PAGE_LAYOUT_TWO_COLUMN_LEFT,
+;;   POPPLER_PAGE_LAYOUT_TWO_COLUMN_RIGHT,
+;;   POPPLER_PAGE_LAYOUT_TWO_PAGE_LEFT,
+;;   POPPLER_PAGE_LAYOUT_TWO_PAGE_RIGHT
+;; } PopplerPageLayout;
+
+(define-enum-extended PageLayout
+  (in-module "Poppler")
+  (c-name "PopplerPageLayout")
+  (values
+    '("unset" "POPPLER_PAGE_LAYOUT_UNSET" "0")
+    '("single-page" "POPPLER_PAGE_LAYOUT_SINGLE_PAGE" "1")
+    '("one-column" "POPPLER_PAGE_LAYOUT_ONE_COLUMN" "2")
+    '("two-column-left" "POPPLER_PAGE_LAYOUT_TWO_COLUMN_LEFT" "3")
+    '("two-column-right" "POPPLER_PAGE_LAYOUT_TWO_COLUMN_RIGHT" "4")
+    '("two-page-left" "POPPLER_PAGE_LAYOUT_TWO_PAGE_LEFT" "5")
+    '("two-page-right" "POPPLER_PAGE_LAYOUT_TWO_PAGE_RIGHT" "6")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_PAGE_MODE_UNSET,
+;;   POPPLER_PAGE_MODE_NONE,
+;;   POPPLER_PAGE_MODE_USE_OUTLINES,
+;;   POPPLER_PAGE_MODE_USE_THUMBS,
+;;   POPPLER_PAGE_MODE_FULL_SCREEN,
+;;   POPPLER_PAGE_MODE_USE_OC,
+;;   POPPLER_PAGE_MODE_USE_ATTACHMENTS
+;; } PopplerPageMode;
+
+(define-enum-extended PageMode
+  (in-module "Poppler")
+  (c-name "PopplerPageMode")
+  (values
+    '("unset" "POPPLER_PAGE_MODE_UNSET" "0")
+    '("none" "POPPLER_PAGE_MODE_NONE" "1")
+    '("use-outlines" "POPPLER_PAGE_MODE_USE_OUTLINES" "2")
+    '("use-thumbs" "POPPLER_PAGE_MODE_USE_THUMBS" "3")
+    '("full-screen" "POPPLER_PAGE_MODE_FULL_SCREEN" "4")
+    '("use-oc" "POPPLER_PAGE_MODE_USE_OC" "5")
+    '("use-attachments" "POPPLER_PAGE_MODE_USE_ATTACHMENTS" "6")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_FONT_TYPE_UNKNOWN,
+;;   POPPLER_FONT_TYPE_TYPE1,
+;;   POPPLER_FONT_TYPE_TYPE1C,
+;;   POPPLER_FONT_TYPE_TYPE1COT,
+;;   POPPLER_FONT_TYPE_TYPE3,
+;;   POPPLER_FONT_TYPE_TRUETYPE,
+;;   POPPLER_FONT_TYPE_TRUETYPEOT,
+;;   POPPLER_FONT_TYPE_CID_TYPE0,
+;;   POPPLER_FONT_TYPE_CID_TYPE0C,
+;;   POPPLER_FONT_TYPE_CID_TYPE0COT,
+;;   POPPLER_FONT_TYPE_CID_TYPE2,
+;;   POPPLER_FONT_TYPE_CID_TYPE2OT
+;; } PopplerFontType;
+
+(define-enum-extended FontType
+  (in-module "Poppler")
+  (c-name "PopplerFontType")
+  (values
+    '("unknown" "POPPLER_FONT_TYPE_UNKNOWN" "0")
+    '("type1" "POPPLER_FONT_TYPE_TYPE1" "1")
+    '("type1c" "POPPLER_FONT_TYPE_TYPE1C" "2")
+    '("type1cot" "POPPLER_FONT_TYPE_TYPE1COT" "3")
+    '("type3" "POPPLER_FONT_TYPE_TYPE3" "4")
+    '("truetype" "POPPLER_FONT_TYPE_TRUETYPE" "5")
+    '("truetypeot" "POPPLER_FONT_TYPE_TRUETYPEOT" "6")
+    '("cid-type0" "POPPLER_FONT_TYPE_CID_TYPE0" "7")
+    '("cid-type0c" "POPPLER_FONT_TYPE_CID_TYPE0C" "8")
+    '("cid-type0cot" "POPPLER_FONT_TYPE_CID_TYPE0COT" "9")
+    '("cid-type2" "POPPLER_FONT_TYPE_CID_TYPE2" "10")
+    '("cid-type2ot" "POPPLER_FONT_TYPE_CID_TYPE2OT" "11")
+  )
+)
+
+;; Original typedef:
+;; typedef enum /*< flags >*/
+;; {
+;;   POPPLER_VIEWER_PREFERENCES_UNSET = 0,
+;;   POPPLER_VIEWER_PREFERENCES_HIDE_TOOLBAR = 1 << 0,
+;;   POPPLER_VIEWER_PREFERENCES_HIDE_MENUBAR = 1 << 1,
+;;   POPPLER_VIEWER_PREFERENCES_HIDE_WINDOWUI = 1 << 2,
+;;   POPPLER_VIEWER_PREFERENCES_FIT_WINDOW = 1 << 3,
+;;   POPPLER_VIEWER_PREFERENCES_CENTER_WINDOW = 1 << 4,
+;;   POPPLER_VIEWER_PREFERENCES_DISPLAY_DOC_TITLE = 1 << 5,
+;;   POPPLER_VIEWER_PREFERENCES_DIRECTION_RTL = 1 << 6
+;; } PopplerViewerPreferences;
+
+(define-flags-extended ViewerPreferences
+  (in-module "Poppler")
+  (c-name "PopplerViewerPreferences")
+  (values
+    '("unset" "POPPLER_VIEWER_PREFERENCES_UNSET" "0x0")
+    '("hide-toolbar" "POPPLER_VIEWER_PREFERENCES_HIDE_TOOLBAR" "1 << 0")
+    '("hide-menubar" "POPPLER_VIEWER_PREFERENCES_HIDE_MENUBAR" "1 << 1")
+    '("hide-windowui" "POPPLER_VIEWER_PREFERENCES_HIDE_WINDOWUI" "1 << 2")
+    '("fit-window" "POPPLER_VIEWER_PREFERENCES_FIT_WINDOW" "1 << 3")
+    '("center-window" "POPPLER_VIEWER_PREFERENCES_CENTER_WINDOW" "1 << 4")
+    '("display-doc-title" "POPPLER_VIEWER_PREFERENCES_DISPLAY_DOC_TITLE" "1 << 5")
+    '("direction-rtl" "POPPLER_VIEWER_PREFERENCES_DIRECTION_RTL" "1 << 6")
+  )
+)
+
+;; Original typedef:
+;; typedef enum /*< flags >*/
+;; {
+;;   POPPLER_PERMISSIONS_OK_TO_PRINT = 1 << 0,
+;;   POPPLER_PERMISSIONS_OK_TO_MODIFY = 1 << 1,
+;;   POPPLER_PERMISSIONS_OK_TO_COPY = 1 << 2,
+;;   POPPLER_PERMISSIONS_OK_TO_ADD_NOTES = 1 << 3,
+;;   POPPLER_PERMISSIONS_OK_TO_FILL_FORM = 1 << 4,
+;;   POPPLER_PERMISSIONS_OK_TO_EXTRACT_CONTENTS = 1 << 5,
+;;   POPPLER_PERMISSIONS_OK_TO_ASSEMBLE = 1 << 6,
+;;   POPPLER_PERMISSIONS_OK_TO_PRINT_HIGH_RESOLUTION = 1 << 7,
+;;   POPPLER_PERMISSIONS_FULL = (POPPLER_PERMISSIONS_OK_TO_PRINT | POPPLER_PERMISSIONS_OK_TO_MODIFY | POPPLER_PERMISSIONS_OK_TO_COPY | POPPLER_PERMISSIONS_OK_TO_ADD_NOTES | POPPLER_PERMISSIONS_OK_TO_FILL_FORM | POPPLER_PERMISSIONS_OK_TO_EXTRACT_CONTENTS | POPPLER_PERMISSIONS_OK_TO_ASSEMBLE | POPPLER_PERMISSIONS_OK_TO_PRINT_HIGH_RESOLUTION)
+;; 
+;; } PopplerPermissions;
+
+(define-flags-extended Permissions
+  (in-module "Poppler")
+  (c-name "PopplerPermissions")
+  (values
+    '("ok-to-print" "POPPLER_PERMISSIONS_OK_TO_PRINT" "1 << 0")
+    '("ok-to-modify" "POPPLER_PERMISSIONS_OK_TO_MODIFY" "1 << 1")
+    '("ok-to-copy" "POPPLER_PERMISSIONS_OK_TO_COPY" "1 << 2")
+    '("ok-to-add-notes" "POPPLER_PERMISSIONS_OK_TO_ADD_NOTES" "1 << 3")
+    '("ok-to-fill-form" "POPPLER_PERMISSIONS_OK_TO_FILL_FORM" "1 << 4")
+    '("ok-to-extract-contents" "POPPLER_PERMISSIONS_OK_TO_EXTRACT_CONTENTS" "1 << 5")
+    '("ok-to-assemble" "POPPLER_PERMISSIONS_OK_TO_ASSEMBLE" "1 << 6")
+    '("ok-to-print-high-resolution" "POPPLER_PERMISSIONS_OK_TO_PRINT_HIGH_RESOLUTION" "1 << 7")
+    '("full" "POPPLER_PERMISSIONS_FULL" "0xFF")
+  )
+)
+
+;; From poppler-form-field.h
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_FORM_FIELD_UNKNOWN,
+;;   POPPLER_FORM_FIELD_BUTTON,
+;;   POPPLER_FORM_FIELD_TEXT,
+;;   POPPLER_FORM_FIELD_CHOICE,
+;;   POPPLER_FORM_FIELD_SIGNATURE
+;; } PopplerFormFieldType;
+
+(define-enum-extended FormFieldType
+  (in-module "Poppler")
+  (c-name "PopplerFormFieldType")
+  (values
+    '("unknown" "POPPLER_FORM_FIELD_UNKNOWN" "0")
+    '("button" "POPPLER_FORM_FIELD_BUTTON" "1")
+    '("text" "POPPLER_FORM_FIELD_TEXT" "2")
+    '("choice" "POPPLER_FORM_FIELD_CHOICE" "3")
+    '("signature" "POPPLER_FORM_FIELD_SIGNATURE" "4")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_FORM_BUTTON_PUSH,
+;;   POPPLER_FORM_BUTTON_CHECK,
+;;   POPPLER_FORM_BUTTON_RADIO
+;; } PopplerFormButtonType;
+
+(define-enum-extended FormButtonType
+  (in-module "Poppler")
+  (c-name "PopplerFormButtonType")
+  (values
+    '("push" "POPPLER_FORM_BUTTON_PUSH" "0")
+    '("check" "POPPLER_FORM_BUTTON_CHECK" "1")
+    '("radio" "POPPLER_FORM_BUTTON_RADIO" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_FORM_TEXT_NORMAL,
+;;   POPPLER_FORM_TEXT_MULTILINE,
+;;   POPPLER_FORM_TEXT_FILE_SELECT
+;; } PopplerFormTextType;
+
+(define-enum-extended FormTextType
+  (in-module "Poppler")
+  (c-name "PopplerFormTextType")
+  (values
+    '("normal" "POPPLER_FORM_TEXT_NORMAL" "0")
+    '("multiline" "POPPLER_FORM_TEXT_MULTILINE" "1")
+    '("file-select" "POPPLER_FORM_TEXT_FILE_SELECT" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_FORM_CHOICE_COMBO,
+;;   POPPLER_FORM_CHOICE_LIST
+;; } PopplerFormChoiceType;
+
+(define-enum-extended FormChoiceType
+  (in-module "Poppler")
+  (c-name "PopplerFormChoiceType")
+  (values
+    '("combo" "POPPLER_FORM_CHOICE_COMBO" "0")
+    '("list" "POPPLER_FORM_CHOICE_LIST" "1")
+  )
+)
+
+;; From poppler.h
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_ERROR_INVALID,
+;;   POPPLER_ERROR_ENCRYPTED,
+;;   POPPLER_ERROR_OPEN_FILE,
+;;   POPPLER_ERROR_BAD_CATALOG,
+;;   POPPLER_ERROR_DAMAGED
+;; } PopplerError;
+
+(define-enum-extended Error
+  (in-module "Poppler")
+  (c-name "PopplerError")
+  (values
+    '("invalid" "POPPLER_ERROR_INVALID" "0")
+    '("encrypted" "POPPLER_ERROR_ENCRYPTED" "1")
+    '("open-file" "POPPLER_ERROR_OPEN_FILE" "2")
+    '("bad-catalog" "POPPLER_ERROR_BAD_CATALOG" "3")
+    '("damaged" "POPPLER_ERROR_DAMAGED" "4")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_ORIENTATION_PORTRAIT,
+;;   POPPLER_ORIENTATION_LANDSCAPE,
+;;   POPPLER_ORIENTATION_UPSIDEDOWN,
+;;   POPPLER_ORIENTATION_SEASCAPE
+;; } PopplerOrientation;
+
+(define-enum-extended Orientation
+  (in-module "Poppler")
+  (c-name "PopplerOrientation")
+  (values
+    '("portrait" "POPPLER_ORIENTATION_PORTRAIT" "0")
+    '("landscape" "POPPLER_ORIENTATION_LANDSCAPE" "1")
+    '("upsidedown" "POPPLER_ORIENTATION_UPSIDEDOWN" "2")
+    '("seascape" "POPPLER_ORIENTATION_SEASCAPE" "3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_PAGE_TRANSITION_REPLACE,
+;;   POPPLER_PAGE_TRANSITION_SPLIT,
+;;   POPPLER_PAGE_TRANSITION_BLINDS,
+;;   POPPLER_PAGE_TRANSITION_BOX,
+;;   POPPLER_PAGE_TRANSITION_WIPE,
+;;   POPPLER_PAGE_TRANSITION_DISSOLVE,
+;;   POPPLER_PAGE_TRANSITION_GLITTER,
+;;   POPPLER_PAGE_TRANSITION_FLY,
+;;   POPPLER_PAGE_TRANSITION_PUSH,
+;;   POPPLER_PAGE_TRANSITION_COVER,
+;;   POPPLER_PAGE_TRANSITION_UNCOVER,
+;;   POPPLER_PAGE_TRANSITION_FADE
+;; } PopplerPageTransitionType;
+
+(define-enum-extended PageTransitionType
+  (in-module "Poppler")
+  (c-name "PopplerPageTransitionType")
+  (values
+    '("replace" "POPPLER_PAGE_TRANSITION_REPLACE" "0")
+    '("split" "POPPLER_PAGE_TRANSITION_SPLIT" "1")
+    '("blinds" "POPPLER_PAGE_TRANSITION_BLINDS" "2")
+    '("box" "POPPLER_PAGE_TRANSITION_BOX" "3")
+    '("wipe" "POPPLER_PAGE_TRANSITION_WIPE" "4")
+    '("dissolve" "POPPLER_PAGE_TRANSITION_DISSOLVE" "5")
+    '("glitter" "POPPLER_PAGE_TRANSITION_GLITTER" "6")
+    '("fly" "POPPLER_PAGE_TRANSITION_FLY" "7")
+    '("push" "POPPLER_PAGE_TRANSITION_PUSH" "8")
+    '("cover" "POPPLER_PAGE_TRANSITION_COVER" "9")
+    '("uncover" "POPPLER_PAGE_TRANSITION_UNCOVER" "10")
+    '("fade" "POPPLER_PAGE_TRANSITION_FADE" "11")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_PAGE_TRANSITION_HORIZONTAL,
+;;   POPPLER_PAGE_TRANSITION_VERTICAL
+;; } PopplerPageTransitionAlignment;
+
+(define-enum-extended PageTransitionAlignment
+  (in-module "Poppler")
+  (c-name "PopplerPageTransitionAlignment")
+  (values
+    '("horizontal" "POPPLER_PAGE_TRANSITION_HORIZONTAL" "0")
+    '("vertical" "POPPLER_PAGE_TRANSITION_VERTICAL" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_PAGE_TRANSITION_INWARD,
+;;   POPPLER_PAGE_TRANSITION_OUTWARD
+;; } PopplerPageTransitionDirection;
+
+(define-enum-extended PageTransitionDirection
+  (in-module "Poppler")
+  (c-name "PopplerPageTransitionDirection")
+  (values
+    '("inward" "POPPLER_PAGE_TRANSITION_INWARD" "0")
+    '("outward" "POPPLER_PAGE_TRANSITION_OUTWARD" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_SELECTION_GLYPH,
+;;   POPPLER_SELECTION_WORD,
+;;   POPPLER_SELECTION_LINE
+;; } PopplerSelectionStyle;
+
+(define-enum-extended SelectionStyle
+  (in-module "Poppler")
+  (c-name "PopplerSelectionStyle")
+  (values
+    '("glyph" "POPPLER_SELECTION_GLYPH" "0")
+    '("word" "POPPLER_SELECTION_WORD" "1")
+    '("line" "POPPLER_SELECTION_LINE" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum /*< flags >*/
+;; {
+;;   POPPLER_PRINT_DOCUMENT          = 0,
+;;   POPPLER_PRINT_MARKUP_ANNOTS     = 1 << 0,
+;;   POPPLER_PRINT_STAMP_ANNOTS_ONLY = 1 << 1,
+;;   POPPLER_PRINT_ALL               = POPPLER_PRINT_MARKUP_ANNOTS
+;; } PopplerPrintFlags;
+
+(define-flags-extended PrintFlags
+  (in-module "Poppler")
+  (c-name "PopplerPrintFlags")
+  (values
+    '("document" "POPPLER_PRINT_DOCUMENT" "0x0")
+    '("markup-annots" "POPPLER_PRINT_MARKUP_ANNOTS" "1 << 0")
+    '("stamp-annots-only" "POPPLER_PRINT_STAMP_ANNOTS_ONLY" "1 << 1")
+    '("all" "POPPLER_PRINT_ALL" "0x1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   POPPLER_BACKEND_UNKNOWN,
+;;   POPPLER_BACKEND_SPLASH,
+;;   POPPLER_BACKEND_CAIRO
+;; } PopplerBackend;
+
+(define-enum-extended Backend
+  (in-module "Poppler")
+  (c-name "PopplerBackend")
+  (values
+    '("unknown" "POPPLER_BACKEND_UNKNOWN" "0")
+    '("splash" "POPPLER_BACKEND_SPLASH" "1")
+    '("cairo" "POPPLER_BACKEND_CAIRO" "2")
+  )
+)
+

@@ -1,0 +1,783 @@
+<root>
+
+<function name="poppler_document_get_id">
+<description>
+Returns the PDF file identifier represented as two byte strings of size 32.
+@permanent_id is the permanent identifier that is built based on the file contents at the
+time it was originally created, so that this identifer never changes. @update_id is the
+update identifier that is built based on the file contents at the time it was last
+updated.
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="permanent_id">
+<parameter_description> Location to store the permanent id array
+</parameter_description>
+</parameter>
+<parameter name="update_id">
+<parameter_description> Location to store the update id array
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the @document contains an id, %FALSE otherwise
+</return>
+</function>
+
+<function name="poppler_document_find_dest">
+<description>
+Finds named destination @link_name in @document
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="link_name">
+<parameter_description> a named destination
+</parameter_description>
+</parameter>
+</parameters>
+<return> The #PopplerDest destination or %NULL if @link_name is not a destination.
+</return>
+</function>
+
+<function name="poppler_document_get_attachments">
+<description>
+Returns a vector containing #PopplerAttachment's.
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a vector of available attachments.
+</return>
+</function>
+
+<function name="poppler_document_get_n_attachments">
+<description>
+Returns the number of attachments in a loaded document.
+See also Poppler::Document::get_attachments()
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> Number of attachments
+</return>
+</function>
+
+<function name="poppler_document_get_form_field">
+<description>
+Returns the #PopplerFormField for the given @id.
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="id">
+<parameter_description> an id of a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerFormField or %NULL if not found
+</return>
+</function>
+
+<function name="poppler_form_field_get_action">
+<description>
+Retrieves the action (#PopplerAction) that shall be
+performed when the field is activated, or %NULL
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> The action to perform.
+</return>
+</function>
+
+<function name="poppler_document_get_page">
+<description>
+Returns the #PopplerPage indexed at @index.
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="index">
+<parameter_description> a page index 
+</parameter_description>
+</parameter>
+</parameters>
+<return> The #PopplerPage at @index
+</return>
+</function>
+
+<function name="poppler_document_get_page_by_label">
+<description>
+Returns the #PopplerPage reference by @label.  @label is a human-readable string
+representation of the page number, and can be document specific.  Typically, it is a value
+such as &quot;iii&quot; or &quot;3&quot;.
+
+By default, &quot;1&quot; refers to the first page.
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="label">
+<parameter_description> a page label
+</parameter_description>
+</parameter>
+</parameters>
+<return>The #PopplerPage referenced by @label
+</return>
+</function>
+
+<function name="poppler_index_iter_new">
+<description>
+Returns the root #PopplerIndexIter for a document, or %NULL.
+</description>
+<return> a new #PopplerIndexIter
+</return>
+</function>
+
+<function name="poppler_index_iter_next">
+<description>
+Sets the index of the iter to point to the next action at the current level, if valid.
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if @iter was set to the next action
+</return>
+</function>
+
+<function name="poppler_index_iter_get_child">
+<description>
+Returns a newly created child of the iter, or %NULL if the iter has no child.
+</description>
+<parameters>
+<parameter name="parent">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerIndexIter
+</return>
+</function>
+
+<function name="poppler_index_iter_get_action">
+<description>
+Returns the #PopplerAction associated with the current iter.
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerAction
+</return>
+</function>
+
+<function name="poppler_layers_iter_get_title">
+<description>
+Returns the title associated with the iter.
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> A string containing the iter's title or %NULL if iter doesn't have a title.
+</return>
+</function>
+
+<function name="poppler_layers_iter_next">
+<description>
+Sets the index of the iter to point to the next action at the current level, if valid.
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if @iter was set to the next action
+</return>
+</function>
+
+<function name="poppler_layers_iter_get_child">
+<description>
+Returns a newly created child of the iter, or %NULL if the iter has no child.
+</description>
+<parameters>
+<parameter name="parent">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerLayersIter, or %NULL
+</return>
+</function>
+
+<function name="poppler_media_get_filename">
+<description>
+Returns the media clip filename, in case of non-embedded media. filename might be
+a local relative or absolute path or a URI
+</description>
+<parameters>
+<parameter name="poppler_media">
+<parameter_description> a #PopplerMedia
+</parameter_description>
+</parameter>
+</parameters>
+<return> a filename
+</return>
+</function>
+
+<function name="poppler_media_get_mime_type">
+<description>
+Returns the media clip mime-type
+</description>
+<parameters>
+<parameter name="poppler_media">
+<parameter_description> a #PopplerMedia
+</parameter_description>
+</parameter>
+</parameters>
+<return> the mime-type
+</return>
+</function>
+
+<function name="poppler_media_is_embedded">
+<description>
+Whether the media clip is embedded in the PDF. If the result is %TRUE, the embedded stream
+can be saved with one of the save() functions.  If the result is %FALSE, the media clip
+filename can be retrieved with the get_filename() function.
+</description>
+<parameters>
+<parameter name="poppler_media">
+<parameter_description> a #PopplerMedia
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if media clip is embedded, %FALSE otherwise
+</return>
+</function>
+
+<function name="poppler_movie_get_filename">
+<description>
+Returns the local filename identifying a self-describing movie file
+</description>
+<parameters>
+<parameter name="poppler_movie">
+<parameter_description> a #PopplerMovie
+</parameter_description>
+</parameter>
+</parameters>
+<return> a local filename
+</return>
+</function>
+
+<function name="poppler_annot_get_annot_type">
+<description>
+Gets the type of the annotation
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerAnnotType of the annotation.
+</return>
+</function>
+
+<function name="poppler_annot_get_flags">
+<description>
+Retrieves the flag field specifying various characteristics of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> the flag field of the annotation.
+</return>
+</function>
+
+<function name="poppler_annot_get_name">
+<description>
+Retrieves the name of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> a string containing the name of the annotation.
+</return>
+</function>
+
+<function name="poppler_annot_get_page_index">
+<description>
+Returns the page index to which the annotation is associated, or -1 if unknown
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> page index or -1
+</return>
+</function>
+
+<function name="poppler_annot_get_color">
+<description>
+Retrieves the color of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #PopplerColor with the color values of the annotation, or %NULL.
+</return>
+</function>
+
+<function name="poppler_annot_set_color">
+<description>
+Sets the color of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+<parameter name="poppler_color">
+<parameter_description> a #PopplerColor, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_get_contents">
+<description>
+Retrieves the contents of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> a string containing the contents of the annotation.
+</return>
+</function>
+
+<function name="poppler_annot_set_contents">
+<description>
+Sets the contents of the annotation to the given value, replacing the current contents.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+<parameter name="contents">
+<parameter_description> a text string containing the new contents
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_get_modified">
+<description>
+Retrieves the last modification data of the annotation. The returned string will be either
+a PDF format date or a text string.  See also Poppler::date_parse()
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> A string containing the last modification date of the annotation.
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_label">
+<description>
+Retrieves the label text of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> A string containing the label text of annotation.
+</return>
+</function>
+
+<function name="poppler_annot_markup_set_label">
+<description>
+Sets the label text of the annotation, replacing the current one.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+<parameter name="label">
+<parameter_description> A text string containing the new label.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_markup_get_subject">
+<description>
+Retrieves the subject text of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> The subject text of the annotation.
+</return>
+</function>
+
+<function name="poppler_page_render">
+<description>
+Render the page to the given cairo context. This function is for rendering a page that
+will be displayed. If you want to render a page that will be printed use
+render_for_printing() instead.
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> the page to render from
+</parameter_description>
+</parameter>
+<parameter name="cairo">
+<parameter_description> Cairo::Context to render to
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_get_selected_region">
+<description>
+Returns a region containing the area that would be rendered by render_selection().
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="scale">
+<parameter_description> scale specified as pixels per point
+</parameter_description>
+</parameter>
+<parameter name="style">
+<parameter_description> a #PopplerSelectionStyle
+</parameter_description>
+</parameter>
+<parameter name="selection">
+<parameter_description> start and end point of selection as a rectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return> a Cairo::Region
+</return>
+</function>
+
+<function name="poppler_page_find_text">
+<description>
+Obtaines a vector of rectangles for each occurance of the text on the page.
+The coordinates are in PDF points.
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="text">
+<parameter_description> the text to search for (UTF-8 encoded)
+</parameter_description>
+</parameter>
+</parameters>
+<return> Returns a vector of #PopplerRectangle
+</return>
+</function>
+
+<function name="poppler_page_get_text_layout">
+<description>
+Obtains the layout of the text as a vector of #PopplerRectangle.
+The position in the array represents an offset in the text returned by get_text()
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="rectangles">
+<parameter_description> return location for a vector of #PopplerRectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the page contains text, %FALSE otherwise
+</return>
+</function>
+
+<function name="poppler_page_get_text_attributes">
+<description>
+Obtains the attributes of the text as a vector of #PopplerTextAttributes.  Each list
+element is a #PopplerTextAttributes where start_index and end_index indicates the range of
+text (as returned by get_text()) to which text attributes apply.
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A vector of #PopplerTextAttributes
+</return>
+</function>
+
+<function name="poppler_page_get_link_mapping">
+<description>
+Returns a vector of #PopplerLinkMapping items that map from a
+location on the page to a #PopplerAction.
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A vector of #PopplerLinkMapping
+</return>
+</function>
+
+<function name="poppler_page_get_image_mapping">
+<description>
+Returns a vector of #PopplerImageMapping items that map from a
+location on the page to an image of the page.
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A vector of #PopplerImageMapping
+</return>
+</function>
+
+<function name="poppler_page_get_form_field_mapping">
+<description>
+Returns a vector of #PopplerFormFieldMapping items that map from a
+location on the page to a form field.
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A vector of #PopplerFormFieldMapping
+</return>
+</function>
+
+<function name="poppler_page_get_annot_mapping">
+<description>
+Returns a vector of #PopplerAnnotMapping items that map from a location on the page to a
+#PopplerAnnot.
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A vector of #PopplerAnnotMapping
+</return>
+</function>
+
+<function name="poppler_annot_text_new">
+<description>
+Creates a new text annotation that will be located on @rect when added to a page. See
+Poppler::Page::add_annot()
+</description>
+<parameters>
+<parameter name="doc">
+<parameter_description> The document the text annotation will be added to
+</parameter_description>
+</parameter>
+<parameter name="rect">
+<parameter_description> The location of the text annotation on the page
+</parameter_description>
+</parameter>
+</parameters>
+<return> A newly created #PopplerAnnotText annotation
+</return>
+</function>
+
+<function name="poppler_annot_text_set_icon">
+<description>
+Sets the icon of the annotationg. The following predefined icons are currently supported:
+  - POPPLER_ANNOT_TEXT_ICON_NOTE
+  - POPPLER_ANNOT_TEXT_ICON_COMMENT
+  - POPPLER_ANNOT_TEXT_ICON_KEY
+  - POPPLER_ANNOT_TEXT_ICON_HELP
+  - POPPLER_ANNOT_TEXT_ICON_NEW_PARAGRAPH
+  - POPPLER_ANNOT_TEXT_ICON_PARAGRAPH
+  - POPPLER_ANNOT_TEXT_ICON_INSERT
+  - POPPLER_ANNOT_TEXT_ICON_CROSS
+  - POPPLER_ANNOT_TEXT_ICON_CIRCLE
+  .
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotText
+</parameter_description>
+</parameter>
+<parameter name="icon">
+<parameter_description> The name of an icon
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_free_text_get_callout_line">
+<description>
+Retrieves a #PopplerAnnotCalloutLine of four or six numbers specifying a callout
+line attached to the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotFreeText
+</parameter_description>
+</parameter>
+</parameters>
+<return> A #PopplerAnnotCalloutLine if the annot has a callout
+line, %NULL in other case.
+</return>
+</function>
+
+<function name="poppler_annot_free_text_get_quadding">
+<description>
+Retrieves the justification of the text of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotFreeText
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerAnnotFreeTextQuadding of the annotation.
+</return>
+</function>
+
+<function name="poppler_annot_file_attachment_get_attachment">
+<description>
+Creates a #PopplerAttachment for the file of the file attachment annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotFileAttachment
+</parameter_description>
+</parameter>
+</parameters>
+<return> @PopplerAttachment
+</return>
+</function>
+
+<function name="poppler_annot_file_attachment_get_name">
+<description>
+Retrieves the name of annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotFileAttachment
+</parameter_description>
+</parameter>
+</parameters>
+<return> A string containing the name of the annotation.
+</return>
+</function>
+
+<function name="poppler_annot_movie_get_movie">
+<description>
+Retrieves the movie object (PopplerMovie) stored in the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMovie
+</parameter_description>
+</parameter>
+</parameters>
+<return> The movie object stored in the annotation.
+</return>
+</function>
+
+<function name="poppler_annot_screen_get_action">
+<description>
+Retrieves the action (#PopplerAction) that shall be performed when the annotation is activated
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotScreen
+</parameter_description>
+</parameter>
+</parameters>
+<return> The action to perform.
+</return>
+</function>
+
+<function name="poppler_fonts_iter_get_file_name">
+<description>
+The filename of the font associated with the iter or %NULL if the font is embedded
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> The filename of the font or %NULL if the font is emebedded
+</return>
+</function>
+
+</root>

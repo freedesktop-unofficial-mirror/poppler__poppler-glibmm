@@ -1,0 +1,3782 @@
+<root>
+<function name="poppler_action_copy">
+<description>
+Copies @action, creating an identical #PopplerAction.
+
+
+</description>
+<parameters>
+<parameter name="action">
+<parameter_description> a #PopplerAction
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new action identical to @action
+</return>
+</function>
+
+<function name="poppler_action_free">
+<description>
+Frees @action
+
+</description>
+<parameters>
+<parameter name="action">
+<parameter_description> a #PopplerAction
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_callout_line_copy">
+<description>
+It does copy @callout to a new #PopplerAnnotCalloutLine.
+
+
+</description>
+<parameters>
+<parameter name="callout">
+<parameter_description> the #PopplerAnnotCalloutLine to be copied.
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated #PopplerAnnotCalloutLine as exact copy of
+@callout, %NULL in other case. It must be freed when done.
+</return>
+</function>
+
+<function name="poppler_annot_callout_line_free">
+<description>
+Frees the memory used by #PopplerAnnotCalloutLine.
+
+</description>
+<parameters>
+<parameter name="callout">
+<parameter_description> a #PopplerAnnotCalloutLine
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_callout_line_new">
+<description>
+Creates a new empty #PopplerAnnotCalloutLine.
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new allocated #PopplerAnnotCalloutLine, %NULL in other case.
+It must be freed when done.
+</return>
+</function>
+
+<function name="poppler_annot_file_attachment_get_attachment">
+<description>
+Creates a #PopplerAttachment for the file of the file attachment annotation @annot.
+The #PopplerAttachment must be unrefed with g_object_unref by the caller.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotFileAttachment
+</parameter_description>
+</parameter>
+</parameters>
+<return> @PopplerAttachment
+
+</return>
+</function>
+
+<function name="poppler_annot_file_attachment_get_name">
+<description>
+Retrieves the name of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotFileAttachment
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string with the name of @poppler_annot. It must
+be freed with g_free() when done.
+</return>
+</function>
+
+<function name="poppler_annot_free_text_get_callout_line">
+<description>
+Retrieves a #PopplerAnnotCalloutLine of four or six numbers specifying a callout
+line attached to the @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotFreeText
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated #PopplerAnnotCalloutLine if the annot has a callout
+line, %NULL in other case. It must be freed with g_free() when
+done.
+</return>
+</function>
+
+<function name="poppler_annot_free_text_get_quadding">
+<description>
+Retrieves the justification of the text of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotFreeText
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerAnnotFreeTextQuadding of @poppler_annot.
+</return>
+</function>
+
+<function name="poppler_annot_get_annot_type">
+<description>
+Gets the type of @poppler_annot
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerAnnotType of @poppler_annot.
+</return>
+</function>
+
+<function name="poppler_annot_get_color">
+<description>
+Retrieves the color of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated #PopplerColor with the color values of
+@poppler_annot, or %NULL. It must be freed with g_free() when done.
+</return>
+</function>
+
+<function name="poppler_annot_get_contents">
+<description>
+Retrieves the contents of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string with the contents of @poppler_annot. It
+must be freed with g_free() when done.
+</return>
+</function>
+
+<function name="poppler_annot_get_flags">
+<description>
+Retrieves the flag field specifying various characteristics of the
+@poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> the flag field of @poppler_annot.
+</return>
+</function>
+
+<function name="poppler_annot_get_modified">
+<description>
+Retrieves the last modification data of @poppler_annot. The returned
+string will be either a PDF format date or a text string.
+See also #poppler_date_parse()
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string with the last modification data of
+@poppler_annot. It must be freed with g_free() when done.
+</return>
+</function>
+
+<function name="poppler_annot_get_name">
+<description>
+Retrieves the name of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string with the name of @poppler_annot. It must
+be freed with g_free() when done.
+</return>
+</function>
+
+<function name="poppler_annot_get_page_index">
+<description>
+Returns the page index to which @poppler_annot is associated, or -1 if unknown
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+</parameters>
+<return> page index or -1
+
+</return>
+</function>
+
+<function name="poppler_annot_mapping_copy">
+<description>
+Creates a copy of @mapping
+
+
+</description>
+<parameters>
+<parameter name="mapping">
+<parameter_description> a #PopplerAnnotMapping to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @mapping
+</return>
+</function>
+
+<function name="poppler_annot_mapping_free">
+<description>
+Frees the given #PopplerAnnotMapping
+
+</description>
+<parameters>
+<parameter name="mapping">
+<parameter_description> a #PopplerAnnotMapping
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_mapping_new">
+<description>
+Creates a new #PopplerAnnotMapping
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new #PopplerAnnotMapping, use poppler_annot_mapping_free() to free it
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_date">
+<description>
+Returns the date and time when the annotation was created
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #GDate representing the date and time
+when the annotation was created, or %NULL
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_external_data">
+<description>
+Gets the external data type of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerAnnotExternalDataType of @poppler_annot.
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_label">
+<description>
+Retrieves the label text of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> the label text of @poppler_annot.
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_opacity">
+<description>
+Retrieves the opacity value of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> the opacity value of @poppler_annot,
+between 0 (transparent) and 1 (opaque)
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_popup_is_open">
+<description>
+Retrieves the state of the popup window related to @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> the state of @poppler_annot. %TRUE if it's open, %FALSE in
+other case.
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_popup_rectangle">
+<description>
+Retrieves the rectangle of the popup window related to @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+<parameter name="poppler_rect">
+<parameter_description> a #PopplerRectangle to store the popup rectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if #PopplerRectangle was correctly filled, %FALSE otherwise
+
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_reply_to">
+<description>
+Gets the reply type of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerAnnotMarkupReplyType of @poppler_annot.
+</return>
+</function>
+
+<function name="poppler_annot_markup_get_subject">
+<description>
+Retrives the subject text of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> the subject text of @poppler_annot.
+</return>
+</function>
+
+<function name="poppler_annot_markup_has_popup">
+<description>
+Return %TRUE if the markup annotation has a popup window associated
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if @poppler_annot has popup, %FALSE otherwise
+
+</return>
+</function>
+
+<function name="poppler_annot_markup_set_label">
+<description>
+Sets the label text of @poppler_annot, replacing the current one
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+<parameter name="label">
+<parameter_description> a text string containing the new label, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_markup_set_opacity">
+<description>
+Sets the opacity of @poppler_annot. This value applies to
+all visible elements of @poppler_annot in its closed state,
+but not to the pop-up window that appears when it's openened
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+<parameter name="opacity">
+<parameter_description> a constant opacity value, between 0 (transparent) and 1 (opaque)
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_markup_set_popup">
+<description>
+Associates a new popup window for editing contents of @poppler_annot.
+Popup window shall be displayed by viewers at @popup_rect on the page.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+<parameter name="popup_rect">
+<parameter_description> a #PopplerRectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_markup_set_popup_is_open">
+<description>
+Sets the state of the popup window related to @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMarkup
+</parameter_description>
+</parameter>
+<parameter name="is_open">
+<parameter_description> whether popup window should initially be displayed open
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_movie_get_movie">
+<description>
+Retrieves the movie object (PopplerMovie) stored in the @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMovie
+</parameter_description>
+</parameter>
+</parameters>
+<return> the movie object stored in the @poppler_annot. The returned
+object is owned by #PopplerAnnotMovie and should not be freed
+
+</return>
+</function>
+
+<function name="poppler_annot_movie_get_title">
+<description>
+Retrieves the movie title of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotMovie
+</parameter_description>
+</parameter>
+</parameters>
+<return> the title text of @poppler_annot.
+
+</return>
+</function>
+
+<function name="poppler_annot_screen_get_action">
+<description>
+Retrieves the action (#PopplerAction) that shall be performed when @poppler_annot is activated
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotScreen
+</parameter_description>
+</parameter>
+</parameters>
+<return> the action to perform. The returned
+object is owned by @poppler_annot and should not be freed
+
+</return>
+</function>
+
+<function name="poppler_annot_set_color">
+<description>
+Sets the color of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+<parameter name="poppler_color">
+<parameter_description> a #PopplerColor, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_set_contents">
+<description>
+Sets the contents of @poppler_annot to the given value,
+replacing the current contents.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+<parameter name="contents">
+<parameter_description> a text string containing the new contents
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_text_get_icon">
+<description>
+Gets name of the icon of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotText
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the icon name
+</return>
+</function>
+
+<function name="poppler_annot_text_get_is_open">
+<description>
+Retrieves the state of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotText
+</parameter_description>
+</parameter>
+</parameters>
+<return> the state of @poppler_annot. %TRUE if it's open, %FALSE in
+other case.
+</return>
+</function>
+
+<function name="poppler_annot_text_get_state">
+<description>
+Retrieves the state of @poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotText
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerAnnotTextState of @poppler_annot.
+</return>
+</function>
+
+<function name="poppler_annot_text_new">
+<description>
+Creates a new Text annotation that will be
+located on @rect when added to a page. See
+poppler_page_add_annot()
+
+
+</description>
+<parameters>
+<parameter name="doc">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="rect">
+<parameter_description> a #PopplerRectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return> A newly created #PopplerAnnotText annotation
+
+</return>
+</function>
+
+<function name="poppler_annot_text_set_icon">
+<description>
+Sets the icon of @poppler_annot. The following predefined
+icons are currently supported:
+&lt;variablelist&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_NOTE&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_COMMENT&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_KEY&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_HELP&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_NEW_PARAGRAPH&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_PARAGRAPH&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_INSERT&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_CROSS&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;varlistentry&gt;
+&lt;term&gt;#POPPLER_ANNOT_TEXT_ICON_CIRCLE&lt;/term&gt;
+&lt;/varlistentry&gt;
+&lt;/variablelist&gt;
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotText
+</parameter_description>
+</parameter>
+<parameter name="icon">
+<parameter_description> the name of an icon
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_annot_text_set_is_open">
+<description>
+Sets whether @poppler_annot should initially be displayed open
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnotText
+</parameter_description>
+</parameter>
+<parameter name="is_open">
+<parameter_description> whether annotation should initially be displayed open
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_attachment_save">
+<description>
+Saves @attachment to a file indicated by @filename.  If @error is set, %FALSE
+will be returned. Possible errors include those in the #G_FILE_ERROR domain
+and whatever the save function generates.
+
+
+</description>
+<parameters>
+<parameter name="attachment">
+<parameter_description> A #PopplerAttachment.
+</parameter_description>
+</parameter>
+<parameter name="filename">
+<parameter_description> name of file to save
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> return location for error, or %NULL.
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if the file successfully saved
+</return>
+</function>
+
+<function name="poppler_attachment_save_to_callback">
+<description>
+Saves @attachment by feeding the produced data to @save_func. Can be used
+when you want to store the attachment to something other than a file, such as
+an in-memory buffer or a socket. If @error is set, %FALSE will be
+returned. Possible errors include those in the #G_FILE_ERROR domain and
+whatever the save function generates.
+
+
+</description>
+<parameters>
+<parameter name="attachment">
+<parameter_description> A #PopplerAttachment.
+</parameter_description>
+</parameter>
+<parameter name="save_func">
+<parameter_description> a function that is called to save each block of data that the save routine generates.
+</parameter_description>
+</parameter>
+<parameter name="user_data">
+<parameter_description> user data to pass to the save function.
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> return location for error, or %NULL.
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if the save successfully completed
+</return>
+</function>
+
+<function name="poppler_color_copy">
+<description>
+Creates a copy of @color
+
+
+</description>
+<parameters>
+<parameter name="color">
+<parameter_description> a #PopplerColor to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @color
+</return>
+</function>
+
+<function name="poppler_color_free">
+<description>
+Frees the given #PopplerColor
+
+</description>
+<parameters>
+<parameter name="color">
+<parameter_description> a #PopplerColor
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_color_new">
+<description>
+Creates a new #PopplerColor
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new #PopplerColor, use poppler_color_free() to free it
+</return>
+</function>
+
+<function name="poppler_date_parse">
+<description>
+Parses a PDF format date string and converts it to a #time_t. Returns #FALSE
+if the parsing fails or the input string is not a valid PDF format date string
+
+
+</description>
+<parameters>
+<parameter name="date">
+<parameter_description> string to parse
+</parameter_description>
+</parameter>
+<parameter name="timet">
+<parameter_description> an uninitialized #time_t
+</parameter_description>
+</parameter>
+</parameters>
+<return> #TRUE, if @timet was set
+
+</return>
+</function>
+
+<function name="poppler_dest_copy">
+<description>
+Copies @dest, creating an identical #PopplerDest.
+
+
+</description>
+<parameters>
+<parameter name="dest">
+<parameter_description> a #PopplerDest
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new destination identical to @dest
+</return>
+</function>
+
+<function name="poppler_dest_free">
+<description>
+Frees @dest
+
+</description>
+<parameters>
+<parameter name="dest">
+<parameter_description> a #PopplerDest
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_document_find_dest">
+<description>
+Finds named destination @link_name in @document
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="link_name">
+<parameter_description> a named destination
+</parameter_description>
+</parameter>
+</parameters>
+<return> The #PopplerDest destination or %NULL if
+@link_name is not a destination. Returned value must
+be freed with #poppler_dest_free
+</return>
+</function>
+
+<function name="poppler_document_get_attachments">
+<description>
+Returns a #GList containing #PopplerAttachment&lt;!-- --&gt;s.  These attachments
+are unowned, and must be unreffed, and the list must be freed with
+g_list_free().
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a list of available attachments.
+</return>
+</function>
+
+<function name="poppler_document_get_author">
+<description>
+Returns the author of the document
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the author
+of @document, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_get_creation_date">
+<description>
+Returns the date the document was created as seconds since the Epoch
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> the date the document was created, or -1
+
+</return>
+</function>
+
+<function name="poppler_document_get_creator">
+<description>
+Returns the creator of the document. If the document was converted
+from another format, the creator is the name of the product
+that created the original document from which it was converted.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the creator
+of @document, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_get_form_field">
+<description>
+Returns the #PopplerFormField for the given @id. It must be freed with
+g_object_unref()
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="id">
+<parameter_description> an id of a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerFormField or %NULL if
+not found
+</return>
+</function>
+
+<function name="poppler_document_get_id">
+<description>
+Returns the PDF file identifier represented as two byte string arrays of size 32.
+@permanent_id is the permanent identifier that is built based on the file
+contents at the time it was originally created, so that this identifer
+never changes. @update_id is the update identifier that is built based on
+the file contents at the time it was last updated.
+
+Note that returned strings are not null-terminated, they have a fixed
+size of 32 bytes.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="permanent_id">
+<parameter_description> location to store an allocated string, use g_free() to free the returned string
+</parameter_description>
+</parameter>
+<parameter name="update_id">
+<parameter_description> location to store an allocated string, use g_free() to free the returned string
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the @document contains an id, %FALSE otherwise
+
+</return>
+</function>
+
+<function name="poppler_document_get_keywords">
+<description>
+Returns the keywords associated to the document
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing keywords associated
+to @document, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_get_metadata">
+<description>
+Returns the XML metadata string of the document
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the XML
+metadata, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_get_modification_date">
+<description>
+Returns the date the document was most recently modified as seconds since the Epoch
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> the date the document was most recently modified, or -1
+
+</return>
+</function>
+
+<function name="poppler_document_get_n_attachments">
+<description>
+Returns the number of attachments in a loaded document.
+See also poppler_document_get_attachments()
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> Number of attachments
+
+</return>
+</function>
+
+<function name="poppler_document_get_n_pages">
+<description>
+Returns the number of pages in a loaded document.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> Number of pages
+</return>
+</function>
+
+<function name="poppler_document_get_page">
+<description>
+Returns the #PopplerPage indexed at @index.  This object is owned by the
+caller.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="index">
+<parameter_description> a page index 
+</parameter_description>
+</parameter>
+</parameters>
+<return> The #PopplerPage at @index
+</return>
+</function>
+
+<function name="poppler_document_get_page_by_label">
+<description>
+Returns the #PopplerPage reference by @label.  This object is owned by the
+caller.  @label is a human-readable string representation of the page number,
+and can be document specific.  Typically, it is a value such as &quot;iii&quot; or &quot;3&quot;.
+
+By default, &quot;1&quot; refers to the first page.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="label">
+<parameter_description> a page label
+</parameter_description>
+</parameter>
+</parameters>
+<return>The #PopplerPage referenced by @label
+</return>
+</function>
+
+<function name="poppler_document_get_page_layout">
+<description>
+Returns the page layout that should be used when the document is opened
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #PopplerPageLayout that should be used when the document is opened
+
+</return>
+</function>
+
+<function name="poppler_document_get_page_mode">
+<description>
+Returns a #PopplerPageMode representing how the document should
+be initially displayed when opened.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #PopplerPageMode that should be used when document is opened
+
+</return>
+</function>
+
+<function name="poppler_document_get_pdf_version">
+<description>
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="major_version">
+<parameter_description> return location for the PDF major version number
+</parameter_description>
+</parameter>
+<parameter name="minor_version">
+<parameter_description> return location for the PDF minor version number
+</parameter_description>
+</parameter>
+</parameters>
+<return> the major and minor PDF version numbers
+
+</return>
+</function>
+
+<function name="poppler_document_get_pdf_version_string">
+<description>
+Returns the PDF version of @document as a string (e.g. PDF-1.6)
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the PDF version
+of @document, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_get_permissions">
+<description>
+Returns the flags specifying which operations are permitted when the document is opened.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a set of falgs from  #PopplerPermissions enumeration
+
+</return>
+</function>
+
+<function name="poppler_document_get_producer">
+<description>
+Returns the producer of the document. If the document was converted
+from another format, the producer is the name of the product
+that converted it to PDF
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the producer
+of @document, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_get_subject">
+<description>
+Returns the subject of the document
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the subject
+of @document, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_get_title">
+<description>
+Returns the document's title
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the title
+of @document, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_has_attachments">
+<description>
+Returns %TRUE of @document has any attachments.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if @document has attachments.
+</return>
+</function>
+
+<function name="poppler_document_is_linearized">
+<description>
+Returns whether @document is linearized or not. Linearization of PDF
+enables efficient incremental access of the PDF file in a network environment.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> A #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if @document is linearized, %FALSE otherwhise
+
+</return>
+</function>
+
+<function name="poppler_document_new_from_data">
+<description>
+Creates a new #PopplerDocument.  If %NULL is returned, then @error will be
+set. Possible errors include those in the #POPPLER_ERROR and #G_FILE_ERROR
+domains.
+
+
+</description>
+<parameters>
+<parameter name="data">
+<parameter_description> the pdf data contained in a char array
+</parameter_description>
+</parameter>
+<parameter name="length">
+<parameter_description> the length of #data
+</parameter_description>
+</parameter>
+<parameter name="password">
+<parameter_description> password to unlock the file with, or %NULL
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> Return location for an error, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return> A newly created #PopplerDocument, or %NULL
+</return>
+</function>
+
+<function name="poppler_document_new_from_file">
+<description>
+Creates a new #PopplerDocument.  If %NULL is returned, then @error will be
+set. Possible errors include those in the #POPPLER_ERROR and #G_FILE_ERROR
+domains.
+
+
+</description>
+<parameters>
+<parameter name="uri">
+<parameter_description> uri of the file to load
+</parameter_description>
+</parameter>
+<parameter name="password">
+<parameter_description> password to unlock the file with, or %NULL
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> Return location for an error, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return> A newly created #PopplerDocument, or %NULL
+</return>
+</function>
+
+<function name="poppler_document_save">
+<description>
+Saves @document. Any change made in the document such as
+form fields filled, annotations added or modified
+will be saved.
+If @error is set, %FALSE will be returned. Possible errors
+include those in the #G_FILE_ERROR domain.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="uri">
+<parameter_description> uri of file to save
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> return location for an error, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if the document was successfully saved
+</return>
+</function>
+
+<function name="poppler_document_save_a_copy">
+<description>
+Saves a copy of the original @document.
+Any change made in the document such as 
+form fields filled by the user will not be saved. 
+If @error is set, %FALSE will be returned. Possible errors
+include those in the #G_FILE_ERROR domain.
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="uri">
+<parameter_description> uri of file to save
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> return location for an error, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if the document was successfully saved
+</return>
+</function>
+
+<function name="poppler_font_info_new">
+<description>
+Creates a new #PopplerFontInfo object
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerFontInfo instance
+</return>
+</function>
+
+<function name="poppler_font_info_scan">
+<description>
+Scans the document associated with @font_info for fonts. At most
+@n_pages will be scanned starting from the current iterator. @iter will
+point to the first font scanned.
+
+Here is a simple example of code to scan fonts in a document
+
+&lt;informalexample&gt;&lt;programlisting&gt;
+font_info = poppler_font_info_new (document);
+while (poppler_font_info_scan (font_info, 20, &amp;fonts_iter)) {
+if (!fonts_iter)
+continue; /&lt;!-- --&gt;* No fonts found in these 20 pages *&lt;!-- --&gt;/
+do {
+/&lt;!-- --&gt;* Do something with font iter *&lt;!-- --&gt;/
+g_print (&quot;Font Name: %s\n&quot;, poppler_fonts_iter_get_name (fonts_iter));
+} while (poppler_fonts_iter_next (fonts_iter));
+poppler_fonts_iter_free (fonts_iter);
+}
+&lt;/programlisting&gt;&lt;/informalexample&gt;
+
+
+</description>
+<parameters>
+<parameter name="font_info">
+<parameter_description> a #PopplerFontInfo
+</parameter_description>
+</parameter>
+<parameter name="n_pages">
+<parameter_description> number of pages to scan
+</parameter_description>
+</parameter>
+<parameter name="iter">
+<parameter_description> return location for a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if there are more fonts left to scan
+</return>
+</function>
+
+<function name="poppler_fonts_iter_copy">
+<description>
+Creates a copy of @iter
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @iter
+</return>
+</function>
+
+<function name="poppler_fonts_iter_free">
+<description>
+Frees the given #PopplerFontsIter
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_fonts_iter_get_file_name">
+<description>
+The filename of the font associated with @iter or %NULL if
+the font is embedded
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> the filename of the font or %NULL y font is emebedded
+</return>
+</function>
+
+<function name="poppler_fonts_iter_get_font_type">
+<description>
+Returns the type of the font associated with @iter
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> the font type
+</return>
+</function>
+
+<function name="poppler_fonts_iter_get_full_name">
+<description>
+Returns the full name of the font associated with @iter
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> the font full name
+</return>
+</function>
+
+<function name="poppler_fonts_iter_get_name">
+<description>
+Returns the name of the font associated with @iter
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> the font name
+</return>
+</function>
+
+<function name="poppler_fonts_iter_is_embedded">
+<description>
+Returns whether the font associated with @iter is embedded in the document
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if font is emebdded, %FALSE otherwise
+</return>
+</function>
+
+<function name="poppler_fonts_iter_is_subset">
+<description>
+Returns whether the font associated with @iter is a subset of another font
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if font is a subset, %FALSE otherwise
+</return>
+</function>
+
+<function name="poppler_fonts_iter_next">
+<description>
+Sets @iter to point to the next font
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if @iter was set to the next font
+</return>
+</function>
+
+<function name="poppler_form_field_button_get_button_type">
+<description>
+Gets the button type of @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerFormButtonType of @field
+</return>
+</function>
+
+<function name="poppler_form_field_button_get_state">
+<description>
+Queries a #PopplerFormField and returns its current state. Returns %TRUE if
+@field is pressed in and %FALSE if it is raised.
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> current state of @field
+</return>
+</function>
+
+<function name="poppler_form_field_button_set_state">
+<description>
+Sets the status of @field. Set to %TRUE if you want the #PopplerFormField
+to be 'pressed in', and %FALSE to raise it. 
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+<parameter name="state">
+<parameter_description> %TRUE or %FALSE
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_form_field_choice_can_select_multiple">
+<description>
+Checks whether @field allows multiple choices to be selected
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if @field allows multiple choices to be selected
+</return>
+</function>
+
+<function name="poppler_form_field_choice_do_spell_check">
+<description>
+Checks whether spell checking should be done for the contents of @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if spell checking should be done for @field
+</return>
+</function>
+
+<function name="poppler_form_field_choice_get_choice_type">
+<description>
+Gets the choice type of @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerFormChoiceType of @field
+</return>
+</function>
+
+<function name="poppler_form_field_choice_get_item">
+<description>
+Returns the contents of the item on @field at the given index
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+<parameter name="index">
+<parameter_description> the index of the item
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string. It must be freed with g_free() when done.
+</return>
+</function>
+
+<function name="poppler_form_field_choice_get_n_items">
+<description>
+Returns the number of items on @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> the number of items on @field
+</return>
+</function>
+
+<function name="poppler_form_field_choice_get_text">
+<description>
+Retrieves the contents of @field.
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string. It must be freed with g_free() when done.
+</return>
+</function>
+
+<function name="poppler_form_field_choice_is_editable">
+<description>
+Checks whether @field is editable
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if @field is editable
+</return>
+</function>
+
+<function name="poppler_form_field_choice_is_item_selected">
+<description>
+Checks whether the item at the given index on @field is currently selected 
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+<parameter name="index">
+<parameter_description> the index of the item
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if item at @index is currently selected
+</return>
+</function>
+
+<function name="poppler_form_field_choice_select_item">
+<description>
+Selects the item at the given index on @field
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+<parameter name="index">
+<parameter_description> the index of the item
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_form_field_choice_set_text">
+<description>
+Sets the text in @field to the given value, replacing the current contents
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+<parameter name="text">
+<parameter_description> the new text
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_form_field_choice_toggle_item">
+<description>
+Changes the state of the item at the given index
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+<parameter name="index">
+<parameter_description> the index of the item
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_form_field_choice_unselect_all">
+<description>
+Unselects all the items on @field
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_form_field_get_action">
+<description>
+Retrieves the action (#PopplerAction) that shall be
+performed when @field is activated, or %NULL
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> the action to perform. The returned
+object is owned by @field and should not be freed
+
+</return>
+</function>
+
+<function name="poppler_form_field_get_field_type">
+<description>
+Gets the type of @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerFormFieldType of @field
+</return>
+</function>
+
+<function name="poppler_form_field_get_font_size">
+<description>
+Gets the font size of @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> the font size of @field
+</return>
+</function>
+
+<function name="poppler_form_field_get_id">
+<description>
+Gets the id of @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> the id of @field
+</return>
+</function>
+
+<function name="poppler_form_field_get_mapping_name">
+<description>
+Gets the mapping name of @field that is used when
+exporting interactive form field data from the document
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string. It must be freed with g_free() when done.
+
+</return>
+</function>
+
+<function name="poppler_form_field_get_name">
+<description>
+Gets the fully qualified name of @field. It's constructed by concatenating
+the partial field names of the field and all of its ancestors.
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string. It must be freed with g_free() when done.
+
+</return>
+</function>
+
+<function name="poppler_form_field_get_partial_name">
+<description>
+Gets the partial name of @field.
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string. It must be freed with g_free() when done.
+
+</return>
+</function>
+
+<function name="poppler_form_field_is_read_only">
+<description>
+Checks whether @field is read only
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if @field is read only
+</return>
+</function>
+
+<function name="poppler_form_field_mapping_copy">
+<description>
+Creates a copy of @mapping
+
+
+</description>
+<parameters>
+<parameter name="mapping">
+<parameter_description> a #PopplerFormFieldMapping to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @mapping
+</return>
+</function>
+
+<function name="poppler_form_field_mapping_free">
+<description>
+Frees the given #PopplerFormFieldMapping
+
+</description>
+<parameters>
+<parameter name="mapping">
+<parameter_description> a #PopplerFormFieldMapping
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_form_field_mapping_new">
+<description>
+Creates a new #PopplerFormFieldMapping
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new #PopplerFormFieldMapping, use poppler_form_field_mapping_free() to free it
+</return>
+</function>
+
+<function name="poppler_form_field_text_do_spell_check">
+<description>
+Checks whether spell checking should be done for the contents of @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if spell checking should be done for @field
+</return>
+</function>
+
+<function name="poppler_form_field_text_get_max_len">
+<description>
+Retrieves the maximum allowed length of the text in @field
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> the maximum allowed number of characters in @field, or -1 if there is no maximum.
+</return>
+</function>
+
+<function name="poppler_form_field_text_get_text">
+<description>
+Retrieves the contents of @field.
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string. It must be freed with g_free() when done.
+</return>
+</function>
+
+<function name="poppler_form_field_text_get_text_type">
+<description>
+Gets the text type of @field.
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> #PopplerFormTextType of @field
+</return>
+</function>
+
+<function name="poppler_form_field_text_is_password">
+<description>
+Checks whether content of @field is a password and it must be hidden
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the content of @field is a password
+</return>
+</function>
+
+<function name="poppler_form_field_text_is_rich_text">
+<description>
+Checks whether the contents of @field are rich text
+
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the contents of @field are rich text
+</return>
+</function>
+
+<function name="poppler_form_field_text_set_text">
+<description>
+Sets the text in @field to the given value, replacing the current contents.
+
+</description>
+<parameters>
+<parameter name="field">
+<parameter_description> a #PopplerFormField
+</parameter_description>
+</parameter>
+<parameter name="text">
+<parameter_description> the new text
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_get_backend">
+<description>
+Returns the backend compiled into the poppler library.
+
+
+</description>
+<parameters>
+</parameters>
+<return> The backend used by poppler
+</return>
+</function>
+
+<function name="poppler_get_version">
+<description>
+Returns the version of poppler in use.  This result is not to be freed.
+
+
+</description>
+<parameters>
+</parameters>
+<return> the version of poppler.
+</return>
+</function>
+
+<function name="poppler_image_mapping_copy">
+<description>
+Creates a copy of @mapping
+
+
+</description>
+<parameters>
+<parameter name="mapping">
+<parameter_description> a #PopplerImageMapping to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @mapping
+</return>
+</function>
+
+<function name="poppler_image_mapping_free">
+<description>
+Frees the given #PopplerImageMapping
+
+</description>
+<parameters>
+<parameter name="mapping">
+<parameter_description> a #PopplerImageMapping
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_image_mapping_new">
+<description>
+Creates a new #PopplerImageMapping
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new #PopplerImageMapping, use poppler_image_mapping_free() to free it
+</return>
+</function>
+
+<function name="poppler_index_iter_copy">
+<description>
+Creates a new #PopplerIndexIter as a copy of @iter.  This must be freed with
+poppler_index_iter_free().
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerIndexIter
+</return>
+</function>
+
+<function name="poppler_index_iter_free">
+<description>
+Frees @iter.
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_index_iter_get_action">
+<description>
+Returns the #PopplerAction associated with @iter.  It must be freed with
+poppler_action_free().
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerAction
+</return>
+</function>
+
+<function name="poppler_index_iter_get_child">
+<description>
+Returns a newly created child of @parent, or %NULL if the iter has no child.
+See poppler_index_iter_new() for more information on this function.
+
+
+</description>
+<parameters>
+<parameter name="parent">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerIndexIter
+</return>
+</function>
+
+<function name="poppler_index_iter_is_open">
+<description>
+Returns whether this node should be expanded by default to the user.  The
+document can provide a hint as to how the document's index should be expanded
+initially.
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if the document wants @iter to be expanded
+</return>
+</function>
+
+<function name="poppler_index_iter_new">
+<description>
+Returns the root #PopplerIndexIter for @document, or %NULL.  This must be
+freed with poppler_index_iter_free().
+
+Certain documents have an index associated with them.  This index can be used
+to help the user navigate the document, and is similar to a table of
+contents.  Each node in the index will contain a #PopplerAction that can be
+displayed to the user &#8212; typically a #POPPLER_ACTION_GOTO_DEST or a
+#POPPLER_ACTION_URI&lt;!-- --&gt;.
+
+Here is a simple example of some code that walks the full index:
+
+&lt;informalexample&gt;&lt;programlisting&gt;
+static void
+walk_index (PopplerIndexIter *iter)
+{
+do
+{
+/&lt;!-- --&gt;* Get the the action and do something with it *&lt;!-- --&gt;/
+PopplerIndexIter *child = poppler_index_iter_get_child (iter);
+if (child)
+walk_index (child);
+poppler_index_iter_free (child);
+}
+while (poppler_index_iter_next (iter));
+}
+...
+{
+iter = poppler_index_iter_new (document);
+walk_index (iter);
+poppler_index_iter_free (iter);
+}
+&lt;/programlisting&gt;&lt;/informalexample&gt;
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerIndexIter
+</return>
+</function>
+
+<function name="poppler_index_iter_next">
+<description>
+Sets @iter to point to the next action at the current level, if valid.  See
+poppler_index_iter_new() for more information.
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerIndexIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if @iter was set to the next action
+</return>
+</function>
+
+<function name="poppler_layer_get_radio_button_group_id">
+<description>
+Returns the numeric ID the radio button group associated with @layer.
+
+
+</description>
+<parameters>
+<parameter name="layer">
+<parameter_description> a #PopplerLayer
+</parameter_description>
+</parameter>
+</parameters>
+<return> the ID of the radio button group associated with @layer,
+or 0 if the layer is not associated to any radio button group
+
+</return>
+</function>
+
+<function name="poppler_layer_get_title">
+<description>
+Returns the name of the layer suitable for
+presentation as a title in a viewer's GUI
+
+
+</description>
+<parameters>
+<parameter name="layer">
+<parameter_description> a #PopplerLayer
+</parameter_description>
+</parameter>
+</parameters>
+<return> a string containing the title of the layer
+
+</return>
+</function>
+
+<function name="poppler_layer_hide">
+<description>
+Hides @layer. If @layer is the parent of other nested layers,
+such layers will be also hidden and will be blocked until @layer
+is shown again
+
+
+</description>
+<parameters>
+<parameter name="layer">
+<parameter_description> a #PopplerLayer
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_layer_is_parent">
+<description>
+Returns whether @layer is parent of other nested layers.
+
+
+</description>
+<parameters>
+<parameter name="layer">
+<parameter_description> a #PopplerLayer
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if @layer is a parent layer
+
+</return>
+</function>
+
+<function name="poppler_layer_is_visible">
+<description>
+Returns whether @layer is visible
+
+
+</description>
+<parameters>
+<parameter name="layer">
+<parameter_description> a #PopplerLayer
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if @layer is visible
+
+</return>
+</function>
+
+<function name="poppler_layer_show">
+<description>
+Shows @layer
+
+
+</description>
+<parameters>
+<parameter name="layer">
+<parameter_description> a #PopplerLayer
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_layers_iter_copy">
+<description>
+Creates a new #PopplerLayersIter as a copy of @iter.  This must be freed with
+poppler_layers_iter_free().
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerLayersIter
+
+Since 0.12
+</return>
+</function>
+
+<function name="poppler_layers_iter_free">
+<description>
+Frees @iter.
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_layers_iter_get_child">
+<description>
+Returns a newly created child of @parent, or %NULL if the iter has no child.
+See poppler_layers_iter_new() for more information on this function.
+
+
+</description>
+<parameters>
+<parameter name="parent">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerLayersIter, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_layers_iter_get_layer">
+<description>
+Returns the #PopplerLayer associated with @iter.
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerLayer, or %NULL if
+there isn't any layer associated with @iter
+
+</return>
+</function>
+
+<function name="poppler_layers_iter_get_title">
+<description>
+Returns the title associated with @iter.  It must be freed with
+g_free().
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new string containing the @iter's title or %NULL if @iter doesn't have a title.
+The returned string should be freed with g_free() when no longer needed.
+
+</return>
+</function>
+
+<function name="poppler_layers_iter_new">
+<description>
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_layers_iter_next">
+<description>
+Sets @iter to point to the next action at the current level, if valid.  See
+poppler_layers_iter_new() for more information.
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerLayersIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if @iter was set to the next action
+
+</return>
+</function>
+
+<function name="poppler_link_mapping_copy">
+<description>
+Creates a copy of @mapping
+
+
+</description>
+<parameters>
+<parameter name="mapping">
+<parameter_description> a #PopplerLinkMapping to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @mapping
+</return>
+</function>
+
+<function name="poppler_link_mapping_free">
+<description>
+Frees the given #PopplerLinkMapping
+
+</description>
+<parameters>
+<parameter name="mapping">
+<parameter_description> a #PopplerLinkMapping
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_link_mapping_new">
+<description>
+Creates a new #PopplerLinkMapping
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new #PopplerLinkMapping, use poppler_link_mapping_free() to free it
+</return>
+</function>
+
+<function name="poppler_media_get_filename">
+<description>
+Returns the media clip filename, in case of non-embedded media. filename might be
+a local relative or absolute path or a URI
+
+
+</description>
+<parameters>
+<parameter name="poppler_media">
+<parameter_description> a #PopplerMedia
+</parameter_description>
+</parameter>
+</parameters>
+<return> a filename, return value is owned by #PopplerMedia and should not be freed
+
+</return>
+</function>
+
+<function name="poppler_media_get_mime_type">
+<description>
+Returns the media clip mime-type
+
+
+</description>
+<parameters>
+<parameter name="poppler_media">
+<parameter_description> a #PopplerMedia
+</parameter_description>
+</parameter>
+</parameters>
+<return> the mime-type, return value is owned by #PopplerMedia and should not be freed
+
+</return>
+</function>
+
+<function name="poppler_media_is_embedded">
+<description>
+Whether the media clip is embedded in the PDF. If the result is %TRUE, the embedded stream
+can be saved with poppler_media_save() or poppler_media_save_to_callback() function.
+If the result is %FALSE, the media clip filename can be retrieved with
+poppler_media_get_filename() function.
+
+
+</description>
+<parameters>
+<parameter name="poppler_media">
+<parameter_description> a #PopplerMedia
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if media clip is embedded, %FALSE otherwise
+
+</return>
+</function>
+
+<function name="poppler_media_save">
+<description>
+Saves embedded stream of @poppler_media to a file indicated by @filename.
+If @error is set, %FALSE will be returned.
+Possible errors include those in the #G_FILE_ERROR domain
+and whatever the save function generates.
+
+
+</description>
+<parameters>
+<parameter name="poppler_media">
+<parameter_description> a #PopplerMedia
+</parameter_description>
+</parameter>
+<parameter name="filename">
+<parameter_description> name of file to save
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> return location for error, or %NULL.
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if the file successfully saved
+
+</return>
+</function>
+
+<function name="poppler_media_save_to_callback">
+<description>
+Saves embedded stream of @poppler_media by feeding the produced data to @save_func. Can be used
+when you want to store the media clip stream to something other than a file, such as
+an in-memory buffer or a socket. If @error is set, %FALSE will be
+returned. Possible errors include those in the #G_FILE_ERROR domain and
+whatever the save function generates.
+
+
+</description>
+<parameters>
+<parameter name="poppler_media">
+<parameter_description> a #PopplerMedia
+</parameter_description>
+</parameter>
+<parameter name="save_func">
+<parameter_description> a function that is called to save each block of data that the save routine generates.
+</parameter_description>
+</parameter>
+<parameter name="user_data">
+<parameter_description> user data to pass to the save function.
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> return location for error, or %NULL.
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if the save successfully completed
+
+</return>
+</function>
+
+<function name="poppler_movie_get_filename">
+<description>
+Returns the local filename identifying a self-describing movie file
+
+
+</description>
+<parameters>
+<parameter name="poppler_movie">
+<parameter_description> a #PopplerMovie
+</parameter_description>
+</parameter>
+</parameters>
+<return> a local filename, return value is owned by #PopplerMovie and
+should not be freed
+
+</return>
+</function>
+
+<function name="poppler_movie_need_poster">
+<description>
+Returns whether a poster image representing the Movie
+shall be displayed. The poster image must be retrieved
+from the movie file.
+
+
+</description>
+<parameters>
+<parameter name="poppler_movie">
+<parameter_description> a #PopplerMovie
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if move needs a poster image, %FALSE otherwise
+
+</return>
+</function>
+
+<function name="poppler_movie_show_controls">
+<description>
+Returns whether to display a movie controller bar while playing the movie
+
+
+</description>
+<parameters>
+<parameter name="poppler_movie">
+<parameter_description> a #PopplerMovie
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if controller bar should be displayed, %FALSE otherwise
+
+</return>
+</function>
+
+<function name="poppler_page_add_annot">
+<description>
+Adds annotation @annot to @page.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="annot">
+<parameter_description> a #PopplerAnnot to add
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_find_text">
+<description>
+A #GList of rectangles for each occurance of the text on the page.
+The coordinates are in PDF points.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="text">
+<parameter_description> the text to search for (UTF-8 encoded)
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #GList of #PopplerRectangle,
+</return>
+</function>
+
+<function name="poppler_page_free_annot_mapping">
+<description>
+Frees a list of #PopplerAnnotMapping&lt;!-- --&gt;s allocated by
+poppler_page_get_annot_mapping().  It also unreferences the #PopplerAnnot&lt;!-- --&gt;s
+that each mapping contains, so if you want to keep them around, you need to
+reference them with g_object_ref().
+
+</description>
+<parameters>
+<parameter name="list">
+<parameter_description> A list of
+#PopplerAnnotMapping&lt;!-- --&gt;s
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_free_form_field_mapping">
+<description>
+Frees a list of #PopplerFormFieldMapping&lt;!-- --&gt;s allocated by
+poppler_page_get_form_field_mapping().
+
+</description>
+<parameters>
+<parameter name="list">
+<parameter_description> A list of
+#PopplerFormFieldMapping&lt;!-- --&gt;s
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_free_image_mapping">
+<description>
+Frees a list of #PopplerImageMapping&lt;!-- --&gt;s allocated by
+poppler_page_get_image_mapping().
+
+</description>
+<parameters>
+<parameter name="list">
+<parameter_description> A list of
+#PopplerImageMapping&lt;!-- --&gt;s
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_free_link_mapping">
+<description>
+Frees a list of #PopplerLinkMapping&lt;!-- --&gt;s allocated by
+poppler_page_get_link_mapping().  It also frees the #PopplerAction&lt;!-- --&gt;s
+that each mapping contains, so if you want to keep them around, you need to
+copy them with poppler_action_copy().
+
+</description>
+<parameters>
+<parameter name="list">
+<parameter_description> A list of
+#PopplerLinkMapping&lt;!-- --&gt;s
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_free_text_attributes">
+<description>
+Frees a list of #PopplerTextAttributes&lt;!-- --&gt;s allocated by
+poppler_page_get_text_attributes().
+
+
+</description>
+<parameters>
+<parameter name="list">
+<parameter_description> A list of
+#PopplerTextAttributes&lt;!-- --&gt;s
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_get_annot_mapping">
+<description>
+Returns a list of #PopplerAnnotMapping items that map from a location on
+@page to a #PopplerAnnot.  This list must be freed with
+poppler_page_free_annot_mapping() when done.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A #GList of #PopplerAnnotMapping
+</return>
+</function>
+
+<function name="poppler_page_get_crop_box">
+<description>
+Retrurns the crop box of @page
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="rect">
+<parameter_description> a #PopplerRectangle to fill
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_get_duration">
+<description>
+Returns the duration of @page
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> duration in seconds of @page or -1.
+</return>
+</function>
+
+<function name="poppler_page_get_form_field_mapping">
+<description>
+Returns a list of #PopplerFormFieldMapping items that map from a
+location on @page to a form field.  This list must be freed
+with poppler_page_free_form_field_mapping() when done.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A #GList of #PopplerFormFieldMapping
+</return>
+</function>
+
+<function name="poppler_page_get_image">
+<description>
+Returns a cairo surface for the image of the @page
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="image_id">
+<parameter_description> The image identificator
+</parameter_description>
+</parameter>
+</parameters>
+<return> A cairo surface for the image
+</return>
+</function>
+
+<function name="poppler_page_get_image_mapping">
+<description>
+Returns a list of #PopplerImageMapping items that map from a
+location on @page to an image of the page. This list must be freed
+with poppler_page_free_image_mapping() when done.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A #GList of #PopplerImageMapping
+</return>
+</function>
+
+<function name="poppler_page_get_index">
+<description>
+Returns the index of @page
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> index value of @page
+</return>
+</function>
+
+<function name="poppler_page_get_label">
+<description>
+Returns the label of @page. Note that page labels
+and page indices might not coincide.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated string containing the label of @page,
+or %NULL if @page doesn't have a label
+
+</return>
+</function>
+
+<function name="poppler_page_get_link_mapping">
+<description>
+Returns a list of #PopplerLinkMapping items that map from a
+location on @page to a #PopplerAction.  This list must be freed
+with poppler_page_free_link_mapping() when done.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A #GList of #PopplerLinkMapping
+</return>
+</function>
+
+<function name="poppler_page_get_selected_region">
+<description>
+Returns a region containing the area that would be rendered by
+poppler_page_render_selection().
+The returned region must be freed with cairo_region_destroy()
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="scale">
+<parameter_description> scale specified as pixels per point
+</parameter_description>
+</parameter>
+<parameter name="style">
+<parameter_description> a #PopplerSelectionStyle
+</parameter_description>
+</parameter>
+<parameter name="selection">
+<parameter_description> start and end point of selection as a rectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return> a cairo_region_t
+
+</return>
+</function>
+
+<function name="poppler_page_get_selected_text">
+<description>
+Retrieves the contents of the specified @selection as text.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="style">
+<parameter_description> a #PopplerSelectionStyle
+</parameter_description>
+</parameter>
+<parameter name="selection">
+<parameter_description> the #PopplerRectangle including the text
+</parameter_description>
+</parameter>
+</parameters>
+<return> a pointer to the contents of the @selection
+as a string
+</return>
+</function>
+
+<function name="poppler_page_get_selection_region">
+<description>
+Returns a region containing the area that would be rendered by
+poppler_page_render_selection() as a #GList of
+#PopplerRectangle. The returned list must be freed with
+poppler_page_selection_region_free().
+
+Deprecated: 0.16: Use poppler_page_get_selected_region() instead.
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="scale">
+<parameter_description> scale specified as pixels per point
+</parameter_description>
+</parameter>
+<parameter name="style">
+<parameter_description> a #PopplerSelectionStyle
+</parameter_description>
+</parameter>
+<parameter name="selection">
+<parameter_description> start and end point of selection as a rectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #GList of #PopplerRectangle
+
+</return>
+</function>
+
+<function name="poppler_page_get_size">
+<description>
+Gets the size of @page at the current scale and rotation.
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="width">
+<parameter_description> return location for the width of @page
+</parameter_description>
+</parameter>
+<parameter name="height">
+<parameter_description> return location for the height of @page
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_get_text">
+<description>
+Retrieves the text of @page.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> a pointer to the text of the @page
+as a string
+</return>
+</function>
+
+<function name="poppler_page_get_text_attributes">
+<description>
+Obtains the attributes of the text as a GList of #PopplerTextAttributes.
+This list must be freed with poppler_page_free_text_attributes() when done.
+
+Each list element is a #PopplerTextAttributes struct where start_index and
+end_index indicates the range of text (as returned by poppler_page_get_text())
+to which text attributes apply.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> A #GList of #PopplerTextAttributes
+
+</return>
+</function>
+
+<function name="poppler_page_get_text_layout">
+<description>
+Obtains the layout of the text as a list of #PopplerRectangle
+This array must be freed with g_free () when done.
+
+The position in the array represents an offset in the text returned by
+poppler_page_get_text()
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="rectangles">
+<parameter_description> return location for an array of #PopplerRectangle
+</parameter_description>
+</parameter>
+<parameter name="n_rectangles">
+<parameter_description> (out) length of returned array
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the page contains text, %FALSE otherwise
+
+</return>
+</function>
+
+<function name="poppler_page_get_thumbnail">
+<description>
+Get the embedded thumbnail for the specified page.  If the document
+doesn't have an embedded thumbnail for the page, this function
+returns %NULL.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> the #PopplerPage to get the thumbnail for
+</parameter_description>
+</parameter>
+</parameters>
+<return> the tumbnail as a cairo_surface_t or %NULL if the document
+doesn't have a thumbnail for this page.
+</return>
+</function>
+
+<function name="poppler_page_get_thumbnail_size">
+<description>
+Returns %TRUE if @page has a thumbnail associated with it.  It also
+fills in @width and @height with the width and height of the
+thumbnail.  The values of width and height are not changed if no
+appropriate thumbnail exists.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> A #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="width">
+<parameter_description> (out) return location for width
+</parameter_description>
+</parameter>
+<parameter name="height">
+<parameter_description> (out) return location for height
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE, if @page has a thumbnail associated with it.
+</return>
+</function>
+
+<function name="poppler_page_get_transition">
+<description>
+Returns the transition effect of @page
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #PopplerPageTransition or %NULL.
+</return>
+</function>
+
+<function name="poppler_page_render">
+<description>
+Render the page to the given cairo context. This function
+is for rendering a page that will be displayed. If you want
+to render a page that will be printed use
+poppler_page_render_for_printing() instead
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> the page to render from
+</parameter_description>
+</parameter>
+<parameter name="cairo">
+<parameter_description> cairo context to render to
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_render_for_printing">
+<description>
+Render the page to the given cairo context for printing.
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> the page to render from
+</parameter_description>
+</parameter>
+<parameter name="cairo">
+<parameter_description> cairo context to render to
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_render_for_printing_with_options">
+<description>
+Render the page to the given cairo context for printing
+with the specified options
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> the page to render from
+</parameter_description>
+</parameter>
+<parameter name="cairo">
+<parameter_description> cairo context to render to
+</parameter_description>
+</parameter>
+<parameter name="options">
+<parameter_description> print options
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_render_selection">
+<description>
+Render the selection specified by @selection for @page to
+the given cairo context.  The selection will be rendered, using
+@glyph_color for the glyphs and @background_color for the selection
+background.
+
+If non-NULL, @old_selection specifies the selection that is already
+rendered to @cairo, in which case this function will (some day)
+only render the changed part of the selection.
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> the #PopplerPage for which to render selection
+</parameter_description>
+</parameter>
+<parameter name="cairo">
+<parameter_description> cairo context to render to
+</parameter_description>
+</parameter>
+<parameter name="selection">
+<parameter_description> start and end point of selection as a rectangle
+</parameter_description>
+</parameter>
+<parameter name="old_selection">
+<parameter_description> previous selection
+</parameter_description>
+</parameter>
+<parameter name="style">
+<parameter_description> a #PopplerSelectionStyle
+</parameter_description>
+</parameter>
+<parameter name="glyph_color">
+<parameter_description> color to use for drawing glyphs
+</parameter_description>
+</parameter>
+<parameter name="background_color">
+<parameter_description> color to use for the selection background
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_render_to_ps">
+<description>
+Render the page on a postscript file
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="ps_file">
+<parameter_description> the PopplerPSFile to render to
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_selection_region_free">
+<description>
+Frees @region
+
+Deprecated: 0.16
+
+</description>
+<parameters>
+<parameter name="region">
+<parameter_description> a #GList of
+#PopplerRectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_transition_copy">
+<description>
+Creates a copy of @transition
+
+
+</description>
+<parameters>
+<parameter name="transition">
+<parameter_description> a #PopplerPageTransition to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @transition
+</return>
+</function>
+
+<function name="poppler_page_transition_free">
+<description>
+Frees the given #PopplerPageTransition
+
+</description>
+<parameters>
+<parameter name="transition">
+<parameter_description> a #PopplerPageTransition
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_page_transition_new">
+<description>
+Creates a new #PopplerPageTransition
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new #PopplerPageTransition, use poppler_page_transition_free() to free it
+</return>
+</function>
+
+<function name="poppler_ps_file_free">
+<description>
+Frees @ps_file
+
+
+</description>
+<parameters>
+<parameter name="ps_file">
+<parameter_description> a PopplerPSFile
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_ps_file_new">
+<description>
+Create a new postscript file to render to
+
+
+</description>
+<parameters>
+<parameter name="document">
+<parameter_description> a #PopplerDocument
+</parameter_description>
+</parameter>
+<parameter name="filename">
+<parameter_description> the path of the output filename
+</parameter_description>
+</parameter>
+<parameter name="first_page">
+<parameter_description> the first page to print
+</parameter_description>
+</parameter>
+<parameter name="n_pages">
+<parameter_description> the number of pages to print
+</parameter_description>
+</parameter>
+</parameters>
+<return> a PopplerPSFile 
+</return>
+</function>
+
+<function name="poppler_ps_file_set_duplex">
+<description>
+Enable or disable Duplex printing. 
+
+
+</description>
+<parameters>
+<parameter name="ps_file">
+<parameter_description> a PopplerPSFile which was not yet printed to
+</parameter_description>
+</parameter>
+<parameter name="duplex">
+<parameter_description> whether to force duplex printing (on printers which support this)
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_ps_file_set_paper_size">
+<description>
+Set the output paper size. These values will end up in the
+DocumentMedia, the BoundingBox DSC comments and other places in the
+generated PostScript.
+
+
+</description>
+<parameters>
+<parameter name="ps_file">
+<parameter_description> a PopplerPSFile which was not yet printed to.
+</parameter_description>
+</parameter>
+<parameter name="width">
+<parameter_description> the paper width in 1/72 inch
+</parameter_description>
+</parameter>
+<parameter name="height">
+<parameter_description> the paper height in 1/72 inch
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_rectangle_copy">
+<description>
+Creates a copy of @rectangle
+
+
+</description>
+<parameters>
+<parameter name="rectangle">
+<parameter_description> a #PopplerRectangle to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @rectangle
+</return>
+</function>
+
+<function name="poppler_rectangle_free">
+<description>
+Frees the given #PopplerRectangle
+
+</description>
+<parameters>
+<parameter name="rectangle">
+<parameter_description> a #PopplerRectangle
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_rectangle_new">
+<description>
+Creates a new #PopplerRectangle
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new #PopplerRectangle, use poppler_rectangle_free() to free it
+</return>
+</function>
+
+<function name="poppler_text_attributes_copy">
+<description>
+Creates a copy of @text_attrs
+
+
+</description>
+<parameters>
+<parameter name="text_attrs">
+<parameter_description> a #PopplerTextAttributes to copy
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new allocated copy of @text_attrs
+
+</return>
+</function>
+
+<function name="poppler_text_attributes_free">
+<description>
+Frees the given #PopplerTextAttributes
+
+
+</description>
+<parameters>
+<parameter name="text_attrs">
+<parameter_description> a #PopplerTextAttributes
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="poppler_text_attributes_new">
+<description>
+Creates a new #PopplerTextAttributes
+
+
+</description>
+<parameters>
+</parameters>
+<return> a new #PopplerTextAttributes, use poppler_text_attributes_free() to free it
+
+</return>
+</function>
+
+</root>

@@ -1,0 +1,10 @@
+/* This file is part of poppler-glibmm. */
+
+/* Major version number of poppler-glibmm. */
+#undef POPPLER_GLIBMM_MAJOR_VERSION
+
+/* Micro version number of poppler-glibmm. */
+#undef POPPLER_GLIBMM_MICRO_VERSION
+
+/* Minor version number of poppler-glibmm. */
+#undef POPPLER_GLIBMM_MINOR_VERSION

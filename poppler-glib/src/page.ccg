@@ -1,0 +1,47 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+namespace Poppler
+{
+
+Cairo::RefPtr<Cairo::ImageSurface> Page::get_thumbnail() const
+{
+  cairo_surface_t* thumbnail = poppler_page_get_thumbnail(const_cast<PopplerPage*>(gobj()));
+  return thumbnail ? Cairo::RefPtr<Cairo::ImageSurface>(new Cairo::ImageSurface(thumbnail)) :
+    Cairo::RefPtr<Cairo::ImageSurface>();
+}
+
+Cairo::RefPtr<Cairo::ImageSurface> Page::get_image(int image_id) const
+{
+  cairo_surface_t* image = poppler_page_get_image(const_cast<PopplerPage*>(gobj()), image_id);
+  return image ? Cairo::RefPtr<Cairo::ImageSurface>(new Cairo::ImageSurface(image)) :
+    Cairo::RefPtr<Cairo::ImageSurface>();
+}
+
+bool Page::get_text_layout(std::vector<Rectangle>& rectangles) const
+{
+  Glib::ScopedPtr<PopplerRectangle> rect_array;
+  guint num_rects = 0;
+  bool ret = poppler_page_get_text_layout(const_cast<PopplerPage*>(gobj()), rect_array.addr(), &num_rects);
+  rectangles.reserve(num_rects * sizeof(Rectangle));
+  for (guint i = 0; i < num_rects; ++i)
+    rectangles.push_back(Glib::wrap(&(rect_array.get())[i], true));
+  return ret;
+}
+
+} // namespace Poppler

@@ -1,0 +1,4 @@
+;; Include generated API definition files
+(include poppler-glib_enum.defs)
+(include poppler-glib_method.defs)
+(include poppler-glib_extra.defs)

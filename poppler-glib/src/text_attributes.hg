@@ -1,0 +1,54 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+#include<poppler-glibmm/color.h>
+_CC_INCLUDE(poppler-page.h)
+
+namespace Poppler
+{
+
+/** A Poppler::TextAttributes is used to describe text attributes of a range
+ * of text.
+ */
+class TextAttributes
+{
+  _CLASS_BOXEDTYPE(TextAttributes, PopplerTextAttributes, poppler_text_attributes_new, poppler_text_attributes_copy, poppler_text_attributes_free)
+
+public:
+  _MEMBER_GET(font_name, font_name, Glib::ustring, gchar*)
+  _MEMBER_GET(font_size, font_size, double, double)
+  _MEMBER_GET(is_underlined, is_underlined, bool, gboolean)
+  _MEMBER_GET(color, color, Color, PopplerColor)
+  _MEMBER_GET(start_index, start_index, int, gint)
+  _MEMBER_GET(end_index, end_index, int, gint)
+};
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+struct TextAttributesTraits
+{
+  typedef TextAttributes CppType;
+  typedef PopplerTextAttributes* CType;
+  typedef PopplerTextAttributes* CTypeNonConst;
+
+  static CppType to_cpp_type(CType item) { return TextAttributes(item); }
+  static void release_c_type(CType item);
+};
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+} // namespace Poppler

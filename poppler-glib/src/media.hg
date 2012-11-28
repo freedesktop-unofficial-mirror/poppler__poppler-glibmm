@@ -1,0 +1,67 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+_PINCLUDE(glibmm/private/object_p.h)
+_CC_INCLUDE(poppler-media.h)
+
+namespace Poppler
+{
+
+/** Poppler::Media - Media
+ */
+class Media : public Glib::Object
+{
+  _CLASS_GOBJECT(Media, PopplerMedia, POPPLER_MEDIA, Glib::Object, GObject)
+
+  protected:
+    _CTOR_DEFAULT
+
+  public:
+    _WRAP_METHOD(std::string get_filename() const, poppler_media_get_filename)
+    _WRAP_METHOD(std::string get_mime_type() const, poppler_media_get_mime_type)
+    _WRAP_METHOD(bool is_embedded() const, poppler_media_is_embedded)
+
+    /** A signal handler would be, for instance:
+     * bool on_media_save(const gchar* buf, gsize count);
+     */
+    typedef sigc::slot<bool, const gchar*, gsize> SlotMediaSave;
+
+    /** Saves embedded stream of media to a file indicated by @a filename.  If
+     * an error occurs, <tt>false</tt> will be returned.
+     * @newin{0,14}
+     * @param filename Name of file to save.
+     * @return <tt>true</tt>, if the file successfully saved.
+     * @throws Glib::FileError
+     */
+    _WRAP_METHOD(bool save(const std::string& filename) const, poppler_media_save, errthrow)
+
+    /** Saves embedded stream of media by feeding the produced data to slot save function. Can be used
+     * when you want to store the media clip stream to something other than a file, such as
+     * an in-memory buffer or a socket. If an error occurs, <tt>false</tt> will be
+     * returned.
+     * @newin{0,14}
+     * @param slot A function that is called to save each block of data that the save routine generates.
+     * @return <tt>true</tt>, if the save successfully completed.
+     * @throws Glib::FileError and any thrown by the save function
+     */
+    bool save(const SlotMediaSave& slot) const;
+    _IGNORE(poppler_media_save_to_callback)
+};
+
+} // namespace Poppler

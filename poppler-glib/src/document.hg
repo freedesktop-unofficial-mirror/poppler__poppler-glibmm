@@ -1,0 +1,148 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+_CONFIGINCLUDE(poppler-glibmmconfig.h)
+_PINCLUDE(glibmm/private/object_p.h)
+
+#include <glibmm/object.h>
+#include <poppler-glibmm/page.h>
+#include <poppler-glibmm/action.h>
+#include <poppler-glibmm/attachment.h>
+#include <poppler-glibmm/form_field.h>
+#include <poppler-glibmm/font_info.h>
+#include <poppler-glibmm/ps_file.h>
+#include <poppler-glibmm/index_iter.h>
+#include <poppler-glibmm/layers_iter.h>
+_CC_INCLUDE(poppler-document.h)
+
+namespace Poppler
+{
+
+_WRAP_ENUM(PageLayout, PopplerPageLayout)
+_WRAP_ENUM(PageMode, PopplerPageMode)
+_WRAP_ENUM(ViewerPreferences, PopplerViewerPreferences)
+_WRAP_ENUM(Permissions, PopplerPermissions)
+
+/** Poppler::Document is a class that provides access to information about a
+ * document
+ */
+class Document : public Glib::Object
+{
+  _CLASS_GOBJECT(Document, PopplerDocument, POPPLER_DOCUMENT, Glib::Object, GObject)
+
+protected:
+  _CTOR_DEFAULT
+
+public:
+  /** Creates a new Poppler::Document.  If <tt>0</tt> is returned, then an exception will be thrown.
+   * @param uri Uri of the file to load.
+   * @param password Password to unlock the file with, or <tt>0</tt>.
+   * @return A newly created Poppler::Document, or <tt>0</tt>.
+   * @throws Poppler::Error and Glib::FileError
+   */
+  _WRAP_METHOD(static Glib::RefPtr<Document> new_from_file(const std::string& uri, const std::string& password = ""),
+               poppler_document_new_from_file, errthrow)
+
+  /** Creates a new Poppler::Document.  If <tt>0</tt> is returned, then an exception will be thrown.
+   * @param data The pdf data contained in a string.
+   * @param password Password to unlock the file with.
+   * @return A newly created Poppler::Document, or <tt>0</tt>.
+   * @throws Poppler::Error and Glib::FileError
+   */
+  static Glib::RefPtr<Document> new_from_data(const std::string& data, const std::string& password = "");
+
+  /** Saves document. Any change made in the document such as form fields
+   * filled, annotations added or modified will be saved.
+   * If an error occurs, <tt>false</tt> will be returned.
+   * @param uri Uri of file to save.
+   * @return <tt>true</tt>, if the document was successfully saved.
+   * @throws Glib::FileError
+   */
+  _WRAP_METHOD(bool save(const std::string& uri) const, poppler_document_save, errthrow)
+
+  /** Saves a copy of the original @a document.  Any change made in the
+   * document such as form fields filled by the user will not be saved. 
+   * If an error occurs, <tt>false</tt> will be returned.
+   * @param uri Uri of file to save.
+   * @return <tt>true</tt>, if the document was successfully saved.
+   * @throws Glib::FileError
+   */
+  _WRAP_METHOD(bool save_a_copy(const std::string& uri) const, poppler_document_save_a_copy, errthrow)
+
+  _WRAP_METHOD_DOCS_ONLY(poppler_document_get_id)
+  bool get_id(Glib::ustring& permanent_id, Glib::ustring& update_id) const;
+
+  _WRAP_METHOD(Glib::ustring get_pdf_version_string() const, poppler_document_get_pdf_version_string)
+  _WRAP_METHOD(void get_pdf_version(guint& major_version, guint& minor_version) const, poppler_document_get_pdf_version)
+  _WRAP_METHOD(Glib::ustring get_title() const, poppler_document_get_title)
+  _WRAP_METHOD(Glib::ustring get_author() const, poppler_document_get_author)
+  _WRAP_METHOD(Glib::ustring get_subject() const, poppler_document_get_subject)
+  _WRAP_METHOD(Glib::ustring get_keywords() const, poppler_document_get_keywords)
+  _WRAP_METHOD(Glib::ustring get_creator() const, poppler_document_get_creator)
+  _WRAP_METHOD(Glib::ustring get_producer() const, poppler_document_get_producer)
+  _WRAP_METHOD(time_t get_creation_date() const, poppler_document_get_creation_date)
+  _WRAP_METHOD(time_t get_modification_date() const, poppler_document_get_modification_date)
+  _WRAP_METHOD(PageLayout get_page_layout() const, poppler_document_get_page_layout)
+  _WRAP_METHOD(PageMode get_page_mode() const, poppler_document_get_page_mode)
+  _WRAP_METHOD(Permissions get_permissions() const, poppler_document_get_permissions)
+  _WRAP_METHOD(Glib::ustring get_metadata() const, poppler_document_get_metadata)
+  _WRAP_METHOD(bool is_linearized() const, poppler_document_is_linearized)
+  _WRAP_METHOD(int get_n_pages() const, poppler_document_get_n_pages)
+  _WRAP_METHOD(Glib::RefPtr<Page> get_page(int index) const, poppler_document_get_page)
+  _WRAP_METHOD(Glib::RefPtr<Page> get_page_by_label(const Glib::ustring& label) const, poppler_document_get_page_by_label)
+  _WRAP_METHOD(Dest find_dest(const Glib::ustring& link_name) const, poppler_document_find_dest)
+  _WRAP_METHOD(guint get_n_attachments() const, poppler_document_get_n_attachments)
+  _WRAP_METHOD(bool has_attachments() const, poppler_document_has_attachments)
+
+#m4 _CONVERSION(`Glist*',`std::vector< Glib::RefPtr<Attachment> >',
+#m4             `Glib::ListHandler< Glib::RefPtr<Attachment> >::list_to_vector($3, Glib::OWNERSHIP_DEEP)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Attachment> > get_attachments() const, poppler_document_get_attachments)
+
+  _WRAP_METHOD(Glib::RefPtr<FormField> get_form_field(int id) const, poppler_document_get_form_field)
+  _WRAP_METHOD(IndexIter index_iter_new() const, poppler_index_iter_new)
+  _WRAP_METHOD(Glib::RefPtr<FontInfo> get_font_info() const, poppler_font_info_new)
+  _WRAP_METHOD(LayersIter layers_iter_new() const, poppler_layers_iter_new)
+  _WRAP_METHOD(Glib::RefPtr<PSFile> ps_file_new(const std::string& filename, int first_page, int n_pages) const,
+               poppler_ps_file_new)
+
+  _WRAP_PROPERTY("author", Glib::ustring)
+  _WRAP_PROPERTY("creation_date", int)
+  _WRAP_PROPERTY("creator", Glib::ustring)
+  _WRAP_PROPERTY("format", Glib::ustring)
+  _WRAP_PROPERTY("format_major", unsigned int)
+  _WRAP_PROPERTY("format_minor", unsigned int)
+  _WRAP_PROPERTY("keywords", Glib::ustring)
+  _WRAP_PROPERTY("linearized", bool)
+  _WRAP_PROPERTY("metadata", Glib::ustring)
+  _WRAP_PROPERTY("mod_date", int)
+  _WRAP_PROPERTY("page_layout", PageLayout)
+  _WRAP_PROPERTY("page_mode", PageMode)
+  _WRAP_PROPERTY("permissions", Permissions)
+  _WRAP_PROPERTY("producer", Glib::ustring)
+  _WRAP_PROPERTY("subject", Glib::ustring)
+  _WRAP_PROPERTY("title", Glib::ustring)
+  _WRAP_PROPERTY("viewer_preferences", ViewerPreferences)
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+private:
+  Glib::ScopedPtr<char> m_PDFString;
+#endif
+};
+
+} // namespace Poppler

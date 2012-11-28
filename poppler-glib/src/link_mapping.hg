@@ -1,0 +1,50 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+#include <poppler-glibmm/rectangle.h>
+#include <poppler-glibmm/action.h>
+_CC_INCLUDE(poppler.h)
+
+namespace Poppler
+{
+
+ /** A Poppler::LinkMapping structure represents an action and its location on a page.
+  */
+class LinkMapping
+{
+  _CLASS_BOXEDTYPE(LinkMapping, PopplerLinkMapping, poppler_link_mapping_new, poppler_link_mapping_copy, poppler_link_mapping_free)
+
+public:
+  _MEMBER_GET(area, area, Rectangle, PopplerRectangle)
+  _MEMBER_GET(action, action, Action, const PopplerAction*)
+};
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+struct LinkMappingTraits
+{
+  typedef LinkMapping CppType;
+  typedef PopplerLinkMapping* CType;
+  typedef PopplerLinkMapping* CTypeNonConst;
+
+  static CppType to_cpp_type(CType item) { return LinkMapping(item); }
+  static void release_c_type(CType item);
+};
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+} // namespace Poppler

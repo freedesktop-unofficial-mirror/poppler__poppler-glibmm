@@ -1,0 +1,52 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+_CC_INCLUDE(poppler-date.h)
+
+namespace Poppler
+{
+  _WRAP_ENUM(Backend, PopplerBackend)
+
+  /** @defgroup PopplerUtility Poppler Utility Functions
+   * Poppler Utility Functions
+   * @{
+   */
+
+  /** Parses a PDF format date string and converts it to a time_t. Returns
+   * <tt>false</tt> if the parsing fails or the input string is not a valid
+   * PDF format date string
+  * @param date string to parse.
+  * @param timet an uninitialize time_t.
+  * @return <tt>true</tt> if timet was set.
+  */
+  bool date_parse(const Glib::ustring& date, time_t* timet);
+
+  /** Returns the backend compiled into the poppler library.
+   * @return The Poppler::Backend used by poppler.
+   */
+  Backend get_backend();
+
+  /** Returns the version of poppler in use.
+   * @return The version of poppler.
+   */
+  Glib::ustring get_version();
+
+  /** @} group PopplerUtility */
+
+} // namespace Poppler

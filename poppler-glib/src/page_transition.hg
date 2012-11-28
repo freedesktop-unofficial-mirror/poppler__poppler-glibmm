@@ -1,0 +1,60 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+_CC_INCLUDE(poppler-page.h)
+
+namespace Poppler
+{
+
+_WRAP_ENUM(PageTransitionType, PopplerPageTransitionType)
+_WRAP_ENUM(PageTransitionAlignment, PopplerPageTransitionAlignment)
+_WRAP_ENUM(PageTransitionDirection, PopplerPageTransitionDirection)
+
+/** Poppler::PageTransition is a structure that describes a visual transition
+ * to use when moving between pages during a presentation
+ */
+class PageTransition
+{
+  _CLASS_BOXEDTYPE(PageTransition, PopplerPageTransition, NONE, poppler_page_transition_copy, poppler_page_transition_free)
+
+  public:
+	_MEMBER_GET(transition_type, type, PageTransitionType, PopplerPageTransitionType)
+	_MEMBER_SET(transition_type, type, PageTransitionType, PopplerPageTransitionType)
+  _MEMBER_GET(alignment, alignment, PageTransitionAlignment, PopplerPageTransitionAlignment)
+  _MEMBER_SET(alignment, alignment, PageTransitionAlignment, PopplerPageTransitionAlignment)
+	_MEMBER_GET(direction, direction, PageTransitionDirection, PopplerPageTransitionDirection)
+	_MEMBER_SET(direction, direction, PageTransitionDirection, PopplerPageTransitionDirection)
+
+	_MEMBER_GET(duration, duration, int, int)
+	_MEMBER_SET(duration, duration, int, int)
+	_MEMBER_GET(angle, angle, int, int)
+	_MEMBER_SET(angle, angle, int, int)
+	_MEMBER_GET(scale, scale, double, double)
+	_MEMBER_SET(scale, scale, double, double)
+	_MEMBER_GET(rectangular, rectangular, bool, gboolean)
+	_MEMBER_SET(rectangular, rectangular, bool, gboolean)
+
+  /** Returns <tt>true</tt> if this PageTransition is valid, that is if the
+   * underlying instance is non-null.
+   * @return <tt>true</tt>, if the PageTransition is valid
+   */
+  inline operator bool() const { return gobj() != NULL; };
+};
+
+} // namespace Poppler

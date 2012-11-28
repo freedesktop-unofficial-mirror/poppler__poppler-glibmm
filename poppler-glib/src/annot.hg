@@ -1,0 +1,175 @@
+/* Copyright (c) 2010  Glenn Rice <glennricster@gmail.com>
+ *
+ * This file is part of poppler-glibmm.
+ *
+ * poppler-glibmm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
+ *
+ * poppler-glibmm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+_DEFS(poppler-glibmm,poppler-glib)
+_PINCLUDE(glibmm/private/object_p.h)
+#include <glibmm/date.h>
+#include <poppler-glibmm/color.h>
+#include <poppler-glibmm/rectangle.h>
+#include <poppler-glibmm/movie.h>
+#include <poppler-glibmm/action.h>
+#include <poppler-glibmm/attachment.h>
+#include <poppler-glibmm/annot_callout_line.h>
+_CC_INCLUDE(poppler-annot.h)
+_CC_INCLUDE(poppler-glibmm/document.h)
+
+namespace Poppler
+{
+
+_WRAP_ENUM(AnnotType, PopplerAnnotType)
+_WRAP_ENUM(AnnotFlag, PopplerAnnotFlag)
+_WRAP_ENUM(AnnotExternalDataType, PopplerAnnotExternalDataType)
+_WRAP_ENUM(AnnotMarkupReplyType, PopplerAnnotMarkupReplyType)
+_WRAP_ENUM(AnnotTextState, PopplerAnnotTextState)
+_WRAP_ENUM(AnnotFreeTextQuadding, PopplerAnnotFreeTextQuadding)
+
+class Document;
+
+/** Poppler::Annot - Annotations
+ */
+class Annot : public Glib::Object
+{
+  _CLASS_GOBJECT(Annot, PopplerAnnot, POPPLER_ANNOT, Glib::Object, GObject)
+
+  protected:
+    _CTOR_DEFAULT
+
+  public:
+    _WRAP_METHOD(AnnotType get_annot_type() const, poppler_annot_get_annot_type)
+    _WRAP_METHOD(AnnotFlag get_flags() const, poppler_annot_get_flags)
+    _WRAP_METHOD(Glib::ustring get_name() const, poppler_annot_get_name)
+    _WRAP_METHOD(int get_page_index() const, poppler_annot_get_page_index)
+    _WRAP_METHOD(Color get_color() const, poppler_annot_get_color)
+    _WRAP_METHOD(void set_color(const Color& color) const, poppler_annot_set_color)
+    _WRAP_METHOD(Glib::ustring get_contents() const, poppler_annot_get_contents)
+    _WRAP_METHOD(void set_contents(const Glib::ustring& contents) const, poppler_annot_set_contents)
+    _WRAP_METHOD(Glib::ustring get_modified() const, poppler_annot_get_modified)
+};
+
+/** Poppler::AnnotMarkup - Markup Annotations
+ */
+class AnnotMarkup : public Annot
+{
+  _CLASS_GOBJECT(AnnotMarkup, PopplerAnnotMarkup, POPPLER_ANNOT_MARKUP, Poppler::Annot, PopplerAnnot)
+
+  protected:
+    _CTOR_DEFAULT
+
+  public:
+    _WRAP_METHOD(Glib::ustring get_label() const, poppler_annot_markup_get_label)
+    _WRAP_METHOD(void set_label(const Glib::ustring& label) const, poppler_annot_markup_set_label)
+    _WRAP_METHOD(Glib::ustring get_subject() const, poppler_annot_markup_get_subject)
+    _WRAP_METHOD(double get_opacity() const, poppler_annot_markup_get_opacity)
+    _WRAP_METHOD(void set_opacity(double opacity) const, poppler_annot_markup_set_opacity)
+    _WRAP_METHOD(bool has_popup() const, poppler_annot_markup_has_popup)
+    _WRAP_METHOD(void set_popup(const Rectangle& popup_rect) const, poppler_annot_markup_set_popup)
+    _WRAP_METHOD(bool get_popup_is_open() const, poppler_annot_markup_get_popup_is_open)
+    _WRAP_METHOD(void set_popup_is_open(bool is_open = true) const, poppler_annot_markup_set_popup_is_open)
+    _WRAP_METHOD(void get_popup_rectangle(Rectangle& popup_rect) const, poppler_annot_markup_get_popup_rectangle)
+
+    _WRAP_METHOD_DOCS_ONLY(poppler_annot_markup_get_date)
+    Glib::Date get_date() const;
+
+    _WRAP_METHOD(AnnotExternalDataType get_external_data() const, poppler_annot_markup_get_external_data)
+    _WRAP_METHOD(AnnotMarkupReplyType get_reply_to() const, poppler_annot_markup_get_reply_to)
+};
+
+/** Poppler::AnnotText - Text Annotations
+ */
+class AnnotText : public AnnotMarkup
+{
+  _CLASS_GOBJECT(AnnotText, PopplerAnnotText, POPPLER_ANNOT_TEXT, Poppler::AnnotMarkup, PopplerAnnotMarkup)
+
+  protected:
+    _CTOR_DEFAULT
+
+   /** Constructs a new text annotation that will be located on @a rect when
+    * added to a page. See Poppler::Page::add_annot()
+    * @param doc The document the text annotation will be added to.
+    * @param rect The location of the text annotation on the page.
+    */
+   AnnotText(const Glib::RefPtr<Document>& document, const Rectangle& rect);
+
+  public:
+    _WRAP_METHOD_DOCS_ONLY(poppler_annot_text_new)
+    _WRAP_CREATE(const Glib::RefPtr<Document>& document, const Rectangle& rect)
+
+    _WRAP_METHOD(Glib::ustring get_icon() const, poppler_annot_text_get_icon)
+    _WRAP_METHOD(void set_icon(const Glib::ustring& icon) const, poppler_annot_text_set_icon)
+    _WRAP_METHOD(bool get_is_open() const, poppler_annot_text_get_is_open)
+    _WRAP_METHOD(void set_is_open(bool is_open = true) const, poppler_annot_text_set_is_open)
+    _WRAP_METHOD(AnnotTextState get_state() const, poppler_annot_text_get_state)
+};
+
+/** Poppler::AnnotFreeText - Text Annotations
+ */
+class AnnotFreeText : public AnnotMarkup
+{
+  _CLASS_GOBJECT(AnnotFreeText, PopplerAnnotFreeText, POPPLER_ANNOT_FREE_TEXT, Poppler::AnnotMarkup, PopplerAnnotMarkup)
+
+  protected:
+    _CTOR_DEFAULT
+
+  public:
+    _WRAP_METHOD(AnnotCalloutLine get_callout_line() const, poppler_annot_free_text_get_callout_line)
+    _WRAP_METHOD(AnnotFreeTextQuadding get_quadding() const, poppler_annot_free_text_get_quadding)
+};
+
+/** Poppler::AnnotFileAttachment - File Attachment Annotations
+*/
+class AnnotFileAttachment : public AnnotMarkup
+{
+ _CLASS_GOBJECT(AnnotFileAttachment, PopplerAnnotFileAttachment, POPPLER_ANNOT_FILE_ATTACHMENT, Poppler::AnnotMarkup, PopplerAnnotMarkup)
+
+ protected:
+   _CTOR_DEFAULT
+
+ public:
+   _WRAP_METHOD(Glib::RefPtr<Attachment> get_attachment() const, poppler_annot_file_attachment_get_attachment)
+   _WRAP_METHOD(Glib::ustring get_name() const, poppler_annot_file_attachment_get_name)
+};
+
+/** Poppler::AnnotMovie - Movie Annotations
+*/
+class AnnotMovie : public Annot
+{
+ _CLASS_GOBJECT(AnnotMovie, PopplerAnnotMovie, POPPLER_ANNOT_MOVIE, Poppler::Annot, PopplerAnnot)
+
+ protected:
+   _CTOR_DEFAULT
+
+ public:
+   _WRAP_METHOD(Glib::ustring get_title() const, poppler_annot_movie_get_title)
+   _WRAP_METHOD(Glib::RefPtr<Movie> get_movie() const, poppler_annot_movie_get_movie, refreturn)
+};
+
+/** Poppler::AnnotScreen - Screen Annotations
+*/
+class AnnotScreen : public Annot
+{
+ _CLASS_GOBJECT(AnnotScreen, PopplerAnnotScreen, POPPLER_ANNOT_SCREEN, Poppler::Annot, PopplerAnnot)
+
+ protected:
+   _CTOR_DEFAULT
+
+ public:
+#m4 _CONVERSION(`PopplerAction*',`Action',`Glib::wrap($3, true)')
+   _WRAP_METHOD(Action get_action() const, poppler_annot_screen_get_action)
+};
+
+} // namespace Poppler

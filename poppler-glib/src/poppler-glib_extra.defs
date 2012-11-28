@@ -1,0 +1,277 @@
+;; From PopplerAction
+
+;; From PopplerActionLayerAction
+
+;; From PopplerActionMovieOperation
+
+;; From PopplerActionType
+
+;; From PopplerAnnot
+
+;; From PopplerAnnotCalloutLine
+
+;; From PopplerAnnotExternalDataType
+
+;; From PopplerAnnotFileAttachment
+
+;; From PopplerAnnotFlag
+
+;; From PopplerAnnotFreeText
+
+;; From PopplerAnnotFreeTextQuadding
+
+;; From PopplerAnnotMapping
+
+;; From PopplerAnnotMarkup
+
+;; From PopplerAnnotMarkupReplyType
+
+;; From PopplerAnnotMovie
+
+;; From PopplerAnnotScreen
+
+;; From PopplerAnnotText
+
+;; From PopplerAnnotTextState
+
+;; From PopplerAnnotType
+
+;; From PopplerAttachment
+
+;; From PopplerBackend
+
+;; From PopplerColor
+
+;; From PopplerDest
+
+;; From PopplerDestType
+
+;; From PopplerDocument
+
+(define-property title
+  (of-object "PopplerDocument")
+  (prop-type "GParamString")
+  (docs "The title of the document")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property format
+  (of-object "PopplerDocument")
+  (prop-type "GParamString")
+  (docs "The PDF version of the document")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property format-major
+  (of-object "PopplerDocument")
+  (prop-type "GParamUInt")
+  (docs "The PDF major version number of the document")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property format-minor
+  (of-object "PopplerDocument")
+  (prop-type "GParamUInt")
+  (docs "The PDF minor version number of the document")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property author
+  (of-object "PopplerDocument")
+  (prop-type "GParamString")
+  (docs "The author of the document")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property subject
+  (of-object "PopplerDocument")
+  (prop-type "GParamString")
+  (docs "Subjects the document touches")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property keywords
+  (of-object "PopplerDocument")
+  (prop-type "GParamString")
+  (docs "Keywords")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property creator
+  (of-object "PopplerDocument")
+  (prop-type "GParamString")
+  (docs "The software that created the document")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property producer
+  (of-object "PopplerDocument")
+  (prop-type "GParamString")
+  (docs "The software that converted the document")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property creation-date
+  (of-object "PopplerDocument")
+  (prop-type "GParamInt")
+  (docs "The date and time the document was created")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property mod-date
+  (of-object "PopplerDocument")
+  (prop-type "GParamInt")
+  (docs "The date and time the document was modified")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property linearized
+  (of-object "PopplerDocument")
+  (prop-type "GParamBoolean")
+  (docs "Is the document optimized for web viewing?")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property page-layout
+  (of-object "PopplerDocument")
+  (prop-type "GParamEnum")
+  (docs "Initial Page Layout")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property page-mode
+  (of-object "PopplerDocument")
+  (prop-type "GParamEnum")
+  (docs "Page Mode")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property viewer-preferences
+  (of-object "PopplerDocument")
+  (prop-type "GParamFlags")
+  (docs "Viewer Preferences")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property permissions
+  (of-object "PopplerDocument")
+  (prop-type "GParamFlags")
+  (docs "Permissions")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property metadata
+  (of-object "PopplerDocument")
+  (prop-type "GParamString")
+  (docs "Embedded XML metadata")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From PopplerError
+
+;; From PopplerFontsIter
+
+;; From PopplerFontInfo
+
+;; From PopplerFontType
+
+;; From PopplerFormButtonType
+
+;; From PopplerFormChoiceType
+
+;; From PopplerFormField
+
+;; From PopplerFormFieldMapping
+
+;; From PopplerFormFieldType
+
+;; From PopplerFormTextType
+
+;; From PopplerImageMapping
+
+;; From PopplerIndexIter
+
+;; From PopplerLayer
+
+;; From PopplerLayersIter
+
+;; From PopplerLinkMapping
+
+;; From PopplerMedia
+
+;; From PopplerMovie
+
+;; From PopplerOrientation
+
+;; From PopplerPage
+
+(define-property label
+  (of-object "PopplerPage")
+  (prop-type "GParamString")
+  (docs "The label of the page")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From PopplerPageLayout
+
+;; From PopplerPageMode
+
+;; From PopplerPageTransition
+
+;; From PopplerPageTransitionAlignment
+
+;; From PopplerPageTransitionDirection
+
+;; From PopplerPageTransitionType
+
+;; From PopplerPermissions
+
+;; From PopplerPrintFlags
+
+;; From PopplerPSFile
+
+;; From PopplerRectangle
+
+;; From PopplerSelectionStyle
+
+;; From PopplerTextAttributes
+
+;; From PopplerViewerPreferences
+
+
