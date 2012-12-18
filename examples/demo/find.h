@@ -21,9 +21,12 @@
 
 #include <poppler-glibmm/document.h>
 #include <gtkmm/box.h>
+#include <gtkmm/paned.h>
 #include <gtkmm/progressbar.h>
 #include <gtkmm/button.h>
+#include <gtkmm/checkbutton.h>
 #include <gtkmm/scrolledwindow.h>
+#include <gtkmm/drawingarea.h>
 #include <gtkmm/treeview.h>
 #include <gtkmm/treestore.h>
 
@@ -40,15 +43,25 @@ class Find : public Gtk::Box
 		void set_button_sensitivity();
 		void update_progress(int n_pages, int scanned);
 		bool find_text();
+		bool drawing_area_draw(const Cairo::RefPtr<Cairo::Context>& cr);
+		void queue_redraw();
+		void selection_changed();
+		void case_sensitive_toggled();
+		void backwards_toggled();
+		void whole_words_toggled();
 
 		const Glib::RefPtr<Poppler::Document> m_Document;
 		int m_NPages;
-		int m_PageIndex;
+		int m_PageIndex, m_SelectedPage;
+		Poppler::FindFlags m_Options;
+		Gdk::Rectangle m_SelectedMatch;
+		Cairo::RefPtr<Cairo::ImageSurface> m_Surface;
 
 		class ModelColumns : public Gtk::TreeModel::ColumnRecord
 		{
 			public:
-				ModelColumns() { add(m_Matches); add(m_X1); add(m_Y1); add(m_X2); add(m_Y2); add(m_Visible); }
+				ModelColumns() { add(m_Matches); add(m_X1); add(m_Y1); add(m_X2); add(m_Y2);
+					add(m_Visible); add(m_PageColumn); add(m_Rect); }
 
 				Gtk::TreeModelColumn<Glib::ustring> m_Matches;
 				Gtk::TreeModelColumn<double> m_X1;
@@ -56,13 +69,18 @@ class Find : public Gtk::Box
 				Gtk::TreeModelColumn<double> m_X2;
 				Gtk::TreeModelColumn<double> m_Y2;
 				Gtk::TreeModelColumn<bool> m_Visible;
+				Gtk::TreeModelColumn<int> m_PageColumn;
+				Gtk::TreeModelColumn<Poppler::Rectangle> m_Rect;
 		};
 
-		Gtk::Box m_HBoxTop;
+		Gtk::Box m_HBoxTop, m_HBoxOptions;
 		Gtk::ProgressBar m_ProgressBar;
 		Gtk::Entry m_TextEntry;
 		Gtk::Button m_FindButton;
-		Gtk::ScrolledWindow m_ScrolledWin;
+		Gtk::CheckButton m_CaseSensitiveCButton, m_BackwardsCButton, m_WholeWordsCButton;
+		Gtk::ScrolledWindow m_MatchScrolledWin, m_DAScrolledWin;
+		Gtk::Paned m_HPaned;
+		Gtk::DrawingArea m_DrawingArea;
 		Gtk::TreeView m_TreeView;
 		ModelColumns m_StoreColumns;
 		Glib::RefPtr<Gtk::TreeStore> m_MatchStore;
