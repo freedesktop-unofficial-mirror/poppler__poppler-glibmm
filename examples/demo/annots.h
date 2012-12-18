@@ -61,6 +61,12 @@ class Annots : public Gtk::Box
 		void remove_annot();
 		void get_annots();
 		void selection_changed();
+		void flags_toggled(const std::string& path_str,
+				const Gtk::TreeModelColumn<bool>& column,
+				const Poppler::AnnotFlag flag_bit);
+		void hidden_flag_toggled(const Glib::ustring& path_str);
+		void print_flag_toggled(const Glib::ustring& path_str);
+		void invisible_flag_toggled(const Glib::ustring& path_str);
 
 		const Glib::RefPtr<Poppler::Document> m_Document;
 		int m_Page;

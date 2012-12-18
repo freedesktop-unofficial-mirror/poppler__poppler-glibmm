@@ -317,9 +317,21 @@ Annots::Annots(const Glib::RefPtr<Poppler::Document>& document) :
 	m_TreeView.append_column_numeric("Y2", m_StoreColumns.m_Y2, "%.2f");
 	m_TreeView.append_column("Type", m_StoreColumns.m_AnnotType);
 	m_TreeView.append_column("Color", m_StoreColumns.m_Color);
-	m_TreeView.append_column("Invisible", m_StoreColumns.m_FlagInvisible);
-	m_TreeView.append_column("Hidden", m_StoreColumns.m_FlagHidden);
-	m_TreeView.append_column("Print", m_StoreColumns.m_FlagPrint);
+
+	int col_num = m_TreeView.append_column("Invisible", m_StoreColumns.m_FlagInvisible);
+	Gtk::CellRendererToggle* cell_renderer = (Gtk::CellRendererToggle*)m_TreeView.get_column_cell_renderer(col_num - 1);
+	cell_renderer->set_activatable();
+	cell_renderer->signal_toggled().connect(sigc::mem_fun(*this, &Annots::invisible_flag_toggled));
+
+	col_num = m_TreeView.append_column("Hidden", m_StoreColumns.m_FlagHidden);
+	cell_renderer = (Gtk::CellRendererToggle*)m_TreeView.get_column_cell_renderer(col_num - 1);
+	cell_renderer->set_activatable();
+	cell_renderer->signal_toggled().connect(sigc::mem_fun(*this, &Annots::hidden_flag_toggled));
+
+	col_num = m_TreeView.append_column("Print", m_StoreColumns.m_FlagPrint);
+	cell_renderer = (Gtk::CellRendererToggle*)m_TreeView.get_column_cell_renderer(col_num - 1);
+	cell_renderer->set_activatable();
+	cell_renderer->signal_toggled().connect(sigc::mem_fun(*this, &Annots::print_flag_toggled));
 
 	m_TreeView.get_selection()->signal_changed().connect(sigc::mem_fun(*this, &Annots::selection_changed));
 
@@ -541,6 +553,70 @@ void Annots::selection_changed()
 	Gtk::TreeIter iter = m_TreeView.get_selection()->get_selected();
 	if (iter) m_AnnotView.set_annot((*iter)[m_StoreColumns.m_Annot]);
 	else m_AnnotView.set_annot(Glib::RefPtr<Poppler::Annot>());
+}
+
+void Annots::flags_toggled(const std::string& path_str,
+			  const Gtk::TreeModelColumn<bool>& column,
+			  const Poppler::AnnotFlag flag_bit)
+{
+	Gtk::TreeIter iter = m_AnnotStore->get_iter(path_str);
+
+	bool fixed = (*iter)[column];
+	Glib::RefPtr<Poppler::Annot> annot = (*iter)[m_StoreColumns.m_Annot];
+
+	fixed ^= true;
+	Poppler::AnnotFlag flags = annot->get_flags();
+
+	if (fixed)
+		flags |= flag_bit;
+	else
+		flags &= ~flag_bit;
+
+	annot->set_flags(flags);
+	(*iter)[column] = fixed;
+
+	m_AnnotView.set_annot(annot);
+
+#if 0
+    GtkTreeIter  iter;
+    gboolean fixed;
+    PopplerAnnot *annot;
+    PopplerAnnotFlag flags;
+    GtkTreePath *path = gtk_tree_path_new_from_string (path_str);
+    GtkTreeModel *model =  GTK_TREE_MODEL (demo->model);
+
+    gtk_tree_model_get_iter (model, &iter, path);
+    gtk_tree_model_get (model, &iter, column, &fixed, ANNOTS_COLUMN, &annot,-1);
+
+    fixed ^= 1;
+    flags = poppler_annot_get_flags (annot);
+
+    if (fixed)
+        flags |= flag_bit;
+    else
+        flags &= ~flag_bit;
+
+    poppler_annot_set_flags (annot, flags);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, column, fixed, -1);
+
+    pgd_annot_view_set_annot (demo, annot);
+    gtk_tree_path_free (path);
+#endif
+}
+
+void Annots::hidden_flag_toggled(const Glib::ustring& path_str)
+{
+	flags_toggled(path_str, m_StoreColumns.m_FlagHidden, Poppler::ANNOT_FLAG_HIDDEN);
+}
+
+void Annots::print_flag_toggled(const Glib::ustring& path_str)
+{
+	flags_toggled(path_str, m_StoreColumns.m_FlagPrint, Poppler::ANNOT_FLAG_PRINT);
+}
+
+void Annots::invisible_flag_toggled(const Glib::ustring& path_str)
+{
+	flags_toggled(path_str, m_StoreColumns.m_FlagInvisible, Poppler::ANNOT_FLAG_INVISIBLE);
 }
 
 }
