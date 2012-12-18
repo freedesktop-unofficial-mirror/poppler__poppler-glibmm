@@ -49,7 +49,7 @@ Glib::RefPtr<Document> Document::new_from_stream(const Glib::RefPtr<Gio::InputSt
   return retvalue;
 }
 
-static Glib::RefPtr<Document> new_from_gio_file(const Glib::RefPtr<Gio::File>& file,
+Glib::RefPtr<Document> Document::new_from_gio_file(const Glib::RefPtr<Gio::File>& file,
     const std::string& password,
     const Glib::RefPtr<Gio::Cancellable>& cancellable)
 {
