@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([poppler-glibmm], [0.20.1], [https://bugzilla.gnome.org/enter_bug.cgi?product=poppler-glibmm],
+AC_INIT([poppler-glibmm], [0.21.1], [https://bugzilla.gnome.org/enter_bug.cgi?product=poppler-glibmm],
         [poppler-glibmm], [http://www.gtkmm.org/])
 AC_PREREQ([2.59])
 
@@ -37,7 +37,7 @@ MM_INIT_MODULE([poppler-glibmm-1.0])
 MM_CONFIG_DOCTOOL_DIR([doc])
 
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
-AC_SUBST([POPPLER_GLIBMM_SO_VERSION], [0:0:0])
+AC_SUBST([POPPLER_GLIBMM_SO_VERSION], [1:0:1])
 
 AC_PROG_CXX
 AC_DISABLE_STATIC

@@ -1,2 +1,5 @@
 Release 0.20.1
 * Initial release
+
+Release 0.21.1
+* Bump version to match poppler-glib
