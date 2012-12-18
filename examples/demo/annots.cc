@@ -32,9 +32,10 @@
 namespace PGD
 {
 
-AnnotView::AnnotView(const Glib::RefPtr<Poppler::Document>& document) :
+AnnotView::AnnotView(const Glib::RefPtr<Poppler::Document>& document, Gtk::Button* remove_button) :
 	m_Document(document),
-	m_Alignment(0.5, 0.5, 1, 1)
+	m_Alignment(0.5, 0.5, 1, 1),
+	m_RemoveButton(remove_button)
 {
 	set_shadow_type(Gtk::SHADOW_NONE);
 	m_Label.set_markup("<b>Annot Properties</b>");
@@ -266,6 +267,9 @@ void AnnotView::set_annot(const Glib::RefPtr<Poppler::Annot>& annot)
 		default:
 			break;
 	}
+
+	grid->add_row_widget(*m_RemoveButton);
+
 	grid->show_all();
 }
 
@@ -277,8 +281,9 @@ Annots::Annots(const Glib::RefPtr<Poppler::Document>& document) :
 	m_PageLabel("Page:"),
 	m_AddButton("Add Annot"),
 	m_GetButton("Get Annots"),
+	m_RemoveButton(Gtk::Stock::REMOVE),
 	m_HPaned(Gtk::ORIENTATION_HORIZONTAL),
-	m_AnnotView(document)
+	m_AnnotView(document, &m_RemoveButton)
 {
 	int n_pages = m_Document->get_n_pages();
 	m_PageSelector.set_range(1, n_pages);
@@ -289,6 +294,8 @@ Annots::Annots(const Glib::RefPtr<Poppler::Document>& document) :
 
 	m_AddButton.signal_clicked().connect(sigc::mem_fun(*this, &Annots::add_annot));
 	m_GetButton.signal_clicked().connect(sigc::mem_fun(*this, &Annots::get_annots));
+	m_RemoveButton.signal_clicked().connect(sigc::mem_fun(*this, &Annots::remove_annot));
+	m_RemoveButton.set_hexpand();
 
 	m_HBoxTop.pack_start(m_PageLabel, false, true);
 	m_HBoxTop.pack_start(m_PageSelector, false, true);
@@ -411,6 +418,16 @@ void Annots::add_annot()
 
 	Glib::RefPtr<Poppler::AnnotText> annot = Poppler::AnnotText::create(m_Document, rect);
 	page->add_annot(annot);
+}
+
+void Annots::remove_annot()
+{
+	Gtk::TreeIter iter = m_TreeView.get_selection()->get_selected();
+	if (iter)
+	{
+		m_Document->get_page(m_Page)->remove_annot((*iter)[m_StoreColumns.m_Annot]);
+		m_AnnotStore->erase(iter);
+	}
 }
 
 static Glib::ustring get_annot_type_string(Poppler::AnnotType type)

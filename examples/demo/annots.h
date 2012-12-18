@@ -37,7 +37,7 @@ namespace PGD
 class AnnotView : public Gtk::Frame
 {
 	public:
-		AnnotView(const Glib::RefPtr<Poppler::Document>& document);
+		AnnotView(const Glib::RefPtr<Poppler::Document>& document, Gtk::Button* remove_button);
 		void set_annot(const Glib::RefPtr<Poppler::Annot>& annot);
 		void save_file_attachment();
 
@@ -47,6 +47,7 @@ class AnnotView : public Gtk::Frame
 
 		Gtk::Label m_Label;
 		Gtk::Alignment m_Alignment;
+		Gtk::Button* m_RemoveButton;
 };
 
 class Annots : public Gtk::Box
@@ -57,6 +58,7 @@ class Annots : public Gtk::Box
 	private:
 		void page_selector_changed();
 		void add_annot();
+		void remove_annot();
 		void get_annots();
 		void selection_changed();
 
@@ -86,6 +88,7 @@ class Annots : public Gtk::Box
 		Gtk::SpinButton m_PageSelector;
 		Gtk::Button m_AddButton;
 		Gtk::Button m_GetButton;
+		Gtk::Button m_RemoveButton;
 		Gtk::ScrolledWindow m_ScrolledWin;
 		Gtk::Paned m_HPaned;
 		AnnotView m_AnnotView;
