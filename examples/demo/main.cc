@@ -55,7 +55,7 @@ int main (int argc, char **argv)
 			Glib::Timer timer;
 			try
 			{
-				document = Poppler::Document::new_from_file(file->get_uri(), password);
+				document = Poppler::Document::new_from_gio_file(file, password);
 			}
 			catch (Poppler::Error exception)
 			{
