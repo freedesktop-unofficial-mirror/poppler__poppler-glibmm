@@ -150,5 +150,5 @@ void DemoWindow::demo_changed()
 bool DemoWindow::on_key_press_event(GdkEventKey* event)
 {
 	if (event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK)) hide();
-	return false;
+	return Gtk::Window::on_key_press_event(event);
 }
