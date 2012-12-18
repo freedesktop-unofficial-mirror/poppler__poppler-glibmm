@@ -576,32 +576,6 @@ void Annots::flags_toggled(const std::string& path_str,
 	(*iter)[column] = fixed;
 
 	m_AnnotView.set_annot(annot);
-
-#if 0
-    GtkTreeIter  iter;
-    gboolean fixed;
-    PopplerAnnot *annot;
-    PopplerAnnotFlag flags;
-    GtkTreePath *path = gtk_tree_path_new_from_string (path_str);
-    GtkTreeModel *model =  GTK_TREE_MODEL (demo->model);
-
-    gtk_tree_model_get_iter (model, &iter, path);
-    gtk_tree_model_get (model, &iter, column, &fixed, ANNOTS_COLUMN, &annot,-1);
-
-    fixed ^= 1;
-    flags = poppler_annot_get_flags (annot);
-
-    if (fixed)
-        flags |= flag_bit;
-    else
-        flags &= ~flag_bit;
-
-    poppler_annot_set_flags (annot, flags);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, column, fixed, -1);
-
-    pgd_annot_view_set_annot (demo, annot);
-    gtk_tree_path_free (path);
-#endif
 }
 
 void Annots::hidden_flag_toggled(const Glib::ustring& path_str)
