@@ -325,6 +325,23 @@ Retrieves the flag field specifying various characteristics of the annotation.
 </return>
 </function>
 
+<function name="poppler_annot_set_flags">
+<description>
+Sets the flag field specifying various characteristics of the annotation.
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+<parameter name="flags">
+<parameter_description> a #PopplerAnnotFlag
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
 <function name="poppler_annot_get_name">
 <description>
 Retrieves the name of the annotation.
@@ -522,7 +539,8 @@ Returns a region containing the area that would be rendered by render_selection(
 
 <function name="poppler_page_find_text">
 <description>
-Obtaines a vector of rectangles for each occurance of the text on the page.
+Finds @text in @page with the default options (%POPPLER_FIND_DEFAULT) and
+returns a vector of rectangles for each occurance of the text on the page.
 The coordinates are in PDF points.
 </description>
 <parameters>
@@ -535,7 +553,31 @@ The coordinates are in PDF points.
 </parameter_description>
 </parameter>
 </parameters>
-<return> Returns a vector of #PopplerRectangle
+<return> A vector of #PopplerRectangle
+</return>
+</function>
+
+<function name="poppler_page_find_text_with_options">
+<description>
+Finds @text in @page with the given #PopplerFindFlags options and
+returns a vector of rectangles for each occurance of the text on the page.
+The coordinates are in PDF points.
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="text">
+<parameter_description> the text to search for (UTF-8 encoded)
+</parameter_description>
+</parameter>
+<parameter name="options">
+<parameter_description> find options
+</parameter_description>
+</parameter>
+</parameters>
+<return> A vector of #PopplerRectangle,
 </return>
 </function>
 
@@ -763,20 +805,6 @@ Retrieves the action (#PopplerAction) that shall be performed when the annotatio
 </parameter>
 </parameters>
 <return> The action to perform.
-</return>
-</function>
-
-<function name="poppler_fonts_iter_get_file_name">
-<description>
-The filename of the font associated with the iter or %NULL if the font is embedded
-</description>
-<parameters>
-<parameter name="iter">
-<parameter_description> a #PopplerFontsIter
-</parameter_description>
-</parameter>
-</parameters>
-<return> The filename of the font or %NULL if the font is emebedded
 </return>
 </function>
 

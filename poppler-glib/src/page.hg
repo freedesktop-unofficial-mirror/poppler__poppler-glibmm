@@ -39,6 +39,7 @@ class Annot;
 
 _WRAP_ENUM(PrintFlags, PopplerPrintFlags)
 _WRAP_ENUM(SelectionStyle, PopplerSelectionStyle)
+_WRAP_ENUM(FindFlags, PopplerFindFlags)
 
 /** Poppler::Page is a class that provides access to information about a page
  * in a document
@@ -83,6 +84,7 @@ public:
 #m4 _CONVERSION(`GList*',`std::vector<Rectangle>',
 #m4   `Glib::ListHandler<Rectangle,RectangleTraits>::list_to_vector($3, Glib::OWNERSHIP_DEEP)')
   _WRAP_METHOD(std::vector<Rectangle> find_text(const Glib::ustring& text) const, poppler_page_find_text)
+  _WRAP_METHOD(std::vector<Rectangle> find_text_with_options(const Glib::ustring& text, FindFlags options) const, poppler_page_find_text_with_options)
 
   _WRAP_METHOD(Glib::ustring get_text() const, poppler_page_get_text)
 
@@ -118,6 +120,7 @@ public:
   _IGNORE(poppler_page_free_annot_mapping)
 
   _WRAP_METHOD(void add_annot(const Glib::RefPtr<Annot>& annot) const, poppler_page_add_annot)
+  _WRAP_METHOD(void remove_annot(const Glib::RefPtr<Annot>& annot) const, poppler_page_remove_annot)
 
   _WRAP_PROPERTY("label", Glib::ustring)
 };

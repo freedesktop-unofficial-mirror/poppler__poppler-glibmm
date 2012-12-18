@@ -45,7 +45,7 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 
-AC_SUBST([POPPLER_GLIBMM_MODULES], ['poppler-glib >= 0.20 glibmm-2.4 >= 2.16 cairomm-1.0 >= 1.10'])
+AC_SUBST([POPPLER_GLIBMM_MODULES], ['poppler-glib >= 0.20 glibmm-2.4 >= 2.16 cairomm-1.0 >= 1.10 giomm-2.4 >= 2.16'])
 PKG_CHECK_MODULES([POPPLER_GLIBMM], [$POPPLER_GLIBMM_MODULES])
 
 # This is only needed for the demos

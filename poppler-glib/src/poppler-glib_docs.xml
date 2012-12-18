@@ -629,6 +629,26 @@ replacing the current contents.
 <return></return>
 </function>
 
+<function name="poppler_annot_set_flags">
+<description>
+Sets the flag field specifying various characteristics of the
+@poppler_annot.
+
+
+</description>
+<parameters>
+<parameter name="poppler_annot">
+<parameter_description> a #PopplerAnnot
+</parameter_description>
+</parameter>
+<parameter name="flags">
+<parameter_description> a #PopplerAnnotFlag
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
 <function name="poppler_annot_text_get_icon">
 <description>
 Gets name of the icon of @poppler_annot.
@@ -1441,6 +1461,74 @@ domains.
 </return>
 </function>
 
+<function name="poppler_document_new_from_gfile">
+<description>
+Creates a new #PopplerDocument reading the PDF contents from @file.
+Possible errors include those in the #POPPLER_ERROR and #G_FILE_ERROR
+domains.
+
+
+</description>
+<parameters>
+<parameter name="file">
+<parameter_description> a #GFile to load
+</parameter_description>
+</parameter>
+<parameter name="password">
+<parameter_description> password to unlock the file with, or %NULL
+</parameter_description>
+</parameter>
+<parameter name="cancellable">
+<parameter_description> a #GCancellable, or %NULL
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> Return location for an error, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerDocument, or %NULL
+
+</return>
+</function>
+
+<function name="poppler_document_new_from_stream">
+<description>
+Creates a new #PopplerDocument reading the PDF contents from @stream.
+Note that the given #GInputStream must be seekable or %G_IO_ERROR_NOT_SUPPORTED
+will be returned.
+Possible errors include those in the #POPPLER_ERROR and #G_FILE_ERROR
+domains.
+
+
+</description>
+<parameters>
+<parameter name="stream">
+<parameter_description> a #GInputStream to read from
+</parameter_description>
+</parameter>
+<parameter name="length">
+<parameter_description> the stream length, or -1 if not known
+</parameter_description>
+</parameter>
+<parameter name="password">
+<parameter_description> password to unlock the file with, or %NULL
+</parameter_description>
+</parameter>
+<parameter name="cancellable">
+<parameter_description> a #GCancellable, or %NULL
+</parameter_description>
+</parameter>
+<parameter name="error">
+<parameter_description> Return location for an error, or %NULL
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new #PopplerDocument, or %NULL
+
+</return>
+</function>
+
 <function name="poppler_document_save">
 <description>
 Saves @document. Any change made in the document such as
@@ -1584,6 +1672,23 @@ Frees the given #PopplerFontsIter
 <return></return>
 </function>
 
+<function name="poppler_fonts_iter_get_encoding">
+<description>
+Returns the encoding of the font associated with @iter
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> the font encoding
+
+</return>
+</function>
+
 <function name="poppler_fonts_iter_get_file_name">
 <description>
 The filename of the font associated with @iter or %NULL if
@@ -1597,7 +1702,7 @@ the font is embedded
 </parameter_description>
 </parameter>
 </parameters>
-<return> the filename of the font or %NULL y font is emebedded
+<return> the filename of the font or %NULL if font is embedded
 </return>
 </function>
 
@@ -1646,6 +1751,24 @@ Returns the name of the font associated with @iter
 </parameter>
 </parameters>
 <return> the font name
+</return>
+</function>
+
+<function name="poppler_fonts_iter_get_substitute_name">
+<description>
+The name of the substitute font of the font associated with @iter or %NULL if
+the font is embedded
+
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #PopplerFontsIter
+</parameter_description>
+</parameter>
+</parameters>
+<return> the name of the substitute font or %NULL if font is embedded
+
 </return>
 </function>
 
@@ -2913,7 +3036,8 @@ Adds annotation @annot to @page.
 
 <function name="poppler_page_find_text">
 <description>
-A #GList of rectangles for each occurance of the text on the page.
+Finds @text in @page with the default options (%POPPLER_FIND_DEFAULT) and
+returns a #GList of rectangles for each occurance of the text on the page.
 The coordinates are in PDF points.
 
 
@@ -2929,6 +3053,33 @@ The coordinates are in PDF points.
 </parameter>
 </parameters>
 <return> a #GList of #PopplerRectangle,
+</return>
+</function>
+
+<function name="poppler_page_find_text_with_options">
+<description>
+Finds @text in @page with the given #PopplerFindFlags options and
+returns a #GList of rectangles for each occurance of the text on the page.
+The coordinates are in PDF points.
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="text">
+<parameter_description> the text to search for (UTF-8 encoded)
+</parameter_description>
+</parameter>
+<parameter name="options">
+<parameter_description> find options
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #GList of #PopplerRectangle,
+
 </return>
 </function>
 
@@ -3099,7 +3250,7 @@ Returns a cairo surface for the image of the @page
 </parameter_description>
 </parameter>
 <parameter name="image_id">
-<parameter_description> The image identificator
+<parameter_description> The image identifier
 </parameter_description>
 </parameter>
 </parameters>
@@ -3417,6 +3568,25 @@ Returns the transition effect of @page
 </parameters>
 <return> a #PopplerPageTransition or %NULL.
 </return>
+</function>
+
+<function name="poppler_page_remove_annot">
+<description>
+Removes annotation @annot from @page
+
+
+</description>
+<parameters>
+<parameter name="page">
+<parameter_description> a #PopplerPage
+</parameter_description>
+</parameter>
+<parameter name="annot">
+<parameter_description> a #PopplerAnnot to remove
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
 </function>
 
 <function name="poppler_page_render">

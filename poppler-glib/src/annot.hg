@@ -52,6 +52,7 @@ class Annot : public Glib::Object
   public:
     _WRAP_METHOD(AnnotType get_annot_type() const, poppler_annot_get_annot_type)
     _WRAP_METHOD(AnnotFlag get_flags() const, poppler_annot_get_flags)
+    _WRAP_METHOD(void set_flags(AnnotFlag flags) const, poppler_annot_set_flags)
     _WRAP_METHOD(Glib::ustring get_name() const, poppler_annot_get_name)
     _WRAP_METHOD(int get_page_index() const, poppler_annot_get_page_index)
     _WRAP_METHOD(Color get_color() const, poppler_annot_get_color)

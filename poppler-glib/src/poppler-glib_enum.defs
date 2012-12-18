@@ -658,6 +658,26 @@
 )
 
 ;; Original typedef:
+;; typedef enum /*< flags >*/
+;; {
+;;   POPPLER_FIND_DEFAULT          = 0,
+;;   POPPLER_FIND_CASE_SENSITIVE   = 1 << 0,
+;;   POPPLER_FIND_BACKWARDS        = 1 << 1,
+;;   POPPLER_FIND_WHOLE_WORDS_ONLY = 1 << 2
+;; } PopplerFindFlags;
+
+(define-flags-extended FindFlags
+  (in-module "Poppler")
+  (c-name "PopplerFindFlags")
+  (values
+    '("default" "POPPLER_FIND_DEFAULT" "0x0")
+    '("case-sensitive" "POPPLER_FIND_CASE_SENSITIVE" "1 << 0")
+    '("backwards" "POPPLER_FIND_BACKWARDS" "1 << 1")
+    '("whole-words-only" "POPPLER_FIND_WHOLE_WORDS_ONLY" "1 << 2")
+  )
+)
+
+;; Original typedef:
 ;; typedef enum
 ;; {
 ;;   POPPLER_BACKEND_UNKNOWN,

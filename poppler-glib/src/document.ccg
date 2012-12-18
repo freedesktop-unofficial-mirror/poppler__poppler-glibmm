@@ -36,6 +36,32 @@ Glib::RefPtr<Document> Document::new_from_data(const std::string& data, const st
   return retvalue;
 }
 
+Glib::RefPtr<Document> Document::new_from_stream(const Glib::RefPtr<Gio::InputStream>& stream,
+    const goffset length, const std::string& password,
+    const Glib::RefPtr<Gio::Cancellable>& cancellable)
+{
+  GError* gerror = 0;
+  Glib::RefPtr<Document> retvalue = Glib::wrap(poppler_document_new_from_stream(stream->gobj(),
+                                               length, password.c_str(), cancellable ? cancellable->gobj() : NULL, &gerror));
+  if(gerror)
+    ::Glib::Error::throw_exception(gerror);
+
+  return retvalue;
+}
+
+static Glib::RefPtr<Document> new_from_gio_file(const Glib::RefPtr<Gio::File>& file,
+    const std::string& password,
+    const Glib::RefPtr<Gio::Cancellable>& cancellable)
+{
+  GError* gerror = 0;
+  Glib::RefPtr<Document> retvalue = Glib::wrap(poppler_document_new_from_gfile(file->gobj(),
+                                               password.c_str(), cancellable ? cancellable->gobj() : NULL, &gerror));
+  if(gerror)
+    ::Glib::Error::throw_exception(gerror);
+
+  return retvalue;
+}
+
 bool Document::get_id(Glib::ustring& permanent_id, Glib::ustring& update_id) const
 {
   Glib::ScopedPtr<gchar> permanent_id_array, update_id_array;

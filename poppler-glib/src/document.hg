@@ -21,6 +21,8 @@ _CONFIGINCLUDE(poppler-glibmmconfig.h)
 _PINCLUDE(glibmm/private/object_p.h)
 
 #include <glibmm/object.h>
+#include <giomm/inputstream.h>
+#include <giomm/file.h>
 #include <poppler-glibmm/page.h>
 #include <poppler-glibmm/action.h>
 #include <poppler-glibmm/attachment.h>
@@ -67,7 +69,34 @@ public:
    */
   static Glib::RefPtr<Document> new_from_data(const std::string& data, const std::string& password = "");
 
-  /** Saves document. Any change made in the document such as form fields
+  /** Creates a new Poppler::Document reading the PDF contents from @a stream.
+   * Note that the given Gio::InputStream must be seekable or
+   * Gio::IO_ERROR_NOT_SUPPORTED will be thrown.
+   * If <tt>0</tt> is returned, then an exception will be thrown.
+   * @param stream A Gio::InputStream to read from.
+   * @param length The stream length, or -1 if not known.
+   * @param password Password to unlock the file with.
+   * @param cancellable A Gio::Cancellable, or <tt>0</tt>.
+   * @return A new Poppler::Document, or <tt>0</tt>.
+   * @throws Poppler::Error, Glib::FileError, and Gio::Error
+   */
+  static Glib::RefPtr<Document> new_from_stream(const Glib::RefPtr<Gio::InputStream>& stream,
+      const goffset length = -1, const std::string& password = "",
+      const Glib::RefPtr<Gio::Cancellable>& cancellable = Glib::RefPtr<Gio::Cancellable>());
+
+  /** Creates a new Poppler::Document reading the PDF contents from @a file.
+  * If <tt>0</tt> is returned, then an exception will be thrown.
+  * @param file A Gio::File to load.
+  * @param password Password to unlock the file with.
+  * @param cancellable A Gio::Cancellable, or <tt>0</tt>.
+  * @return A new Poppler::Document, or <tt>0</tt>.
+  * @throws Poppler::Error and Glib::FileError
+  */
+  static Glib::RefPtr<Document> new_from_gio_file(const Glib::RefPtr<Gio::File>& file,
+      const std::string& password = "",
+      const Glib::RefPtr<Gio::Cancellable>& cancellable = Glib::RefPtr<Gio::Cancellable>());
+
+ /** Saves document. Any change made in the document such as form fields
    * filled, annotations added or modified will be saved.
    * If an error occurs, <tt>false</tt> will be returned.
    * @param uri Uri of file to save.
