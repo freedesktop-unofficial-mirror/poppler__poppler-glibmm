@@ -64,7 +64,7 @@ MM_ARG_WITH_TAGFILE_DOC([cairomm-1.0.tag], [cairomm-1.0])
 AC_LANG([C++])
 MM_ARG_ENABLE_WARNINGS([POPPLER_GLIBMM_WXXFLAGS],
                        [-Wall],
-                       [-pedantic -Wall -Wextra],
+                       [-pedantic -Wall -Wextra -Wno-long-long],
                        [G POPPLER_GLIB GLIBMM CAIROMM GTKMM])
 
 AC_CONFIG_FILES([Makefile
