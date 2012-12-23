@@ -21,6 +21,12 @@ Makefile.in
 # /codegen/extradefs/
 /codegen/extradefs/generate_extra_defs
 
+# /doc/
+/doc/doc-install.pl
+/doc/doc-postprocess.pl
+/doc/doxygen.css
+/doc/tagfile-to-devhelp2.xsl
+
 # /doc/reference/
 /doc/reference/Doxyfile
 /doc/reference/doxygen.log
@@ -90,6 +96,7 @@ Makefile.in
 /poppler-glib/poppler-glibmm/text_attributes.h
 /poppler-glib/poppler-glibmm/utility.cc
 /poppler-glib/poppler-glibmm/utility.h
+/poppler-glib/poppler-glibmm/wrap_init.cc
 
 # /poppler-glib/poppler-glibmm/private/
 /poppler-glib/poppler-glibmm/private/action_p.h
