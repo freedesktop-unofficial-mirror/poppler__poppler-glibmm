@@ -6,8 +6,8 @@
 
   <name xml:lang="en">poppler-glibmm</name>
   <shortdesc xml:lang="en">C++ bindings for the poppler-glib library</shortdesc>
-  <homepage rdf:resource="http://www.gtkmm.org/" />
-  <mailing-list rdf:resource="mailto:gtkmm-list@gnome.org" />
+  <homepage rdf:resource="http://poppler.freedesktop.org" />
+  <mailing-list rdf:resource="mailto:poppler@lists.freedesktop.org" />
   <category rdf:resource="http://api.gnome.org/doap-extensions#bindings" />
 
   <maintainer>

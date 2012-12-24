@@ -15,8 +15,8 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([poppler-glibmm], [0.21.1], [https://bugzilla.gnome.org/enter_bug.cgi?product=poppler-glibmm],
-        [poppler-glibmm], [http://www.gtkmm.org/])
+AC_INIT([poppler-glibmm], [0.21.1], [https://bugs.freedesktop.org/enter_bug.cgi?product=poppler],
+		[poppler-glibmm], [http://poppler.freedesktop.org/])
 AC_PREREQ([2.59])
 
 AC_CONFIG_SRCDIR([poppler-glib/poppler-glibmm.h])
@@ -45,11 +45,11 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 
-AC_SUBST([POPPLER_GLIBMM_MODULES], ['poppler-glib >= 0.20 glibmm-2.4 >= 2.16 cairomm-1.0 >= 1.10 giomm-2.4 >= 2.16'])
+AC_SUBST([POPPLER_GLIBMM_MODULES], ['poppler-glib >= 0.21 glibmm-2.4 >= 2.33 cairomm-1.0 >= 1.10 giomm-2.4 >= 2.33'])
 PKG_CHECK_MODULES([POPPLER_GLIBMM], [$POPPLER_GLIBMM_MODULES])
 
 # This is only needed for the demos
-AC_SUBST([GTKMM_MODULES], ['gtkmm-3.0 >= 3.4.0'])
+AC_SUBST([GTKMM_MODULES], ['gtkmm-3.0 >= 3.5.0'])
 PKG_CHECK_MODULES([GTKMM], [$GTKMM_MODULES])
 
 MM_PKG_CONFIG_SUBST([GTHREAD_CFLAGS], [--cflags-only-other gthread-2.0])

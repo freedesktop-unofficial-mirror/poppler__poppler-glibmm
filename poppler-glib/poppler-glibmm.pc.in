@@ -13,7 +13,7 @@ htmlrefpub=http://library.gnome.org/devel/@PACKAGE_TARNAME@/unstable/
 Name: poppler-glibmm
 Description: C++ binding for poppler-glib
 Version: @POPPLER_GLIBMM_VERSION@
-URL: http://www.gtkmm.org/
+URL: http://poppler.freedesktop.org/
 Requires: @POPPLER_GLIBMM_MODULES@
 Libs: -L${libdir} -lpoppler-glibmm-@POPPLER_GLIBMM_API_VERSION@
 Cflags: -I${includedir}/@POPPLER_GLIBMM_MODULE_NAME@ -I${libdir}/@POPPLER_GLIBMM_MODULE_NAME@/include

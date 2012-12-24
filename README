@@ -1,2 +1,1 @@
 poppler-glibmm is the C++ binding for the poppler-glib library.
-This module is part of the GNOME C++ bindings effort <http://www.gtkmm.org/>.
