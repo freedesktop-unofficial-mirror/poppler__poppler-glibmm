@@ -3,7 +3,7 @@
 files_defs = \
 	     poppler-glib.defs			\
 	     poppler-glib_enum.defs		\
-	     poppler-glib_extra.defs		\
+	     poppler-glib_signal.defs		\
 	     poppler-glib_method.defs		\
 	     poppler-glib_docs.xml		\
 	     poppler-glib_docs_override.xml

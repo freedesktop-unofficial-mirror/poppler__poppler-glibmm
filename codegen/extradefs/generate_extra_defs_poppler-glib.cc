@@ -22,7 +22,9 @@
 
 int main(int, char**)
 {
+#if !GLIB_CHECK_VERSION(2,35,1)
 	g_type_init();
+#endif
 
 	std::cout
 		<< get_defs(POPPLER_TYPE_ACTION)
