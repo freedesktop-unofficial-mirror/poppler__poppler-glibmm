@@ -62,11 +62,18 @@ class IndexIter
     _WRAP_METHOD(Action get_action() const, poppler_index_iter_get_action)
     _WRAP_METHOD(bool next() const, poppler_index_iter_next)
 
-    /** Returns <tt>true</tt> if this IndexIter points contains valid
-     * information about indices of the associated document.
-     * @return <tt>true</tt>, if the IndexIter is valid
+    /** This typedef is just to make it more obvious that
+     * our operator const void* should be used like operator bool().
      */
-    inline operator bool() const { return gobj() != NULL; };
+    typedef const void* BoolExpr;
+
+    /** Tests whether the IndexIter is valid.
+     * For instance,
+     * @code
+     * if (index_iter) do_something()
+     * @endcode
+     */
+    inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
 };
 
 } // namespace Poppler

@@ -203,6 +203,8 @@
 
 ;; From PopplerError
 
+;; From PopplerFindFlags
+
 ;; From PopplerFontsIter
 
 ;; From PopplerFontInfo

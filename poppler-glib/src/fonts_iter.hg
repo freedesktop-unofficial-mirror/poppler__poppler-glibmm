@@ -42,11 +42,18 @@ class FontsIter
     _WRAP_METHOD(Glib::ustring get_substitute_name() const, poppler_fonts_iter_get_substitute_name)
     _WRAP_METHOD(Glib::ustring get_encoding() const, poppler_fonts_iter_get_encoding)
 
-    /** Returns <tt>true</tt> if this FontsIter points to fonts found in the
-     * associated document.
-     * @return <tt>true</tt>, if the FontsIter is valid
+    /** This typedef is just to make it more obvious that
+     * our operator const void* should be used like operator bool().
      */
-    inline operator bool() const { return gobj() != NULL; };
+    typedef const void* BoolExpr;
+
+    /** Tests whether the FonstIter is valid.
+     * For instance,
+     * @code
+     * if (fonts_iter) do_something()
+     * @endcode
+     */
+    inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
 };
 
 } // namespace Poppler

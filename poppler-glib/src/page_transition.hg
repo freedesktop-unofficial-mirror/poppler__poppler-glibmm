@@ -50,11 +50,18 @@ class PageTransition
 	_MEMBER_GET(rectangular, rectangular, bool, gboolean)
 	_MEMBER_SET(rectangular, rectangular, bool, gboolean)
 
-  /** Returns <tt>true</tt> if this PageTransition is valid, that is if the
-   * underlying instance is non-null.
-   * @return <tt>true</tt>, if the PageTransition is valid
-   */
-  inline operator bool() const { return gobj() != NULL; };
+    /** This typedef is just to make it more obvious that
+     * our operator const void* should be used like operator bool().
+     */
+    typedef const void* BoolExpr;
+
+    /** Tests whether the PageTransition is valid.
+     * For instance,
+     * @code
+     * if (page_transition) do_something()
+     * @endcode
+     */
+    inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
 };
 
 } // namespace Poppler

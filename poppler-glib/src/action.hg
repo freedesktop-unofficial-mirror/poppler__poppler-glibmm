@@ -68,11 +68,16 @@ class Dest
     _MEMBER_GET(change_zoom, change_zoom, guint, guint)
     _MEMBER_SET(change_zoom, change_zoom, guint, guint)
 
+    /** This typedef is just to make it more obvious that
+     * our operator const void* should be used like operator bool().
+     */
+    typedef const void* BoolExpr;
+
     /** Returns <tt>true</tt> if this Dest is valid, that is if the
      * underlying instance is non-null.
      * @return <tt>true</tt>, if the Dest is valid
      */
-    inline operator bool() const { return gobj() != NULL; };
+    inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
 };
 
 /** Poppler::ActionLayer - Layer actions
@@ -157,11 +162,18 @@ class Action
     // PopplerActionJavascript members
     _MEMBER_GET(javascript, javascript.script, std::string, gchar*)
 
-    /** Returns <tt>true</tt> if this Action is valid, that is if the
-     * underlying instance is non-null.
-     * @return <tt>true</tt>, if the Action is valid
+    /** This typedef is just to make it more obvious that
+     * our operator const void* should be used like operator bool().
      */
-    inline operator bool() const { return gobj() != NULL; };
+    typedef const void* BoolExpr;
+
+    /** Tests whether the Action is valid.
+     * For instance,
+     * @code
+     * if (action) do_something()
+     * @endcode
+     */
+    inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
 };
 
 } // namespace Poppler

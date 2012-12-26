@@ -40,11 +40,18 @@ class Color
     _MEMBER_GET(blue, blue, guint16, guint16)
     _MEMBER_SET(blue, blue, guint16, guint16)
 
-    /** Returns <tt>true</tt> if this Color is valid, that is if the
-     * underlying instance is non-null.
-     * @return <tt>true</tt>, if the Color is valid
+    /** This typedef is just to make it more obvious that
+     * our operator const void* should be used like operator bool().
      */
-    inline operator bool() const { return gobj() != NULL; };
+    typedef const void* BoolExpr;
+
+    /** Tests whether the Color is valid.
+     * For instance,
+     * @code
+     * if (color) do_something()
+     * @endcode
+     */
+    inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
 };
 
 } // namespace Poppler

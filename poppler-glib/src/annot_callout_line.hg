@@ -45,11 +45,18 @@ class AnnotCalloutLine
     _MEMBER_GET(y3, y3, double, gdouble)
     _MEMBER_SET(y3, y3, double, gdouble)
 
-    /** Returns <tt>true</tt> if this AnnotCalloutLine is valid, that is if the
-     * underlying instance is non-null.
-     * @return <tt>true</tt>, if the AnnotCalloutLine is valid
+    /** This typedef is just to make it more obvious that
+     * our operator const void* should be used like operator bool().
      */
-    inline operator bool() const { return gobj() != NULL; };
+    typedef const void* BoolExpr;
+
+    /** Tests whether the AnnotCalloutLine is valid.
+     * For instance,
+     * @code
+     * if (annot) do_something()
+     * @endcode
+     */
+    inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
 };
 
 } // namespace Poppler
