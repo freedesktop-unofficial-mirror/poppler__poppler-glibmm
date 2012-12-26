@@ -52,13 +52,13 @@ class Annot : public Glib::Object
   public:
     _WRAP_METHOD(AnnotType get_annot_type() const, poppler_annot_get_annot_type)
     _WRAP_METHOD(AnnotFlag get_flags() const, poppler_annot_get_flags)
-    _WRAP_METHOD(void set_flags(AnnotFlag flags) const, poppler_annot_set_flags)
+    _WRAP_METHOD(void set_flags(AnnotFlag flags), poppler_annot_set_flags)
     _WRAP_METHOD(Glib::ustring get_name() const, poppler_annot_get_name)
     _WRAP_METHOD(int get_page_index() const, poppler_annot_get_page_index)
     _WRAP_METHOD(Color get_color() const, poppler_annot_get_color)
-    _WRAP_METHOD(void set_color(const Color& color) const, poppler_annot_set_color)
+    _WRAP_METHOD(void set_color(const Color& color), poppler_annot_set_color)
     _WRAP_METHOD(Glib::ustring get_contents() const, poppler_annot_get_contents)
-    _WRAP_METHOD(void set_contents(const Glib::ustring& contents) const, poppler_annot_set_contents)
+    _WRAP_METHOD(void set_contents(const Glib::ustring& contents), poppler_annot_set_contents)
     _WRAP_METHOD(Glib::ustring get_modified() const, poppler_annot_get_modified)
 };
 
@@ -73,14 +73,14 @@ class AnnotMarkup : public Annot
 
   public:
     _WRAP_METHOD(Glib::ustring get_label() const, poppler_annot_markup_get_label)
-    _WRAP_METHOD(void set_label(const Glib::ustring& label) const, poppler_annot_markup_set_label)
+    _WRAP_METHOD(void set_label(const Glib::ustring& label), poppler_annot_markup_set_label)
     _WRAP_METHOD(Glib::ustring get_subject() const, poppler_annot_markup_get_subject)
     _WRAP_METHOD(double get_opacity() const, poppler_annot_markup_get_opacity)
-    _WRAP_METHOD(void set_opacity(double opacity) const, poppler_annot_markup_set_opacity)
+    _WRAP_METHOD(void set_opacity(double opacity), poppler_annot_markup_set_opacity)
     _WRAP_METHOD(bool has_popup() const, poppler_annot_markup_has_popup)
-    _WRAP_METHOD(void set_popup(const Rectangle& popup_rect) const, poppler_annot_markup_set_popup)
+    _WRAP_METHOD(void set_popup(const Rectangle& popup_rect), poppler_annot_markup_set_popup)
     _WRAP_METHOD(bool get_popup_is_open() const, poppler_annot_markup_get_popup_is_open)
-    _WRAP_METHOD(void set_popup_is_open(bool is_open = true) const, poppler_annot_markup_set_popup_is_open)
+    _WRAP_METHOD(void set_popup_is_open(bool is_open = true), poppler_annot_markup_set_popup_is_open)
     _WRAP_METHOD(void get_popup_rectangle(Rectangle& popup_rect) const, poppler_annot_markup_get_popup_rectangle)
 
     _WRAP_METHOD_DOCS_ONLY(poppler_annot_markup_get_date)
@@ -111,9 +111,9 @@ class AnnotText : public AnnotMarkup
     _WRAP_CREATE(const Glib::RefPtr<Document>& document, const Rectangle& rect)
 
     _WRAP_METHOD(Glib::ustring get_icon() const, poppler_annot_text_get_icon)
-    _WRAP_METHOD(void set_icon(const Glib::ustring& icon) const, poppler_annot_text_set_icon)
+    _WRAP_METHOD(void set_icon(const Glib::ustring& icon), poppler_annot_text_set_icon)
     _WRAP_METHOD(bool get_is_open() const, poppler_annot_text_get_is_open)
-    _WRAP_METHOD(void set_is_open(bool is_open = true) const, poppler_annot_text_set_is_open)
+    _WRAP_METHOD(void set_is_open(bool is_open = true), poppler_annot_text_set_is_open)
     _WRAP_METHOD(AnnotTextState get_state() const, poppler_annot_text_get_state)
 };
 

@@ -33,8 +33,8 @@ class PSFile : public Glib::Object
     _CTOR_DEFAULT
 
   public:
-  	_WRAP_METHOD(void set_paper_size(double width, double height) const, poppler_ps_file_set_paper_size)
-    _WRAP_METHOD(void set_duplex(bool duplex) const, poppler_ps_file_set_duplex)
+  	_WRAP_METHOD(void set_paper_size(double width, double height), poppler_ps_file_set_paper_size)
+    _WRAP_METHOD(void set_duplex(bool duplex), poppler_ps_file_set_duplex)
 
     _IGNORE(poppler_ps_file_free)
 };

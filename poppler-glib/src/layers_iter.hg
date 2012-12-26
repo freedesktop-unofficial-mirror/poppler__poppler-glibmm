@@ -34,7 +34,7 @@ class LayersIter
     _WRAP_METHOD(LayersIter get_child() const, poppler_layers_iter_get_child)
     _WRAP_METHOD(Glib::RefPtr<Layer> get_layer() const, poppler_layers_iter_get_layer)
     _WRAP_METHOD(Glib::ustring get_title() const, poppler_layers_iter_get_title)
-    _WRAP_METHOD(bool next() const, poppler_layers_iter_next)
+    _WRAP_METHOD(bool next(), poppler_layers_iter_next)
 
     /** This typedef is just to make it more obvious that
      * our operator const void* should be used like operator bool().

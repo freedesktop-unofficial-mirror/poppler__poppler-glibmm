@@ -146,7 +146,7 @@ Layers::Layers(const Glib::RefPtr<Poppler::Document>& document) :
 	show_all();
 }
 
-void Layers::build_tree(const Gtk::TreeModel::Children& parent, const Poppler::LayersIter &iter)
+void Layers::build_tree(const Gtk::TreeModel::Children& parent, Poppler::LayersIter& iter)
 {
 	do
 	{

@@ -37,7 +37,7 @@ class Outline : public Gtk::Paned
 		Outline(const Glib::RefPtr<Poppler::Document>& document);
 
 	private:
-		void build_tree(const Gtk::TreeModel::Children& parent, const Poppler::IndexIter &iter);
+		void build_tree(const Gtk::TreeModel::Children& parent, Poppler::IndexIter& iter);
 		void expand_open_links(const Gtk::TreeModel::Children& parent);
 		void selection_changed();
 

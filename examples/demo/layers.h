@@ -61,7 +61,7 @@ class Layers : public Gtk::Paned
 		Layers(const Glib::RefPtr<Poppler::Document>& document);
 
 	private:
-		void build_tree(const Gtk::TreeModel::Children& parent, const Poppler::LayersIter &iter);
+		void build_tree(const Gtk::TreeModel::Children& parent, Poppler::LayersIter& iter);
 		void selection_changed();
 		void visibility_changed(const Glib::ustring& path);
 		bool clear_rb_group(const Gtk::TreeIter& iter, int rb_group);

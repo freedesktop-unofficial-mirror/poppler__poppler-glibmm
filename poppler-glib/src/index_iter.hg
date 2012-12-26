@@ -60,7 +60,7 @@ class IndexIter
     _WRAP_METHOD(IndexIter get_child() const, poppler_index_iter_get_child)
     _WRAP_METHOD(bool is_open() const, poppler_index_iter_is_open)
     _WRAP_METHOD(Action get_action() const, poppler_index_iter_get_action)
-    _WRAP_METHOD(bool next() const, poppler_index_iter_next)
+    _WRAP_METHOD(bool next(), poppler_index_iter_next)
 
     /** This typedef is just to make it more obvious that
      * our operator const void* should be used like operator bool().

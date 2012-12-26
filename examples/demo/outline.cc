@@ -74,7 +74,7 @@ Outline::Outline(const Glib::RefPtr<Poppler::Document>& document) :
 	show_all();
 }
 
-void Outline::build_tree(const Gtk::TreeModel::Children& parent, const Poppler::IndexIter &iter)
+void Outline::build_tree(const Gtk::TreeModel::Children& parent, Poppler::IndexIter& iter)
 {
 	do
 	{

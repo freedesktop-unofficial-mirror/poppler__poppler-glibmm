@@ -38,7 +38,7 @@ class FontsIter
     _WRAP_METHOD(Glib::ustring get_file_name() const, poppler_fonts_iter_get_file_name)
     _WRAP_METHOD(bool is_embedded() const, poppler_fonts_iter_is_embedded)
     _WRAP_METHOD(bool is_subset() const, poppler_fonts_iter_is_subset)
-    _WRAP_METHOD(bool next() const, poppler_fonts_iter_next)
+    _WRAP_METHOD(bool next(), poppler_fonts_iter_next)
     _WRAP_METHOD(Glib::ustring get_substitute_name() const, poppler_fonts_iter_get_substitute_name)
     _WRAP_METHOD(Glib::ustring get_encoding() const, poppler_fonts_iter_get_encoding)
 

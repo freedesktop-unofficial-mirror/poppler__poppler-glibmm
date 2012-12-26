@@ -35,8 +35,8 @@ class Layer : public Glib::Object
   public:
     _WRAP_METHOD(Glib::ustring get_title() const, poppler_layer_get_title)
     _WRAP_METHOD(bool is_visible() const, poppler_layer_is_visible)
-    _WRAP_METHOD(void show() const, poppler_layer_show)
-    _WRAP_METHOD(void hide() const, poppler_layer_hide)
+    _WRAP_METHOD(void show(), poppler_layer_show)
+    _WRAP_METHOD(void hide(), poppler_layer_hide)
     _WRAP_METHOD(bool is_parent() const, poppler_layer_is_parent)
     _WRAP_METHOD(int get_radio_button_group_id() const, poppler_layer_get_radio_button_group_id)
 };
