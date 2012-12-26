@@ -52,6 +52,27 @@ class Color
      * @endcode
      */
     inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
+
+  private:
+    /** Relational operators are deleted to prevent invalid conversion
+     * to const void*.
+     */
+    bool operator<(const Color& src) const;
+
+    /// See operator<().
+    bool operator<=(const Color& src) const;
+
+    /// See operator<().
+    bool operator>(const Color& src) const;
+
+    /// See operator<().
+    bool operator>=(const Color& src) const;
+
+    /// See operator<().
+    bool operator==(const Color& src) const;
+
+    /// See operator<().
+    bool operator!=(const Color& src) const;
 };
 
 } // namespace Poppler

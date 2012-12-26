@@ -54,6 +54,27 @@ class FontsIter
      * @endcode
      */
     inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
+
+  private:
+    /** Relational operators are deleted to prevent invalid conversion
+     * to const void*.
+     */
+    bool operator<(const FontsIter& src) const;
+
+    /// See operator<().
+    bool operator<=(const FontsIter& src) const;
+
+    /// See operator<().
+    bool operator>(const FontsIter& src) const;
+
+    /// See operator<().
+    bool operator>=(const FontsIter& src) const;
+
+    /// See operator<().
+    bool operator==(const FontsIter& src) const;
+
+    /// See operator<().
+    bool operator!=(const FontsIter& src) const;
 };
 
 } // namespace Poppler

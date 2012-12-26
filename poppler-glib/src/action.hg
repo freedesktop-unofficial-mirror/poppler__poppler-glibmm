@@ -78,6 +78,27 @@ class Dest
      * @return <tt>true</tt>, if the Dest is valid
      */
     inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
+
+  private:
+    /** Relational operators are deleted to prevent invalid conversion
+     * to const void*.
+     */
+    bool operator<(const Dest& src) const;
+
+    /// See operator<().
+    bool operator<=(const Dest& src) const;
+
+    /// See operator<().
+    bool operator>(const Dest& src) const;
+
+    /// See operator<().
+    bool operator>=(const Dest& src) const;
+
+    /// See operator<().
+    bool operator==(const Dest& src) const;
+
+    /// See operator<().
+    bool operator!=(const Dest& src) const;
 };
 
 /** Poppler::ActionLayer - Layer actions
@@ -174,6 +195,27 @@ class Action
      * @endcode
      */
     inline operator BoolExpr() const { return gobj() ? GINT_TO_POINTER(1) : 0; }
+
+  private:
+    /** Relational operators are deleted to prevent invalid conversion
+     * to const void*.
+     */
+    bool operator<(const Action& src) const;
+
+    /// See operator<().
+    bool operator<=(const Action& src) const;
+
+    /// See operator<().
+    bool operator>(const Action& src) const;
+
+    /// See operator<().
+    bool operator>=(const Action& src) const;
+
+    /// See operator<().
+    bool operator==(const Action& src) const;
+
+    /// See operator<().
+    bool operator!=(const Action& src) const;
 };
 
 } // namespace Poppler
