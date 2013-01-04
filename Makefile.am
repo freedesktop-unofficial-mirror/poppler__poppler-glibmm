@@ -42,4 +42,4 @@ pkgconfig_DATA = poppler-glib/$(POPPLER_GLIBMM_MODULE_NAME).pc
 dist_noinst_SCRIPTS = autogen.sh
 
 # Optional: auto-generate the ChangeLog file from the git log on make dist
-#include $(top_srcdir)/build/dist-changelog.am
+include $(top_srcdir)/build/dist-changelog.am
